@@ -110,3 +110,56 @@ async def cancel_order(callback: CallbackQuery, state: FSMContext):
     await callback.message.edit_text("❌ Buyurtma bekor qilindi.", reply_markup=back_kb("main_menu"))
     await state.clear()
     await callback.answer()
+
+@router.message(F.web_app_data)
+async def process_web_app_order(message: Message):
+    import json
+    try:
+        data = json.loads(message.web_app_data.data)
+        service_id = int(data.get("service_id", 0))
+        user_name = data.get("user_name") or message.from_user.full_name
+        user_phone = data.get("user_phone", "")
+        user_id = message.from_user.id
+        
+        service = await db.get_service(service_id)
+        service_name = service['name'] if service else f"Xizmat #{service_id}"
+        service_price = service['price'] if service else "Kelishilgan"
+        
+        order_id = await db.add_order(
+            user_id=user_id,
+            user_name=user_name,
+            user_phone=user_phone,
+            service_id=service_id
+        )
+        
+        admin_id = os.getenv("ADMIN_ID")
+        if admin_id:
+            admin_text = (
+                f"🆕 <b>Yangi Mini App buyurtmasi!</b> #{order_id}\n\n"
+                f"🛠 <b>Xizmat:</b> {service_name}\n"
+                f"💰 <b>Narxi:</b> {service_price}\n"
+                f"👤 <b>Mijoz:</b> {user_name}\n"
+                f"📞 <b>Telefon:</b> {user_phone}\n\n"
+                f"Telegram profile: <a href='tg://user?id={user_id}'>Profilga o'tish</a>"
+            )
+            try:
+                await message.bot.send_message(
+                    chat_id=admin_id,
+                    text=admin_text,
+                    reply_markup=order_status_kb(order_id),
+                    parse_mode="HTML"
+                )
+            except Exception as e:
+                print(f"Adminga xabar yuborishda xatolik: {e}")
+        
+        await message.answer(
+            f"🎉 <b>Buyurtmangiz Mini App orqali qabul qilindi!</b>\n\n"
+            f"📦 <b>Buyurtma raqami:</b> #{order_id}\n"
+            f"🛠 <b>Xizmat:</b> {service_name}\n"
+            f"💰 <b>Narxi:</b> {service_price}\n\n"
+            f"Tez orada siz bilan bog'lanamiz! Rahmat! 😊",
+            reply_markup=back_kb("main_menu"),
+            parse_mode="HTML"
+        )
+    except Exception as e:
+        await message.answer(f"Buyurtma qabul qilishda xatolik: {e}")

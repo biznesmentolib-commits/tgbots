@@ -1,14 +1,21 @@
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+import os
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 def main_menu_kb() -> InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()
+    webapp_url = os.getenv("WEBAPP_URL")
+    if webapp_url:
+        builder.button(text="🚀 Mini App (Ilovani ochish)", web_app=WebAppInfo(url=webapp_url))
     builder.button(text="🛠 Xizmatlar", callback_data="services")
     builder.button(text="📝 Buyurtma berish", callback_data="make_order")
     builder.button(text="🖼 Portfolio", callback_data="portfolio")
     builder.button(text="📞 Aloqa", callback_data="contacts")
     builder.button(text="ℹ️ Biz haqimizda", callback_data="about")
-    builder.adjust(2, 2, 1)
+    if webapp_url:
+        builder.adjust(1, 2, 2, 1)
+    else:
+        builder.adjust(2, 2, 1)
     return builder.as_markup()
 
 def services_list_kb(services) -> InlineKeyboardMarkup:
