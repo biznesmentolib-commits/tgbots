@@ -6,6 +6,9 @@ def main_menu_kb() -> InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()
     webapp_url = os.getenv("WEBAPP_URL")
     if webapp_url:
+        webapp_url = webapp_url.strip()
+        if not webapp_url.startswith("https://") and not webapp_url.startswith("http://"):
+            webapp_url = f"https://{webapp_url}"
         builder.button(text="🚀 Mini App (Ilovani ochish)", web_app=WebAppInfo(url=webapp_url))
     builder.button(text="🛠 Xizmatlar", callback_data="services")
     builder.button(text="📝 Buyurtma berish", callback_data="make_order")

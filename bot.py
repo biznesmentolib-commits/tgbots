@@ -51,6 +51,9 @@ async def main():
     # Agar WEBAPP_URL bo'lsa, Telegram pastki chat menyusiga Mini App tugmasini biriktirish
     webapp_url = os.getenv("WEBAPP_URL")
     if webapp_url:
+        webapp_url = webapp_url.strip()
+        if not webapp_url.startswith("https://") and not webapp_url.startswith("http://"):
+            webapp_url = f"https://{webapp_url}"
         try:
             await bot.set_chat_menu_button(
                 menu_button=MenuButtonWebApp(
