@@ -3,48 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>MARDONOV MARKET | Uzum & AliExpress uslubidagi marketpleys</title>
+  <title>MARDONOV ACCESSORIES | Do'kon & CRM Tizimi</title>
   
   <!-- Telegram Web App JS SDK -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-  <!-- Google Font: Plus Jakarta Sans & Inter -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
 
   <style>
     /* ==========================================================================
-       UZUM MARKET & ALIEXPRESS MARKETPLACE DESIGN SYSTEM
+       ACCESSORIES BOUTIQUE & CRM DESIGN SYSTEM
        ========================================================================== */
     :root {
-      --uzum-purple: #7000ff;
-      --uzum-purple-hover: #5d00d6;
-      --uzum-purple-light: rgba(112, 0, 255, 0.12);
+      --primary: #7000ff;
+      --primary-hover: #5d00d6;
+      --primary-subtle: rgba(112, 0, 255, 0.14);
       
-      --uzum-yellow: #ffbe0b;
-      --uzum-red: #f72585;
-      --uzum-green: #06d6a0;
+      --accent-green: #10b981;
+      --accent-yellow: #f59e0b;
+      --accent-red: #ef4444;
+      --accent-blue: #3b82f6;
       
-      --bg-base: #0a0b0e;
-      --bg-surface: #12141a;
-      --bg-surface-elevated: #1a1d26;
-      --bg-input: #161822;
+      --bg-main: #08090c;
+      --bg-card: #101217;
+      --bg-card-hover: #161820;
+      --bg-input: #151821;
       
       --border-subtle: rgba(255, 255, 255, 0.08);
       --border-medium: rgba(255, 255, 255, 0.16);
       
-      --text-main: #ffffff;
-      --text-sub: #9ca3af;
-      --text-muted: #6b7280;
+      --text-white: #ffffff;
+      --text-gray: #9ba1b0;
+      --text-muted: #5e6473;
       
       --radius-sm: 8px;
       --radius-md: 14px;
       --radius-lg: 20px;
-      --radius-full: 9999px;
+      --radius-pill: 9999px;
       
-      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      --font-mono: 'Space Grotesk', -apple-system, monospace;
+      --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-mono: 'Space Grotesk', monospace;
       
       --safe-bottom: env(safe-area-inset-bottom, 0px);
     }
@@ -57,9 +58,9 @@
     }
 
     body {
-      font-family: var(--font-family);
-      background-color: var(--bg-base);
-      color: var(--text-main);
+      font-family: var(--font-body);
+      background-color: var(--bg-main);
+      color: var(--text-white);
       min-height: 100vh;
       overflow-x: hidden;
       padding-bottom: calc(85px + var(--safe-bottom));
@@ -73,74 +74,83 @@
     }
 
     /* ==========================================================================
-       HEADER (Marketplace Search & Delivery Badge)
+       STORE HEADER & MODE SWITCHER
        ========================================================================== */
-    .market-header {
+    .top-header {
       position: sticky;
       top: 0;
       z-index: 60;
-      background: rgba(10, 11, 14, 0.92);
+      background: rgba(8, 9, 12, 0.92);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--border-subtle);
       padding: 10px 14px 12px;
     }
 
-    .header-top {
+    .header-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 10px;
     }
 
-    .brand-box {
+    .store-brand {
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
-    .brand-logo-badge {
-      background: linear-gradient(135deg, #7000ff 0%, #a855f7 100%);
-      color: #fff;
-      font-weight: 800;
-      font-size: 14px;
+    .brand-icon {
       width: 32px;
       height: 32px;
       border-radius: 9px;
+      background: linear-gradient(135deg, #7000ff 0%, #3b82f6 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 12px rgba(112, 0, 255, 0.4);
+      font-size: 14px;
+      font-weight: 800;
+      box-shadow: 0 4px 12px rgba(112, 0, 255, 0.35);
     }
 
-    .brand-name {
-      font-size: 15px;
+    .brand-text h1 {
+      font-size: 14px;
       font-weight: 800;
-      letter-spacing: -0.3px;
+      letter-spacing: 0.2px;
+      text-transform: uppercase;
       color: #fff;
+    }
+
+    .brand-text p {
+      font-size: 10px;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .crm-switch-btn {
+      background: #191c26;
+      border: 1px solid var(--border-medium);
+      color: #c084fc;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
       display: flex;
       align-items: center;
       gap: 5px;
+      transition: all 0.2s;
     }
 
-    .brand-name span {
-      color: var(--uzum-purple);
+    .crm-switch-btn:active {
+      transform: scale(0.96);
+      background: var(--primary);
+      color: #fff;
     }
 
-    .delivery-pill {
-      background: var(--uzum-purple-light);
-      border: 1px solid rgba(112, 0, 255, 0.3);
-      padding: 4px 10px;
-      border-radius: var(--radius-full);
-      font-size: 11px;
-      font-weight: 700;
-      color: #c084fc;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .search-bar {
+    .search-field {
       position: relative;
     }
 
@@ -149,151 +159,74 @@
       background: var(--bg-input);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 11px 16px 11px 40px;
+      padding: 10px 14px 10px 38px;
       color: #fff;
       font-size: 13px;
       font-family: inherit;
       outline: none;
-      transition: all 0.2s;
     }
 
     .search-input:focus {
-      border-color: var(--uzum-purple);
-      background: #1c1f2c;
-      box-shadow: 0 0 0 3px rgba(112, 0, 255, 0.15);
+      border-color: var(--primary);
     }
 
-    .search-icon {
+    .search-ico {
       position: absolute;
-      left: 14px;
+      left: 12px;
       top: 50%;
       transform: translateY(-50%);
       color: var(--text-muted);
-      font-size: 15px;
+      font-size: 14px;
     }
 
     /* ==========================================================================
-       PROMO CAROUSEL / BANNERS (Uzum Market Style)
+       ACCESSORIES CATEGORY STORY ICONS
        ========================================================================== */
-    .promo-banner {
-      margin: 12px 0 16px;
-      border-radius: var(--radius-lg);
-      padding: 18px 20px;
-      background: linear-gradient(135deg, #4c00b0 0%, #7000ff 50%, #9333ea 100%);
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 12px 28px -6px rgba(112, 0, 255, 0.4);
-    }
-
-    .promo-banner::after {
-      content: '⚡';
-      position: absolute;
-      right: 15px;
-      bottom: -15px;
-      font-size: 90px;
-      opacity: 0.15;
-      transform: rotate(15deg);
-      pointer-events: none;
-    }
-
-    .banner-badge {
-      display: inline-block;
-      background: rgba(0, 0, 0, 0.3);
-      padding: 4px 10px;
-      border-radius: var(--radius-full);
-      font-size: 10px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: #ffbe0b;
-      margin-bottom: 8px;
-    }
-
-    .banner-title {
-      font-size: 20px;
-      font-weight: 800;
-      line-height: 1.25;
-      letter-spacing: -0.4px;
-      color: #fff;
-      margin-bottom: 6px;
-    }
-
-    .banner-desc {
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.85);
-      margin-bottom: 14px;
-      line-height: 1.4;
-    }
-
-    .banner-btn {
-      background: #ffffff;
-      color: #000;
-      border: none;
-      padding: 9px 18px;
-      border-radius: var(--radius-full);
-      font-size: 12px;
-      font-weight: 800;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    .banner-btn:active {
-      transform: scale(0.96);
-    }
-
-    /* ==========================================================================
-       CIRCULAR STORY CATEGORIES (Uzum & AliExpress Style)
-       ========================================================================== */
-    .story-categories {
+    .acc-categories {
       display: flex;
-      gap: 14px;
+      gap: 12px;
       overflow-x: auto;
       scrollbar-width: none;
-      padding: 4px 2px 16px;
-      margin-bottom: 4px;
+      padding: 12px 2px 14px;
     }
 
-    .story-categories::-webkit-scrollbar {
+    .acc-categories::-webkit-scrollbar {
       display: none;
     }
 
-    .story-item {
+    .acc-cat-item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       cursor: pointer;
       flex-shrink: 0;
-      width: 68px;
+      width: 66px;
     }
 
-    .story-ring {
-      width: 58px;
-      height: 58px;
+    .acc-cat-circle {
+      width: 54px;
+      height: 54px;
       border-radius: 50%;
-      background: var(--bg-surface);
+      background: var(--bg-card);
       border: 2px solid var(--border-subtle);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
-      transition: all 0.25s;
-      position: relative;
+      font-size: 22px;
+      transition: all 0.2s;
     }
 
-    .story-item.active .story-ring {
-      border-color: var(--uzum-purple);
-      background: var(--uzum-purple-light);
+    .acc-cat-item.active .acc-cat-circle {
+      border-color: var(--primary);
+      background: var(--primary-subtle);
       box-shadow: 0 0 0 2px rgba(112, 0, 255, 0.3);
     }
 
-    .story-label {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-sub);
+    .acc-cat-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-gray);
       text-align: center;
       white-space: nowrap;
       overflow: hidden;
@@ -301,33 +234,24 @@
       width: 100%;
     }
 
-    .story-item.active .story-label {
+    .acc-cat-item.active .acc-cat-label {
       color: #fff;
-      font-weight: 700;
     }
 
     /* ==========================================================================
-       MARKETPLACE PRODUCT CARDS (2-Column Uzum Grid)
+       ACCESSORIES PRODUCTS GRID
        ========================================================================== */
-    .feed-header {
+    .feed-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
-      padding: 0 2px;
+      margin: 8px 2px 12px;
     }
 
-    .feed-title {
-      font-size: 16px;
+    .feed-bar h2 {
+      font-size: 15px;
       font-weight: 800;
-      letter-spacing: -0.3px;
       color: #fff;
-    }
-
-    .feed-count {
-      font-size: 12px;
-      color: var(--text-muted);
-      font-weight: 600;
     }
 
     .products-grid {
@@ -337,89 +261,42 @@
       margin-bottom: 24px;
     }
 
-    .product-card {
-      background: var(--bg-surface);
+    .acc-card {
+      background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
       overflow: hidden;
       display: flex;
       flex-direction: column;
       position: relative;
-      transition: all 0.2s;
     }
 
-    .product-card:active {
-      transform: scale(0.98);
-      border-color: var(--border-medium);
-    }
-
-    .product-media {
-      height: 145px;
-      background: #171923;
+    .acc-thumb {
+      height: 135px;
+      background: #141720;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 44px;
+      font-size: 42px;
       position: relative;
       border-bottom: 1px solid var(--border-subtle);
       user-select: none;
     }
 
-    .discount-badge {
+    .stock-badge {
       position: absolute;
       top: 8px;
       left: 8px;
-      background: #f72585;
-      color: #fff;
-      font-size: 10px;
-      font-weight: 800;
-      padding: 3px 6px;
-      border-radius: 6px;
-      line-height: 1;
-    }
-
-    .fast-delivery-badge {
-      position: absolute;
-      bottom: 8px;
-      left: 8px;
-      background: rgba(10, 11, 14, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(8px);
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
       color: #10b981;
       font-size: 9px;
       font-weight: 800;
-      padding: 3px 6px;
+      padding: 2px 6px;
       border-radius: 4px;
-      display: flex;
-      align-items: center;
-      gap: 3px;
     }
 
-    .fav-btn {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: rgba(10, 11, 14, 0.7);
-      border: 1px solid var(--border-subtle);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      cursor: pointer;
-      color: var(--text-muted);
-      transition: all 0.2s;
-    }
-
-    .fav-btn.active {
-      color: #f72585;
-      background: #fff;
-      border-color: #fff;
-    }
-
-    .product-body {
+    .acc-body {
       padding: 10px;
       display: flex;
       flex-direction: column;
@@ -427,12 +304,12 @@
       justify-content: space-between;
     }
 
-    .product-title {
+    .acc-title {
       font-size: 12px;
-      font-weight: 600;
-      color: var(--text-main);
+      font-weight: 700;
+      color: #fff;
       line-height: 1.35;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -440,475 +317,63 @@
       min-height: 32px;
     }
 
-    .product-rating-row {
-      display: flex;
-      align-items: center;
-      gap: 3px;
-      font-size: 10px;
-      font-weight: 700;
-      color: #ffbe0b;
-      margin-bottom: 8px;
-    }
-
-    .product-rating-row span {
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    /* Uzum Installment Tag (Nasiya) */
-    .installment-tag {
-      background: rgba(255, 190, 11, 0.15);
-      color: #ffbe0b;
-      font-size: 9px;
-      font-weight: 800;
-      padding: 2px 6px;
-      border-radius: 4px;
-      display: inline-block;
-      margin-bottom: 6px;
-      width: fit-content;
-    }
-
-    .price-action-row {
+    .acc-price-row {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      margin-top: 4px;
-    }
-
-    .price-stack {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .main-price {
-      font-family: var(--font-mono);
-      font-size: 14px;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -0.3px;
-    }
-
-    .strike-price {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: var(--text-muted);
-      text-decoration: line-through;
-    }
-
-    /* Uzum Round Plus / Cart Button */
-    .add-to-cart-round {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: var(--uzum-purple);
-      border: none;
-      color: #fff;
-      font-size: 16px;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(112, 0, 255, 0.35);
-      transition: all 0.2s;
-      flex-shrink: 0;
-    }
-
-    .add-to-cart-round:active {
-      transform: scale(0.9);
-      background: var(--uzum-purple-hover);
-    }
-
-    .add-to-cart-round.in-cart {
-      background: #10b981;
-      box-shadow: 0 4px 10px rgba(16, 185, 129, 0.35);
-    }
-
-    /* ==========================================================================
-       PRODUCT DETAIL BOTTOM SHEET (Uzum Quick View)
-       ========================================================================== */
-    .sheet-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      z-index: 150;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-    }
-
-    .sheet-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .detail-sheet {
-      background: #12141a;
-      border: 1px solid var(--border-medium);
-      border-bottom: none;
-      border-radius: 26px 26px 0 0;
-      width: 100%;
-      max-width: 500px;
-      max-height: 90vh;
-      display: flex;
-      flex-direction: column;
-      transform: translateY(100%);
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.85);
-    }
-
-    .sheet-overlay.active .detail-sheet {
-      transform: translateY(0);
-    }
-
-    .sheet-handle {
-      width: 36px;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: var(--radius-full);
-      margin: 10px auto 4px;
-    }
-
-    .sheet-content {
-      padding: 14px 20px 20px;
-      overflow-y: auto;
-      flex: 1;
-    }
-
-    .sheet-media-box {
-      height: 180px;
-      background: #1a1d28;
-      border-radius: var(--radius-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 60px;
-      margin-bottom: 14px;
-    }
-
-    .sheet-price-row {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-      margin-bottom: 8px;
-    }
-
-    .sheet-main-price {
-      font-family: var(--font-mono);
-      font-size: 22px;
-      font-weight: 800;
-      color: #fff;
-    }
-
-    .sheet-strike-price {
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: var(--text-muted);
-      text-decoration: line-through;
-    }
-
-    .sheet-product-title {
-      font-size: 16px;
-      font-weight: 700;
-      line-height: 1.35;
-      margin-bottom: 12px;
-      color: #fff;
-    }
-
-    .sheet-option-title {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--text-sub);
-      margin-bottom: 8px;
-    }
-
-    .options-row {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-
-    .opt-chip {
-      background: var(--bg-surface-elevated);
-      border: 1px solid var(--border-subtle);
-      color: #fff;
-      padding: 6px 14px;
-      border-radius: var(--radius-sm);
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .opt-chip.active {
-      border-color: var(--uzum-purple);
-      background: var(--uzum-purple-light);
-      color: #c084fc;
-    }
-
-    .sheet-desc-box {
-      font-size: 13px;
-      color: var(--text-sub);
-      line-height: 1.5;
-      background: #171922;
-      padding: 12px;
-      border-radius: var(--radius-sm);
-      margin-bottom: 16px;
-    }
-
-    .sheet-footer {
-      padding: 14px 20px calc(20px + var(--safe-bottom));
-      border-top: 1px solid var(--border-subtle);
-      background: #12141a;
-      display: flex;
-      gap: 10px;
-    }
-
-    .btn-sheet-cart {
-      flex: 1;
-      background: var(--uzum-purple);
-      color: #fff;
-      border: none;
-      padding: 14px;
-      border-radius: var(--radius-md);
-      font-size: 14px;
-      font-weight: 800;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      box-shadow: 0 4px 14px rgba(112, 0, 255, 0.4);
-    }
-
-    .btn-sheet-cart:active {
-      transform: scale(0.98);
-      background: var(--uzum-purple-hover);
-    }
-
-    /* ==========================================================================
-       SHOPPING BAG / CART DRAWER (Checkout Modal)
-       ========================================================================== */
-    .cart-drawer-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      z-index: 170;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-    }
-
-    .cart-drawer-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .cart-drawer {
-      background: #12141a;
-      border: 1px solid var(--border-medium);
-      border-bottom: none;
-      border-radius: 26px 26px 0 0;
-      width: 100%;
-      max-width: 500px;
-      max-height: 92vh;
-      display: flex;
-      flex-direction: column;
-      transform: translateY(100%);
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .cart-drawer-overlay.active .cart-drawer {
-      transform: translateY(0);
-    }
-
-    .cart-head {
-      padding: 14px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    .cart-head h2 {
-      font-size: 17px;
-      font-weight: 800;
-      color: #fff;
-    }
-
-    .cart-close {
-      background: #1f232e;
-      border: 1px solid var(--border-subtle);
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      color: var(--text-sub);
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-
-    .cart-list-body {
-      padding: 14px 20px;
-      overflow-y: auto;
-      flex: 1;
-    }
-
-    .cart-item {
-      display: flex;
-      gap: 12px;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border-subtle);
-      align-items: center;
-    }
-
-    .cart-item-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 8px;
-      background: #1c1f2b;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      flex-shrink: 0;
-    }
-
-    .cart-item-details {
-      flex: 1;
-    }
-
-    .cart-item-title {
-      font-size: 12px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 2px;
-    }
-
-    .cart-item-price {
-      font-family: var(--font-mono);
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--uzum-purple);
-    }
-
-    .cart-controls {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .ctrl-btn {
-      width: 26px;
-      height: 26px;
-      background: #1e2230;
-      border: 1px solid var(--border-subtle);
-      border-radius: 6px;
-      color: #fff;
-      font-weight: 800;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-
-    .ctrl-qty {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 800;
-      min-width: 18px;
-      text-align: center;
-    }
-
-    .checkout-box {
-      margin-top: 14px;
-      background: #171922;
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 14px;
-    }
-
-    .checkout-input {
-      width: 100%;
-      background: #1f232f;
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-sm);
-      padding: 11px 12px;
-      color: #fff;
-      font-size: 13px;
-      font-family: inherit;
-      outline: none;
-      margin-top: 5px;
-      margin-bottom: 10px;
-    }
-
-    .checkout-input:focus {
-      border-color: var(--uzum-purple);
-    }
-
-    .sum-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      color: var(--text-sub);
-      margin-bottom: 6px;
-    }
-
-    .sum-row.total {
-      font-size: 15px;
-      font-weight: 800;
-      color: #fff;
-      border-top: 1px solid var(--border-subtle);
-      padding-top: 8px;
       margin-top: 6px;
     }
 
-    .btn-confirm-order {
-      width: 100%;
-      background: var(--uzum-purple);
-      color: #fff;
-      border: none;
-      padding: 14px;
-      border-radius: var(--radius-md);
+    .acc-price {
+      font-family: var(--font-mono);
       font-size: 14px;
       font-weight: 800;
-      cursor: pointer;
+      color: #fff;
+    }
+
+    .acc-strike {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      text-decoration: line-through;
+      display: block;
+    }
+
+    .btn-add-acc {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 800;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      box-shadow: 0 4px 14px rgba(112, 0, 255, 0.4);
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(112, 0, 255, 0.4);
+      transition: all 0.2s;
     }
 
-    .btn-confirm-order:active {
-      transform: scale(0.98);
-      background: var(--uzum-purple-hover);
+    .btn-add-acc.in-cart {
+      background: var(--accent-green);
+      box-shadow: 0 4px 10px rgba(16, 185, 129, 0.4);
     }
 
-    /* Floating Cart Pill at Bottom */
-    .floating-cart-bar {
+    /* ==========================================================================
+       FLOATING CART BAR
+       ========================================================================== */
+    .cart-float-bar {
       position: fixed;
       bottom: calc(75px + var(--safe-bottom));
       left: 14px;
       right: 14px;
       max-width: 452px;
       margin: 0 auto;
-      background: var(--uzum-purple);
+      background: var(--primary);
       color: #fff;
-      border-radius: var(--radius-full);
+      border-radius: var(--radius-pill);
       padding: 12px 18px;
       display: flex;
       justify-content: space-between;
@@ -921,35 +386,270 @@
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .floating-cart-bar.visible {
+    .cart-float-bar.visible {
       transform: translateY(0);
       opacity: 1;
     }
 
-    .bar-pill-bubble {
-      background: #ffffff;
-      color: var(--uzum-purple);
-      font-weight: 800;
-      font-size: 11px;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
+    /* ==========================================================================
+       CART & CHECKOUT DRAWER
+       ========================================================================== */
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      z-index: 150;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: center;
     }
 
+    .drawer-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .sheet-box {
+      background: #111319;
+      border: 1px solid var(--border-medium);
+      border-bottom: none;
+      border-radius: 26px 26px 0 0;
+      width: 100%;
+      max-width: 500px;
+      max-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      transform: translateY(100%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .drawer-backdrop.active .sheet-box {
+      transform: translateY(0);
+    }
+
+    .sheet-handle {
+      width: 36px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-pill);
+      margin: 10px auto 4px;
+    }
+
+    .sheet-head {
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .sheet-head h3 {
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .sheet-close-btn {
+      background: #1d212d;
+      border: 1px solid var(--border-subtle);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      color: var(--text-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .sheet-body {
+      padding: 14px 20px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .sheet-footer {
+      padding: 12px 20px calc(20px + var(--safe-bottom));
+      border-top: 1px solid var(--border-subtle);
+      background: #111319;
+    }
+
+    .btn-main-action {
+      width: 100%;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .form-input-field {
+      width: 100%;
+      background: #191c26;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 11px 12px;
+      color: #fff;
+      font-size: 13px;
+      font-family: inherit;
+      outline: none;
+      margin-top: 5px;
+      margin-bottom: 10px;
+    }
+
+    .form-input-field:focus {
+      border-color: var(--primary);
+    }
+
     /* ==========================================================================
-       BOTTOM NAVIGATION (Uzum Market Style Dock)
+       👑 CRM DASHBOARD & MANAGEMENT (ADMIN VIEW)
        ========================================================================== */
-    .bottom-dock {
+    .crm-view-container {
+      display: none;
+      animation: fadeIn 0.25s ease forwards;
+    }
+
+    .crm-view-container.active {
+      display: block;
+    }
+
+    .crm-header-card {
+      background: linear-gradient(135deg, #1f1438 0%, #111319 100%);
+      border: 1px solid rgba(112, 0, 255, 0.4);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      margin: 12px 0 16px;
+    }
+
+    .crm-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .stat-box {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 12px;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-bottom: 4px;
+    }
+
+    .stat-number {
+      font-family: var(--font-mono);
+      font-size: 17px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .crm-tabs-row {
+      display: flex;
+      gap: 6px;
+      background: #151821;
+      padding: 4px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 14px;
+    }
+
+    .crm-tab-btn {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 8px 0;
+      border-radius: var(--radius-pill);
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .crm-tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* CRM Orders Cards */
+    .order-pipeline-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .order-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+
+    .order-status-badge {
+      font-size: 10px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      text-transform: uppercase;
+    }
+
+    .status-new { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+    .status-shipping { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+    .status-completed { background: rgba(16, 185, 129, 0.2); color: #10b981; }
+    .status-cancelled { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+
+    .order-action-btns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .act-btn {
+      background: #191c26;
+      border: 1px solid var(--border-subtle);
+      color: #fff;
+      padding: 6px 4px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .act-btn:active {
+      background: var(--primary);
+    }
+
+    /* Bottom Dock Bar */
+    .dock-bar-nav {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(14, 16, 21, 0.95);
+      background: rgba(12, 14, 18, 0.96);
       backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
       border-top: 1px solid var(--border-subtle);
       display: flex;
       justify-content: space-around;
@@ -957,60 +657,31 @@
       z-index: 100;
     }
 
-    .dock-btn {
+    .dock-item {
       background: transparent;
       border: none;
       color: var(--text-muted);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 3px;
+      gap: 2px;
       font-size: 10px;
       font-weight: 600;
       cursor: pointer;
       padding: 4px 10px;
-      position: relative;
     }
 
-    .dock-btn.active {
+    .dock-item.active {
       color: #c084fc;
       font-weight: 800;
     }
 
-    .dock-icon {
+    .dock-ico {
       font-size: 18px;
     }
 
-    .dock-badge-count {
-      position: absolute;
-      top: 0;
-      right: 6px;
-      background: #f72585;
-      color: #fff;
-      font-size: 9px;
-      font-weight: 800;
-      padding: 1px 5px;
-      border-radius: var(--radius-full);
-      line-height: 1;
-    }
-
-    /* Views */
-    .market-view {
-      display: none;
-      animation: fadeIn 0.2s ease forwards;
-    }
-
-    .market-view.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(4px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     /* Toast */
-    .toast-popup {
+    .toast-box {
       position: fixed;
       top: 16px;
       left: 50%;
@@ -1018,7 +689,7 @@
       background: #ffffff;
       color: #000;
       padding: 10px 18px;
-      border-radius: var(--radius-full);
+      border-radius: var(--radius-pill);
       font-size: 12px;
       font-weight: 800;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
@@ -1028,7 +699,7 @@
       z-index: 300;
     }
 
-    .toast-popup.show {
+    .toast-box.show {
       transform: translateX(-50%) translateY(0);
       opacity: 1;
     }
@@ -1036,119 +707,161 @@
 </head>
 <body>
 
-  <!-- Sticky Top Header -->
-  <header class="market-header">
-    <div class="header-top">
-      <div class="brand-box">
-        <div class="brand-logo-badge">M</div>
-        <div class="brand-name">MARDONOV <span>MARKET</span></div>
+  <!-- Top Header -->
+  <header class="top-header">
+    <div class="header-row">
+      <div class="store-brand">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-text">
+          <h1>MARDONOV <span>ACCESSORIES</span></h1>
+          <p>Apple & Gadget Boutique</p>
+        </div>
       </div>
-      <div class="delivery-pill">
-        <span>🚀 1 kunda bepul yetkazish</span>
-      </div>
+      <!-- Mode Toggle: Client Store vs CRM Admin Panel -->
+      <button class="crm-switch-btn" id="btn-toggle-crm" onclick="toggleCRMMode()">
+        <span>👑 CRM Panel</span>
+      </button>
     </div>
 
-    <!-- Search Input -->
-    <div class="search-bar">
-      <span class="search-icon">🔍</span>
-      <input type="text" class="search-input" id="search-input-box" placeholder="Kiyimlar, kitoblar, gadjetlar qidirish..." oninput="handleMarketSearch(this.value)">
+    <!-- Search Input for Store -->
+    <div class="search-field" id="store-search-field">
+      <span class="search-ico">🔍</span>
+      <input type="text" class="search-input" id="search-acc-input" placeholder="Chexol, himoya oynasi, 20W adapter..." oninput="handleSearch(this.value)">
     </div>
   </header>
 
   <div class="container">
 
     <!-- ====================================================================
-         VIEW: 1. ASOSIY (Home / Feed)
+         CLIENT VIEW: AKSESSUARLAR DO'KONI (STORE)
          ==================================================================== -->
-    <main id="tab-home" class="market-view active">
+    <main id="client-store-view">
       
-      <!-- Promo Banner -->
-      <section class="promo-banner">
-        <span class="banner-badge">Hafta Chegirmalari</span>
-        <h2 class="banner-title">Katta Mavsumiy Savdo — 50% gacha!</h2>
-        <p class="banner-desc">Kiyim-kechak, sara kitoblar va smart aksessuarlar eng qulay narxlarda.</p>
-        <button class="banner-btn" onclick="filterByStory('all')">
-          <span>Katalogga o'tish →</span>
-        </button>
-      </section>
-
-      <!-- Circular Story Categories (Uzum & AliExpress Style) -->
-      <div class="story-categories" id="story-cats">
-        <div class="story-item active" onclick="filterByStory('all', this)">
-          <div class="story-ring">⚡</div>
-          <span class="story-label">Barchasi</span>
+      <!-- Category Circle Stories -->
+      <div class="acc-categories" id="acc-story-cats">
+        <div class="acc-cat-item active" onclick="filterCategory('all', this)">
+          <div class="acc-cat-circle">⚡</div>
+          <span class="acc-cat-label">Barchasi</span>
         </div>
-        <div class="story-item" onclick="filterByStory('clothes', this)">
-          <div class="story-ring">👗</div>
-          <span class="story-label">Kiyimlar</span>
+        <div class="acc-cat-item" onclick="filterCategory('cases', this)">
+          <div class="acc-cat-circle">📱</div>
+          <span class="acc-cat-label">Chexollar</span>
         </div>
-        <div class="story-item" onclick="filterByStory('books', this)">
-          <div class="story-ring">📚</div>
-          <span class="story-label">Kitoblar</span>
+        <div class="acc-cat-item" onclick="filterCategory('glasses', this)">
+          <div class="acc-cat-circle">🛡</div>
+          <span class="acc-cat-label">Oynalar</span>
         </div>
-        <div class="story-item" onclick="filterByStory('gadgets', this)">
-          <div class="story-ring">📱</div>
-          <span class="story-label">Gadjetlar</span>
+        <div class="acc-cat-item" onclick="filterCategory('chargers', this)">
+          <div class="acc-cat-circle">🔌</div>
+          <span class="acc-cat-label">Zaryadkalar</span>
         </div>
-        <div class="story-item" onclick="filterByStory('home', this)">
-          <div class="story-ring">🏠</div>
-          <span class="story-label">Uy & Sovg'a</span>
+        <div class="acc-cat-item" onclick="filterCategory('powerbanks', this)">
+          <div class="acc-cat-circle">🔋</div>
+          <span class="acc-cat-label">Powerbank</span>
         </div>
-        <div class="story-item" onclick="filterByStory('shoes', this)">
-          <div class="story-ring">👟</div>
-          <span class="story-label">Poyabzal</span>
+        <div class="acc-cat-item" onclick="filterCategory('audio', this)">
+          <div class="acc-cat-circle">🎧</div>
+          <span class="acc-cat-label">AirPods</span>
+        </div>
+        <div class="acc-cat-item" onclick="filterCategory('straps', this)">
+          <div class="acc-cat-circle">⌚</div>
+          <span class="acc-cat-label">Tasmalar</span>
+        </div>
+        <div class="acc-cat-item" onclick="filterCategory('car', this)">
+          <div class="acc-cat-circle">🚗</div>
+          <span class="acc-cat-label">Avto</span>
         </div>
       </div>
 
       <!-- Feed Section Header -->
-      <div class="feed-header">
-        <span class="feed-title" id="feed-category-title">Barcha Takliflar</span>
-        <span class="feed-count" id="feed-items-count">8 ta tovar</span>
+      <div class="feed-bar">
+        <h2 id="catalog-section-title">Eng Sara Aksessuarlar</h2>
+        <span id="catalog-items-count" style="font-size: 12px; color: var(--text-muted); font-weight: 600;">9 ta mavjud</span>
       </div>
 
-      <!-- 2-Column Marketplace Product Grid -->
-      <div class="products-grid" id="market-products-grid">
+      <!-- 2-Column Product Grid -->
+      <div class="products-grid" id="accessories-grid">
         <!-- Rendered via JS -->
       </div>
     </main>
 
     <!-- ====================================================================
-         VIEW: 2. SEVIMLILAR (Wishlist)
+         ADMIN VIEW: 👑 CRM BOSHQARUV PANELI
          ==================================================================== -->
-    <main id="tab-wishlist" class="market-view">
-      <div class="feed-header" style="margin-top: 14px;">
-        <span class="feed-title">Saqlangan Mahsulotlar</span>
-        <span class="feed-count" id="wishlist-count-label">0 ta</span>
+    <main id="admin-crm-view" class="crm-view-container">
+      
+      <!-- CRM Header Dashboard -->
+      <section class="crm-header-card">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <span style="font-size: 10px; font-weight: 800; color: #c084fc; text-transform: uppercase;">Mardonov Accessories</span>
+            <h2 style="font-size: 18px; font-weight: 800; color: #fff;">Boshqaruv & CRM Tizimi</h2>
+          </div>
+          <button onclick="refreshCRMData()" style="background: rgba(255,255,255,0.1); border: 1px solid var(--border-subtle); color: #fff; width: 32px; height: 32px; border-radius: 50%; cursor: pointer;">🔄</button>
+        </div>
+
+        <div class="crm-stats-grid">
+          <div class="stat-box">
+            <div class="stat-label">Jami Tushum</div>
+            <div class="stat-number" id="crm-total-revenue" style="color: #10b981;">0 so'm</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Yangi Buyurtmalar</div>
+            <div class="stat-number" id="crm-new-orders" style="color: #60a5fa;">0 ta</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Mijozlar Bazasi</div>
+            <div class="stat-number" id="crm-customers-count">0 ta</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Omborda Kam Qolgan</div>
+            <div class="stat-number" id="crm-low-stock" style="color: #f59e0b;">0 ta</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CRM Internal Tabs -->
+      <div class="crm-tabs-row">
+        <button class="crm-tab-btn active" onclick="switchCRMTab('orders', this)">📦 Buyurtmalar</button>
+        <button class="crm-tab-btn" onclick="switchCRMTab('inventory', this)">🏷 Ombor & Narx</button>
+        <button class="crm-tab-btn" onclick="switchCRMTab('customers', this)">👥 Mijozlar CRM</button>
       </div>
 
-      <div class="products-grid" id="wishlist-products-grid">
-        <!-- Populated via JS -->
-      </div>
-    </main>
-
-    <!-- ====================================================================
-         VIEW: 3. BUYURTMALAR (Orders History)
-         ==================================================================== -->
-    <main id="tab-orders" class="market-view">
-      <div class="feed-header" style="margin-top: 14px;">
-        <span class="feed-title">Mening Xaridlarim</span>
-        <span class="feed-count">Tarix</span>
+      <!-- CRM TAB 1: BUYURTMALAR (PIPELINE) -->
+      <div id="crm-tab-orders" class="crm-sub-view">
+        <div id="crm-orders-pipeline-list">
+          <!-- Populated dynamically via JS -->
+        </div>
       </div>
 
-      <div id="orders-history-list" style="display: flex; flex-direction: column; gap: 10px;">
-        <!-- Populated via JS -->
+      <!-- CRM TAB 2: OMBOR VA MAHSULOTLAR (INVENTORY) -->
+      <div id="crm-tab-inventory" class="crm-sub-view" style="display: none;">
+        <button onclick="openAddProductModal()" style="width: 100%; background: var(--primary); color: #fff; border: none; padding: 12px; border-radius: var(--radius-md); font-weight: 800; font-size: 13px; margin-bottom: 14px; cursor: pointer;">
+          ➕ Yangi Aksessuar Qo'shish
+        </button>
+        <div id="crm-inventory-list">
+          <!-- Populated dynamically via JS -->
+        </div>
       </div>
+
+      <!-- CRM TAB 3: MIJOZLAR BAZASI -->
+      <div id="crm-tab-customers" class="crm-sub-view" style="display: none;">
+        <div id="crm-customers-table-list">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+
     </main>
 
   </div>
 
   <!-- ====================================================================
-       FLOATING CART BAR (Bottom pill when cart has items)
+       FLOATING CART PILL
        ==================================================================== -->
-  <div class="floating-cart-bar" id="floating-cart-pill" onclick="openCartModal()">
+  <div class="cart-float-bar" id="cart-float-pill" onclick="openCartDrawer()">
     <div style="display: flex; align-items: center; gap: 10px;">
-      <div class="bar-pill-bubble" id="bar-items-qty">1</div>
-      <div style="font-family: var(--font-mono); font-size: 14px; font-weight: 800;" id="bar-total-sum">0 so'm</div>
+      <div style="background: #fff; color: var(--primary); font-weight: 800; font-size: 11px; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center;" id="cart-pill-qty">1</div>
+      <div style="font-family: var(--font-mono); font-size: 14px; font-weight: 800;" id="cart-pill-sum">0 so'm</div>
     </div>
     <div style="font-size: 12px; font-weight: 800; display: flex; align-items: center; gap: 4px;">
       <span>Savatchaga o'tish</span>
@@ -1157,99 +870,51 @@
   </div>
 
   <!-- ====================================================================
-       PRODUCT DETAIL BOTTOM SHEET (Quick View Sheet)
+       CHECKOUT / CART DRAWER
        ==================================================================== -->
-  <div class="sheet-overlay" id="product-detail-modal" onclick="closeProductDetail(event)">
-    <div class="detail-sheet" onclick="event.stopPropagation()">
+  <div class="drawer-backdrop" id="cart-drawer-modal" onclick="closeCartDrawer(event)">
+    <div class="sheet-box" onclick="event.stopPropagation()">
       <div class="sheet-handle"></div>
 
-      <div class="sheet-content">
-        <div class="sheet-media-box" id="modal-product-icon">🛍</div>
+      <div class="sheet-head">
+        <h3>Xarid Savatchasi</h3>
+        <button class="sheet-close-btn" onclick="closeCartDrawer()">&times;</button>
+      </div>
 
-        <div class="sheet-price-row">
-          <span class="sheet-main-price" id="modal-product-price">0 so'm</span>
-          <span class="sheet-strike-price" id="modal-product-oldprice">0 so'm</span>
-        </div>
-
-        <div class="installment-tag" id="modal-product-installment">12 000 so'm/oyiga</div>
-        <h3 class="sheet-product-title" id="modal-product-title">Mahsulot Nomi</h3>
-
-        <!-- Options / Sizes selector -->
-        <div class="sheet-option-title" id="modal-option-label">O'lcham yoki Variant:</div>
-        <div class="options-row" id="modal-options-chips">
+      <div class="sheet-body">
+        <div id="cart-items-box">
           <!-- Populated dynamically -->
         </div>
 
-        <div class="sheet-desc-box" id="modal-product-desc">
-          Mahsulot tavsifi bu yerda ko'rinadi.
-        </div>
+        <div style="background: #171922; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 14px; margin-top: 14px;">
+          <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px;">
+            Buyurtmachi & Yetkazish
+          </div>
 
-        <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #10b981; font-weight: 700; margin-bottom: 10px;">
-          <span>✓</span>
-          <span>Omborda mavjud • 1 kunda yetkazib beriladi</span>
+          <label style="font-size: 11px; color: var(--text-gray); font-weight: 600;">Ism va Familiya</label>
+          <input type="text" id="order-cust-name" class="form-input-field" placeholder="Ismingizni kiriting" required>
+
+          <label style="font-size: 11px; color: var(--text-gray); font-weight: 600;">Telefon raqami</label>
+          <input type="tel" id="order-cust-phone" class="form-input-field" placeholder="+998 90 123 45 67" required>
+
+          <label style="font-size: 11px; color: var(--text-gray); font-weight: 600;">Yetkazib berish manzili / Tuman</label>
+          <input type="text" id="order-cust-addr" class="form-input-field" placeholder="Toshkent shahri, Chilonzor...">
+
+          <div style="margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--border-subtle);">
+            <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--text-gray); margin-bottom: 4px;">
+              <span>Yetkazish:</span>
+              <span style="color: #10b981; font-weight: 700;">1 kunda bepul</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 15px; font-weight: 800; color: #fff; margin-top: 6px;">
+              <span>Jami To'lov:</span>
+              <span id="cart-total-display" style="font-family: var(--font-mono); color: #c084fc;">0 so'm</span>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="sheet-footer">
-        <button class="btn-sheet-cart" onclick="addModalItemToCart()">
-          <span>Savatga qo'shish</span>
-          <span>🛒</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ====================================================================
-       SHOPPING BAG / CART DRAWER (Checkout Sheet)
-       ==================================================================== -->
-  <div class="cart-drawer-overlay" id="cart-checkout-modal" onclick="closeCartModal(event)">
-    <div class="cart-drawer" onclick="event.stopPropagation()">
-      <div class="sheet-handle"></div>
-
-      <div class="cart-head">
-        <h2>Xarid Savati</h2>
-        <button class="cart-close" onclick="closeCartModal()">&times;</button>
-      </div>
-
-      <div class="cart-list-body">
-        <div id="cart-items-wrapper">
-          <!-- Populated dynamically -->
-        </div>
-
-        <!-- Checkout Form (Uzum PVZ / Delivery) -->
-        <div class="checkout-box">
-          <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px;">
-            Yetkazib berish va Qabul qiluvchi
-          </div>
-
-          <label style="font-size: 11px; color: var(--text-sub); font-weight: 600;">Ism va Familiya</label>
-          <input type="text" id="cust-name-input" class="checkout-input" placeholder="Ismingizni kiriting" required>
-
-          <label style="font-size: 11px; color: var(--text-sub); font-weight: 600;">Telefon raqami</label>
-          <input type="tel" id="cust-phone-input" class="checkout-input" placeholder="+998 90 123 45 67" required>
-
-          <label style="font-size: 11px; color: var(--text-sub); font-weight: 600;">Yetkazish manzili yoki Uzum punkti</label>
-          <input type="text" id="cust-addr-input" class="checkout-input" placeholder="Shahar, tuman, ko'cha yoki eng yaqin manzil">
-
-          <div style="margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--border-subtle);">
-            <div class="sum-row">
-              <span>Mahsulotlar:</span>
-              <span id="cart-calc-subtotal">0 so'm</span>
-            </div>
-            <div class="sum-row">
-              <span>Yetkazish:</span>
-              <span style="color: #10b981; font-weight: 700;">BEPUL (1 kunda)</span>
-            </div>
-            <div class="sum-row total">
-              <span>Jami:</span>
-              <span id="cart-calc-total" style="color: #fff; font-family: var(--font-mono);">0 so'm</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div style="padding: 12px 20px calc(20px + var(--safe-bottom)); border-top: 1px solid var(--border-subtle); background: #12141a;">
-        <button class="btn-confirm-order" id="btn-submit-order-act" onclick="submitFinalMarketOrder()">
+        <button class="btn-main-action" id="btn-submit-order-act" onclick="submitAccessoriesOrder()">
           <span>Buyurtmani Rasmiylashtirish</span>
           <span>→</span>
         </button>
@@ -1257,36 +922,129 @@
     </div>
   </div>
 
-  <!-- Bottom Navigation Dock (Uzum Market Style) -->
-  <nav class="bottom-dock">
-    <button class="dock-btn active" data-tab="home" onclick="switchNavTab('home')">
-      <span class="dock-icon">🏪</span>
-      <span>Asosiy</span>
-    </button>
+  <!-- ====================================================================
+       PRODUCT DETAIL BOTTOM SHEET
+       ==================================================================== -->
+  <div class="drawer-backdrop" id="product-detail-modal" onclick="closeProductDetail(event)">
+    <div class="sheet-box" onclick="event.stopPropagation()">
+      <div class="sheet-handle"></div>
 
-    <button class="dock-btn" data-tab="wishlist" onclick="switchNavTab('wishlist')">
-      <span class="dock-icon">❤️</span>
-      <span>Istaklar</span>
-      <span class="dock-badge-count" id="nav-wishlist-count" style="display: none;">0</span>
-    </button>
+      <div class="sheet-head">
+        <h3 id="modal-acc-title">Aksessuar Nomi</h3>
+        <button class="sheet-close-btn" onclick="closeProductDetail()">&times;</button>
+      </div>
 
-    <button class="dock-btn" onclick="openCartModal()">
-      <span class="dock-icon">🛍</span>
+      <div class="sheet-body">
+        <div style="height: 150px; background: #161822; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 54px; margin-bottom: 12px;" id="modal-acc-icon">
+          📱
+        </div>
+
+        <div style="font-family: var(--font-mono); font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 6px;" id="modal-acc-price">
+          0 so'm
+        </div>
+
+        <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px;">
+          Model yoki Rangni tanlang:
+        </div>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px;" id="modal-acc-options">
+          <!-- Populated dynamically -->
+        </div>
+
+        <div style="font-size: 12px; color: var(--text-gray); line-height: 1.5; background: #171922; padding: 12px; border-radius: var(--radius-sm);" id="modal-acc-desc">
+          Tavsif
+        </div>
+      </div>
+
+      <div class="sheet-footer">
+        <button class="btn-main-action" onclick="addModalAccToCart()">
+          <span>Savatga Qo'shish</span>
+          <span>🛒</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       CRM: ADD PRODUCT MODAL
+       ==================================================================== -->
+  <div class="drawer-backdrop" id="crm-add-modal" onclick="closeAddProductModal(event)">
+    <div class="sheet-box" onclick="event.stopPropagation()">
+      <div class="sheet-handle"></div>
+      <div class="sheet-head">
+        <h3>Yangi Aksessuar Qo'shish</h3>
+        <button class="sheet-close-btn" onclick="closeAddProductModal()">&times;</button>
+      </div>
+
+      <div class="sheet-body">
+        <label style="font-size: 11px; color: var(--text-gray);">Aksessuar nomi</label>
+        <input type="text" id="add-prod-name" class="form-input-field" placeholder="Masalan: MagSafe Shaffof Chexol">
+
+        <label style="font-size: 11px; color: var(--text-gray);">Toifa (Kategoriya)</label>
+        <select id="add-prod-cat" class="form-input-field">
+          <option value="cases">Chexollar (Cases)</option>
+          <option value="glasses">Himoya Oynalari (Glasses)</option>
+          <option value="chargers">Zaryadlovchilar (Chargers)</option>
+          <option value="powerbanks">Powerbanklar</option>
+          <option value="audio">AirPods & Audio</option>
+          <option value="straps">Apple Watch Tasmalar</option>
+          <option value="car">Avto Aksessuarlar</option>
+        </select>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+          <div>
+            <label style="font-size: 11px; color: var(--text-gray);">Sotish narxi (so'm)</label>
+            <input type="number" id="add-prod-price" class="form-input-field" placeholder="95000">
+          </div>
+          <div>
+            <label style="font-size: 11px; color: var(--text-gray);">Tannarxi (so'm)</label>
+            <input type="number" id="add-prod-cost" class="form-input-field" placeholder="35000">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+          <div>
+            <label style="font-size: 11px; color: var(--text-gray);">Ombor soni (dona)</label>
+            <input type="number" id="add-prod-stock" class="form-input-field" placeholder="25">
+          </div>
+          <div>
+            <label style="font-size: 11px; color: var(--text-gray);">Eski narxi (so'm)</label>
+            <input type="number" id="add-prod-oldprice" class="form-input-field" placeholder="130000">
+          </div>
+        </div>
+
+        <label style="font-size: 11px; color: var(--text-gray);">Tavsif (izoh)</label>
+        <input type="text" id="add-prod-desc" class="form-input-field" placeholder="Original sifat, kuchli magnit...">
+      </div>
+
+      <div class="sheet-footer">
+        <button class="btn-main-action" onclick="submitNewProductCRM()">
+          <span>Bazaga Saqlash</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation Dock -->
+  <nav class="dock-bar-nav">
+    <button class="dock-item active" data-tab="store" onclick="switchMainDock('store')">
+      <span class="dock-ico">🛍</span>
+      <span>Do'kon</span>
+    </button>
+    <button class="dock-item" data-tab="cart" onclick="openCartDrawer()">
+      <span class="dock-ico">🛒</span>
       <span>Savatcha</span>
-      <span class="dock-badge-count" id="nav-cart-count" style="display: none;">0</span>
     </button>
-
-    <button class="dock-btn" data-tab="orders" onclick="switchNavTab('orders')">
-      <span class="dock-icon">📦</span>
-      <span>Buyurtmalar</span>
+    <button class="dock-item" data-tab="crm" onclick="toggleCRMMode()">
+      <span class="dock-ico">👑</span>
+      <span>CRM Panel</span>
     </button>
   </nav>
 
-  <!-- Toast Notification -->
-  <div id="market-toast" class="toast-popup">✓ Savatga qo'shildi</div>
+  <!-- Toast -->
+  <div id="toast-el" class="toast-box">✓ Bajarildi</div>
 
   <!-- ==========================================================================
-       MARKETPLACE LOGIC SCRIPT
+       JAVASCRIPT CRM & STORE APPLICATION
        ========================================================================== -->
   <script>
     const tg = window.Telegram?.WebApp;
@@ -1294,214 +1052,91 @@
       tg.ready();
       tg.expand();
       try {
-        tg.setHeaderColor('#0a0b0e');
-        tg.setBackgroundColor('#0a0b0e');
+        tg.setHeaderColor('#08090c');
+        tg.setBackgroundColor('#08090c');
       } catch (e) {}
     }
 
-    function hapticFeedback(style = 'light') {
+    function haptic(type = 'light') {
       try {
         if (tg?.HapticFeedback) {
-          tg.HapticFeedback.impactOccurred(style);
+          tg.HapticFeedback.impactOccurred(type);
         }
       } catch (e) {}
     }
 
-    // Comprehensive Uzum & AliExpress Catalog (Diverse Products)
-    const marketplaceCatalog = [
-      // 1. Kiyim-kechak
-      {
-        id: 1,
-        category: "clothes",
-        name: "Erkaklar va ayollar uchun Premium Oversize Xudi (100% paxta)",
-        price: 189000,
-        oldPrice: 280000,
-        discount: "-32%",
-        installment: "15 750 so'm/oyiga",
-        icon: "🧥",
-        rating: 4.9,
-        reviews: 284,
-        options: ["S (42-44)", "M (46-48)", "L (50-52)", "XL (54)"],
-        description: "Qalin va yumshoq paxtali xudi. Sovuq kunlarda qulay, yuvilganda rangi o'chmaydi va cho'zilmaydi. Barcha fasllarga mos."
-      },
-      {
-        id: 2,
-        category: "clothes",
-        name: "Klassik Erkaklar Ko'ylagi (Slim Fit, g'ijim bo'lmaydi)",
-        price: 145000,
-        oldPrice: 210000,
-        discount: "-31%",
-        installment: "12 000 so'm/oyiga",
-        icon: "👔",
-        rating: 4.8,
-        reviews: 139,
-        options: ["Oq (M)", "Oq (L)", "Moviy (M)", "Qora (L)"],
-        description: "Rasmiy va kundalik kiyish uchun ideal. Yuqori sifatli mato, dazmollash oson."
-      },
-      // 2. Kitoblar
-      {
-        id: 3,
-        category: "books",
-        name: "Atom Odatlari — Jeyms Klir (Bestseller, o'zbek tilida)",
-        price: 45000,
-        oldPrice: 65000,
-        discount: "-30%",
-        installment: "3 750 so'm/oyiga",
-        icon: "📚",
-        rating: 5.0,
-        reviews: 820,
-        options: ["Qattiq muqova", "Yumshoq muqova"],
-        description: "Dunyo bo'ylab millionlab nusxada sotilgan asar. Kichik odatlar orqali ulkan natijalarga erishish bo'yicha amaliy qo'llanma."
-      },
-      {
-        id: 4,
-        category: "books",
-        name: "Molxona (Animal Farm) — Jorj Oruell",
-        price: 35000,
-        oldPrice: 50000,
-        discount: "-30%",
-        installment: "2 900 so'm/oyiga",
-        icon: "📖",
-        rating: 4.9,
-        reviews: 412,
-        options: ["O'zbekcha", "Ruscha", "Inglizcha"],
-        description: "Jahon adabiyoti durdonasi. Barcha yoshdagi kitobxonlar uchun chuqur falsafiy allegoriya."
-      },
-      // 3. Gadjetlar & Elektronika
-      {
-        id: 5,
-        category: "gadgets",
-        name: "TWS Simsiz Quloqchinlar Bluetooth 5.3 (Shovqinni so'ndirish)",
-        price: 125000,
-        oldPrice: 195000,
-        discount: "-36%",
-        installment: "10 400 so'm/oyiga",
-        icon: "🎧",
-        rating: 4.8,
-        reviews: 531,
-        options: ["Qora (Matte)", "Oq (Glossy)"],
-        description: "Kuchli bas, toza ovoz va 24 soatlik avtonom ishlash quvvati. iPhone va Android qurilmalarga bir zumda ulanadi."
-      },
-      {
-        id: 6,
-        category: "gadgets",
-        name: "Smart Soat Ultra 2 (Suvga chidamli, bosim va yurak urishini o'lchash)",
-        price: 255000,
-        oldPrice: 380000,
-        discount: "-33%",
-        installment: "21 250 so'm/oyiga",
-        icon: "⌚",
-        rating: 4.9,
-        reviews: 219,
-        options: ["To'q sariq tasma", "Qora tasma", "Kulrang tasma"],
-        description: "Katta AMOLED ekran, qo'ng'iroqlarga javob berish, sport rejimlari va 7 kunlik batareya zaryadi."
-      },
-      // 4. Uy va Sovg'alar
-      {
-        id: 7,
-        category: "home",
-        name: "Smart Termos Krujka LED sensorli harorat ko'rsatkichi bilan",
-        price: 68000,
-        oldPrice: 110000,
-        discount: "-38%",
-        installment: "5 600 so'm/oyiga",
-        icon: "☕",
-        rating: 4.9,
-        reviews: 367,
-        options: ["Qora 500ml", "Oq 500ml", "Gradient 500ml"],
-        description: "Ichimlik haroratini 12 soatgacha saqlaydi. Zanglamaydigan po'lat, oqmaydigan germetik qopqoq."
-      },
-      {
-        id: 8,
-        category: "shoes",
-        name: "Erkaklar Zamonaviy Krossovkasi (Yengil, nafas oluvchi ortopedik taglik)",
-        price: 220000,
-        oldPrice: 340000,
-        discount: "-35%",
-        installment: "18 300 so'm/oyiga",
-        icon: "👟",
-        rating: 4.8,
-        reviews: 175,
-        options: ["40 o'lcham", "41 o'lcham", "42 o'lcham", "43 o'lcham"],
-        description: "Yugurish va kundalik sayr uchun qulay, oyoqni charchatmaydigan yengil krossovka."
-      }
-    ];
-
-    // State
-    let cart = []; // { id, name, price, icon, qty, selectedOption }
-    let wishlist = new Set();
-    let currentFeed = [...marketplaceCatalog];
-    let selectedModalProduct = null;
-    let selectedModalOption = "";
-    let ordersHistory = JSON.parse(localStorage.getItem('mardonov_market_orders') || '[]');
-
-    function formatSoM(val) {
-      return val.toLocaleString('uz-UZ') + " so'm";
+    function formatUZS(num) {
+      return (num || 0).toLocaleString('uz-UZ') + " so'm";
     }
 
-    // Init App
-    function initApp() {
+    // State
+    let productsList = [];
+    let cart = []; // { id, name, price, icon, qty, option }
+    let isCRMMode = false;
+    let selectedDetailProduct = null;
+    let selectedDetailOption = "";
+
+    async function initApp() {
+      // Pre-fill user data
       if (tg?.initDataUnsafe?.user) {
         const u = tg.initDataUnsafe.user;
-        const nameInput = document.getElementById('cust-name-input');
+        const nameInput = document.getElementById('order-cust-name');
         if (nameInput) {
           nameInput.value = `${u.first_name || ''} ${u.last_name || ''}`.trim();
         }
       }
 
-      renderFeed(currentFeed);
-      renderOrdersHistory();
-      updateCartBadge();
+      await loadProducts();
+      updateCartUI();
     }
 
-    // Render Product Grid
-    function renderFeed(items, containerId = 'market-products-grid') {
-      const container = document.getElementById(containerId);
-      if (!container) return;
-
-      const countLabel = document.getElementById('feed-items-count');
-      if (countLabel && containerId === 'market-products-grid') {
-        countLabel.innerText = `${items.length} ta tovar`;
+    // 1. Load Products from REST API
+    async function loadProducts(category = 'all') {
+      try {
+        const res = await fetch(`/api/products?category=${category}`);
+        const json = await res.json();
+        if (json.status === 'success' && json.data) {
+          productsList = json.data;
+          renderProducts(productsList);
+        }
+      } catch (e) {
+        console.warn("API load error, trying fallback", e);
       }
+    }
+
+    function renderProducts(items) {
+      const grid = document.getElementById('accessories-grid');
+      const countEl = document.getElementById('catalog-items-count');
+      if (countEl) countEl.innerText = `${items.length} ta mavjud`;
 
       if (items.length === 0) {
-        container.innerHTML = `
+        grid.innerHTML = `
           <div style="grid-column: 1 / -1; text-align: center; padding: 40px 10px; color: var(--text-muted);">
-            <div style="font-size: 36px; margin-bottom: 6px;">📦</div>
-            <div style="font-size: 14px; font-weight: 700; color: #fff;">Mahsulot topilmadi</div>
-            <div style="font-size: 12px; margin-top: 4px;">Boshqa kategoriya yoki qidiruv so'zini sinab ko'ring</div>
+            <div style="font-size: 36px; margin-bottom: 6px;">📱</div>
+            <div style="font-size: 14px; font-weight: 700; color: #fff;">Aksessuarlar topilmadi</div>
           </div>
         `;
         return;
       }
 
-      container.innerHTML = items.map(item => {
-        const inCart = cart.some(c => c.id === item.id);
-        const isFav = wishlist.has(item.id);
+      grid.innerHTML = items.map(p => {
+        const inCart = cart.some(c => c.id === p.id);
         return `
-          <div class="product-card" onclick="openProductDetail(${item.id})">
-            <div class="product-media">
-              ${item.discount ? `<div class="discount-badge">${item.discount}</div>` : ''}
-              <div class="fast-delivery-badge">⚡ 1 KUNDA</div>
-              <button class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFav(${item.id}, event)">
-                ${isFav ? '❤️' : '♡'}
-              </button>
-              <span>${item.icon}</span>
+          <div class="acc-card" onclick="openProductDetail(${p.id})">
+            <div class="acc-thumb">
+              <span class="stock-badge">Omborda: ${p.stock || 10} ta</span>
+              <span>${p.icon || '📱'}</span>
             </div>
-            <div class="product-body">
+            <div class="acc-body">
               <div>
-                <div class="installment-tag">${item.installment}</div>
-                <h3 class="product-title">${item.name}</h3>
-                <div class="product-rating-row">
-                  ★ ${item.rating} <span>(${item.reviews})</span>
-                </div>
+                <h3 class="acc-title">${p.name}</h3>
               </div>
-              <div class="price-action-row">
-                <div class="price-stack">
-                  <span class="main-price">${formatSoM(item.price)}</span>
-                  ${item.oldPrice ? `<span class="strike-price">${formatSoM(item.oldPrice)}</span>` : ''}
+              <div class="acc-price-row">
+                <div>
+                  <span class="acc-price">${formatUZS(p.price)}</span>
+                  ${p.old_price ? `<span class="acc-strike">${formatUZS(p.old_price)}</span>` : ''}
                 </div>
-                <button class="add-to-cart-round ${inCart ? 'in-cart' : ''}" onclick="quickAddToCart(${item.id}, event)">
+                <button class="btn-add-acc ${inCart ? 'in-cart' : ''}" onclick="quickAddToCart(${p.id}, event)">
                   ${inCart ? '✓' : '+'}
                 </button>
               </div>
@@ -1511,84 +1146,49 @@
       }).join('');
     }
 
-    // Filter by Story Category
-    function filterByStory(cat, elem = null) {
-      hapticFeedback('light');
-      if (elem) {
-        document.querySelectorAll('#story-cats .story-item').forEach(el => el.classList.remove('active'));
-        elem.classList.add('active');
-      }
+    // Category Filter
+    function filterCategory(cat, btn) {
+      haptic('light');
+      document.querySelectorAll('#acc-story-cats .acc-cat-item').forEach(el => el.classList.remove('active'));
+      btn.classList.add('active');
 
-      const titleElem = document.getElementById('feed-category-title');
+      const titleEl = document.getElementById('catalog-section-title');
       const catNames = {
-        all: "Barcha Takliflar",
-        clothes: "👗 Kiyim-kechak",
-        books: "📚 Sara Kitoblar",
-        gadgets: "📱 Smart Gadjetlar",
-        home: "🏠 Uy va Sovg'alar",
-        shoes: "👟 Poyabzallar"
+        all: "Barcha Aksessuarlar",
+        cases: "📱 Chexollar & G'iloflar",
+        glasses: "🛡 Himoya Oynalari",
+        chargers: "🔌 Zaryadlovchilar & Kabellar",
+        powerbanks: "🔋 MagSafe Powerbanklar",
+        audio: "🎧 AirPods & Audio",
+        straps: "⌚ Apple Watch Tasmalar",
+        car: "🚗 Avto Aksessuarlar"
       };
-      if (titleElem) titleElem.innerText = catNames[cat] || "Mahsulotlar";
+      if (titleEl) titleEl.innerText = catNames[cat] || "Aksessuarlar";
 
-      if (cat === 'all') {
-        currentFeed = [...marketplaceCatalog];
-      } else {
-        currentFeed = marketplaceCatalog.filter(p => p.category === cat);
-      }
-      renderFeed(currentFeed);
+      loadProducts(cat);
     }
 
-    // Search
-    function handleMarketSearch(query) {
-      const q = query.toLowerCase().trim();
-      if (!q) {
-        currentFeed = [...marketplaceCatalog];
-      } else {
-        currentFeed = marketplaceCatalog.filter(p => 
-          p.name.toLowerCase().includes(q) || 
-          p.description.toLowerCase().includes(q)
-        );
+    function handleSearch(q) {
+      const query = q.toLowerCase().trim();
+      if (!query) {
+        renderProducts(productsList);
+        return;
       }
-      renderFeed(currentFeed);
-    }
-
-    // Wishlist Toggle
-    function toggleFav(id, e) {
-      e.stopPropagation();
-      hapticFeedback('medium');
-      if (wishlist.has(id)) {
-        wishlist.delete(id);
-      } else {
-        wishlist.add(id);
-      }
-
-      // Update wishlist count badge
-      const count = wishlist.size;
-      const navBadge = document.getElementById('nav-wishlist-count');
-      const label = document.getElementById('wishlist-count-label');
-      if (navBadge) {
-        navBadge.style.display = count > 0 ? 'inline-block' : 'none';
-        navBadge.innerText = count;
-      }
-      if (label) label.innerText = `${count} ta`;
-
-      renderFeed(currentFeed);
-      renderWishlistTab();
-    }
-
-    function renderWishlistTab() {
-      const favProducts = marketplaceCatalog.filter(p => wishlist.has(p.id));
-      renderFeed(favProducts, 'wishlist-products-grid');
+      const filtered = productsList.filter(p => 
+        p.name.toLowerCase().includes(query) || 
+        (p.description && p.description.toLowerCase().includes(query))
+      );
+      renderProducts(filtered);
     }
 
     // Quick Add to Cart
-    function quickAddToCart(id, e) {
+    function quickAddToCart(productId, e) {
       e.stopPropagation();
-      hapticFeedback('medium');
-      const prod = marketplaceCatalog.find(p => p.id === id);
+      haptic('medium');
+      const prod = productsList.find(p => p.id === productId);
       if (!prod) return;
 
-      const existing = cart.find(c => c.id === id);
+      const existing = cart.find(c => c.id === productId);
       if (existing) {
         existing.qty += 1;
       } else {
@@ -1596,161 +1196,152 @@
           id: prod.id,
           name: prod.name,
           price: prod.price,
-          icon: prod.icon,
+          icon: prod.icon || '📱',
           qty: 1,
-          option: prod.options ? prod.options[0] : ""
+          option: prod.options && prod.options.length > 0 ? prod.options[0] : ""
         });
       }
 
       showToast(`✓ "${prod.name}" savatga qo'shildi`);
-      updateCartBadge();
-      renderFeed(currentFeed);
+      updateCartUI();
+      renderProducts(productsList);
     }
 
-    // Product Detail Sheet
+    // Product Detail
     function openProductDetail(id) {
-      hapticFeedback('light');
-      const prod = marketplaceCatalog.find(p => p.id === id);
+      haptic('light');
+      const prod = productsList.find(p => p.id === id);
       if (!prod) return;
 
-      selectedModalProduct = prod;
-      selectedModalOption = prod.options ? prod.options[0] : "";
+      selectedDetailProduct = prod;
+      selectedDetailOption = prod.options && prod.options.length > 0 ? prod.options[0] : "";
 
-      document.getElementById('modal-product-icon').innerText = prod.icon;
-      document.getElementById('modal-product-price').innerText = formatSoM(prod.price);
-      document.getElementById('modal-product-oldprice').innerText = prod.oldPrice ? formatSoM(prod.oldPrice) : "";
-      document.getElementById('modal-product-installment').innerText = prod.installment;
-      document.getElementById('modal-product-title').innerText = prod.name;
-      document.getElementById('modal-product-desc').innerText = prod.description;
+      document.getElementById('modal-acc-title').innerText = prod.name;
+      document.getElementById('modal-acc-price').innerText = formatUZS(prod.price);
+      document.getElementById('modal-acc-icon').innerText = prod.icon || '📱';
+      document.getElementById('modal-acc-desc').innerText = prod.description || "Yuqori sifatli original aksessuar.";
 
-      const chipsBox = document.getElementById('modal-options-chips');
+      const optBox = document.getElementById('modal-acc-options');
       if (prod.options && prod.options.length > 0) {
-        chipsBox.innerHTML = prod.options.map((opt, i) => `
-          <button class="opt-chip ${i === 0 ? 'active' : ''}" onclick="selectModalOption('${opt}', this)">
+        optBox.innerHTML = prod.options.map((opt, i) => `
+          <button style="background: ${i === 0 ? 'var(--primary-subtle)' : '#1b1e2a'}; border: 1px solid ${i === 0 ? 'var(--primary)' : 'var(--border-subtle)'}; color: ${i === 0 ? '#c084fc' : '#fff'}; padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer;" onclick="selectDetailOption('${opt}', this)">
             ${opt}
           </button>
         `).join('');
       } else {
-        chipsBox.innerHTML = "";
+        optBox.innerHTML = "<span style='font-size: 11px; color: var(--text-muted);'>Standart komplekt</span>";
       }
 
       document.getElementById('product-detail-modal').classList.add('active');
       document.body.style.overflow = 'hidden';
     }
 
-    function selectModalOption(opt, btn) {
-      hapticFeedback('light');
-      selectedModalOption = opt;
-      document.querySelectorAll('#modal-options-chips .opt-chip').forEach(c => c.classList.remove('active'));
-      btn.classList.add('active');
+    function selectDetailOption(opt, btn) {
+      haptic('light');
+      selectedDetailOption = opt;
+      document.querySelectorAll('#modal-acc-options button').forEach(b => {
+        b.style.borderColor = 'var(--border-subtle)';
+        b.style.background = '#1b1e2a';
+        b.style.color = '#fff';
+      });
+      btn.style.borderColor = 'var(--primary)';
+      btn.style.background = 'var(--primary-subtle)';
+      btn.style.color = '#c084fc';
     }
 
     function closeProductDetail(e = null) {
-      hapticFeedback('light');
       document.getElementById('product-detail-modal').classList.remove('active');
       document.body.style.overflow = '';
     }
 
-    function addModalItemToCart() {
-      if (!selectedModalProduct) return;
-      hapticFeedback('heavy');
+    function addModalAccToCart() {
+      if (!selectedDetailProduct) return;
+      haptic('heavy');
 
-      const existing = cart.find(c => c.id === selectedModalProduct.id && c.option === selectedModalOption);
+      const existing = cart.find(c => c.id === selectedDetailProduct.id && c.option === selectedDetailOption);
       if (existing) {
         existing.qty += 1;
       } else {
         cart.push({
-          id: selectedModalProduct.id,
-          name: selectedModalProduct.name,
-          price: selectedModalProduct.price,
-          icon: selectedModalProduct.icon,
+          id: selectedDetailProduct.id,
+          name: selectedDetailProduct.name,
+          price: selectedDetailProduct.price,
+          icon: selectedDetailProduct.icon || '📱',
           qty: 1,
-          option: selectedModalOption
+          option: selectedDetailOption
         });
       }
 
       closeProductDetail();
-      showToast(`✓ Savatga qo'shildi (${selectedModalOption || 'Standart'})`);
-      updateCartBadge();
-      renderFeed(currentFeed);
+      showToast(`✓ Savatga qo'shildi (${selectedDetailOption || 'Asosiy'})`);
+      updateCartUI();
+      renderProducts(productsList);
     }
 
-    // Cart Modal Handlers
-    function openCartModal() {
-      hapticFeedback('medium');
-      renderCartDrawer();
-      document.getElementById('cart-checkout-modal').classList.add('active');
+    // Cart Handlers
+    function openCartDrawer() {
+      haptic('medium');
+      renderCartDrawerItems();
+      document.getElementById('cart-drawer-modal').classList.add('active');
       document.body.style.overflow = 'hidden';
     }
 
-    function closeCartModal(e = null) {
-      hapticFeedback('light');
-      document.getElementById('cart-checkout-modal').classList.remove('active');
+    function closeCartDrawer(e = null) {
+      document.getElementById('cart-drawer-modal').classList.remove('active');
       document.body.style.overflow = '';
     }
 
-    function changeCartItemQty(index, delta) {
-      hapticFeedback('light');
-      cart[index].qty += delta;
-      if (cart[index].qty <= 0) {
-        cart.splice(index, 1);
+    function changeCartQty(idx, delta) {
+      haptic('light');
+      cart[idx].qty += delta;
+      if (cart[idx].qty <= 0) {
+        cart.splice(idx, 1);
       }
-      updateCartBadge();
-      renderCartDrawer();
-      renderFeed(currentFeed);
+      updateCartUI();
+      renderCartDrawerItems();
+      renderProducts(productsList);
     }
 
-    function removeCartIndex(index) {
-      hapticFeedback('medium');
-      cart.splice(index, 1);
-      updateCartBadge();
-      renderCartDrawer();
-      renderFeed(currentFeed);
+    function removeCartItem(idx) {
+      haptic('medium');
+      cart.splice(idx, 1);
+      updateCartUI();
+      renderCartDrawerItems();
+      renderProducts(productsList);
     }
 
-    function updateCartBadge() {
+    function updateCartUI() {
       const totalQty = cart.reduce((s, i) => s + i.qty, 0);
       const totalSum = cart.reduce((s, i) => s + (i.price * i.qty), 0);
 
-      // Nav dock badge
-      const navCartCount = document.getElementById('nav-cart-count');
-      if (navCartCount) {
-        navCartCount.style.display = totalQty > 0 ? 'inline-block' : 'none';
-        navCartCount.innerText = totalQty;
-      }
-
-      // Floating bottom pill
-      const pill = document.getElementById('floating-cart-pill');
-      const qtyElem = document.getElementById('bar-items-qty');
-      const sumElem = document.getElementById('bar-total-sum');
+      const pill = document.getElementById('cart-float-pill');
+      const pillQty = document.getElementById('cart-pill-qty');
+      const pillSum = document.getElementById('cart-pill-sum');
 
       if (pill) {
         if (totalQty > 0) {
           pill.classList.add('visible');
-          if (qtyElem) qtyElem.innerText = totalQty;
-          if (sumElem) sumElem.innerText = formatSoM(totalSum);
+          if (pillQty) pillQty.innerText = totalQty;
+          if (pillSum) pillSum.innerText = formatUZS(totalSum);
         } else {
           pill.classList.remove('visible');
         }
       }
     }
 
-    function renderCartDrawer() {
-      const container = document.getElementById('cart-items-wrapper');
-      const subtotalElem = document.getElementById('cart-calc-subtotal');
-      const totalElem = document.getElementById('cart-calc-total');
+    function renderCartDrawerItems() {
+      const box = document.getElementById('cart-items-box');
+      const totalDisp = document.getElementById('cart-total-display');
       const submitBtn = document.getElementById('btn-submit-order-act');
-
       const totalSum = cart.reduce((s, i) => s + (i.price * i.qty), 0);
-      if (subtotalElem) subtotalElem.innerText = formatSoM(totalSum);
-      if (totalElem) totalElem.innerText = formatSoM(totalSum);
+
+      if (totalDisp) totalDisp.innerText = formatUZS(totalSum);
 
       if (cart.length === 0) {
-        container.innerHTML = `
-          <div style="text-align: center; padding: 36px 10px; color: var(--text-muted);">
-            <div style="font-size: 42px; margin-bottom: 8px;">🛒</div>
-            <div style="font-size: 15px; font-weight: 700; color: #fff;">Savatchangiz bo'sh</div>
-            <div style="font-size: 12px; margin-top: 4px;">Uzum Market katalogidan tovarlarni tanlang</div>
+        box.innerHTML = `
+          <div style="text-align: center; padding: 30px 10px; color: var(--text-muted);">
+            <div style="font-size: 40px; margin-bottom: 6px;">🛒</div>
+            <div style="font-size: 14px; font-weight: 700; color: #fff;">Savatchangiz bo'sh</div>
           </div>
         `;
         if (submitBtn) {
@@ -1764,65 +1355,63 @@
       if (submitBtn) {
         submitBtn.disabled = false;
         submitBtn.style.opacity = '1';
-        submitBtn.innerHTML = `<span>Buyurtma Berish (${formatSoM(totalSum)})</span> <span>→</span>`;
+        submitBtn.innerHTML = `<span>Buyurtma Berish (${formatUZS(totalSum)})</span> <span>→</span>`;
       }
 
-      container.innerHTML = cart.map((item, idx) => `
-        <div class="cart-item">
-          <div class="cart-item-icon">${item.icon}</div>
-          <div class="cart-item-details">
-            <div class="cart-item-title">${item.name}</div>
-            ${item.option ? `<div style="font-size: 10px; color: #a855f7; font-weight: 700;">Tanlangan: ${item.option}</div>` : ''}
-            <div class="cart-item-price">${formatSoM(item.price * item.qty)}</div>
+      box.innerHTML = cart.map((item, idx) => `
+        <div style="display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border-subtle);">
+          <div style="width: 44px; height: 44px; border-radius: 8px; background: #1a1d26; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+            ${item.icon}
           </div>
-          <div class="cart-controls">
-            <button class="ctrl-btn" onclick="changeCartItemQty(${idx}, -1)">-</button>
-            <span class="ctrl-qty">${item.qty}</span>
-            <button class="ctrl-btn" onclick="changeCartItemQty(${idx}, 1)">+</button>
-            <button class="ctrl-btn" style="margin-left: 2px; color: #f72585;" onclick="removeCartIndex(${idx})">&times;</button>
+          <div style="flex: 1;">
+            <div style="font-size: 12px; font-weight: 700; color: #fff;">${item.name}</div>
+            ${item.option ? `<div style="font-size: 10px; color: #c084fc; font-weight: 700;">${item.option}</div>` : ''}
+            <div style="font-family: var(--font-mono); font-size: 12px; font-weight: 800; color: #10b981;">${formatUZS(item.price * item.qty)}</div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <button onclick="changeCartQty(${idx}, -1)" style="width: 24px; height: 24px; background: #202432; border: 1px solid var(--border-subtle); color: #fff; border-radius: 4px; font-weight: 800;">-</button>
+            <span style="font-size: 12px; font-weight: 800; min-width: 16px; text-align: center;">${item.qty}</span>
+            <button onclick="changeCartQty(${idx}, 1)" style="width: 24px; height: 24px; background: #202432; border: 1px solid var(--border-subtle); color: #fff; border-radius: 4px; font-weight: 800;">+</button>
+            <button onclick="removeCartItem(${idx})" style="color: #ef4444; background: none; border: none; font-size: 16px; cursor: pointer; margin-left: 2px;">&times;</button>
           </div>
         </div>
       `).join('');
     }
 
-    // Submit Order to Server and Telegram
-    async function submitFinalMarketOrder() {
+    // Submit Order
+    async function submitAccessoriesOrder() {
       if (cart.length === 0) return;
-      hapticFeedback('heavy');
+      haptic('heavy');
 
-      const name = document.getElementById('cust-name-input').value.trim();
-      const phone = document.getElementById('cust-phone-input').value.trim();
-      const addr = document.getElementById('cust-addr-input').value.trim();
+      const name = document.getElementById('order-cust-name').value.trim();
+      const phone = document.getElementById('order-cust-phone').value.trim();
+      const addr = document.getElementById('order-cust-addr').value.trim();
       const userId = tg?.initDataUnsafe?.user?.id || 0;
 
-      if (!name) {
-        alert("Iltimos, ismingizni kiriting");
-        return;
-      }
-      if (!phone) {
-        alert("Iltimos, telefon raqamingizni kiriting");
+      if (!name || !phone) {
+        alert("Ism va telefon raqamingizni kiriting");
         return;
       }
 
       const totalSum = cart.reduce((s, i) => s + (i.price * i.qty), 0);
       const submitBtn = document.getElementById('btn-submit-order-act');
       submitBtn.disabled = true;
-      submitBtn.innerHTML = `<span>Yuborilmoqda...</span>`;
+      submitBtn.innerHTML = `<span>Rasmiylashtirilmoqda...</span>`;
 
       const payload = {
         user_id: userId,
         user_name: name,
         user_phone: phone,
+        address: addr,
         items: cart.map(c => ({
           id: c.id,
-          name: c.option ? `${c.name} (${c.option})` : c.name,
+          name: c.name,
+          option: c.option,
           qty: c.qty,
-          price: formatSoM(c.price * c.qty)
+          price: formatUZS(c.price * c.qty),
+          price_raw: c.price
         })),
-        total_price: formatSoM(totalSum),
-        comment: addr ? `Manzil/PVZ: ${addr}` : "Tezkor yetkazish",
-        service_id: cart[0].id,
-        service_name: cart.length === 1 ? cart[0].name : `${cart.length} xil tovar buyurtmasi`
+        total_amount: totalSum
       };
 
       try {
@@ -1832,101 +1421,299 @@
           body: JSON.stringify(payload)
         });
       } catch (e) {
-        console.warn("API request fallback", e);
+        console.warn("API request error", e);
       }
 
       if (tg && typeof tg.sendData === 'function') {
         try {
           tg.sendData(JSON.stringify({
-            action: "uzum_market_order",
+            action: "accessory_order",
             ...payload
           }));
         } catch (e) {}
       }
 
-      // Record to local order history
-      const orderEntry = {
-        id: Math.floor(10000 + Math.random() * 90000),
-        date: new Date().toLocaleDateString('uz-UZ', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }),
-        count: cart.reduce((s, i) => s + i.qty, 0),
-        total: formatSoM(totalSum),
-        status: "Kuryerga tayyorlanmoqda"
-      };
-      ordersHistory.unshift(orderEntry);
-      localStorage.setItem('mardonov_market_orders', JSON.stringify(ordersHistory));
-
-      // Reset
       cart = [];
-      updateCartBadge();
-      closeCartModal();
-      renderOrdersHistory();
-      renderFeed(currentFeed);
-
-      showToast("🎉 Buyurtmangiz qabul qilindi! Kuryer tez orada yetkazadi.");
+      updateCartUI();
+      closeCartDrawer();
+      showToast("🎉 Aksessuarlar buyurtmasi qabul qilindi!");
       submitBtn.disabled = false;
       submitBtn.innerHTML = `<span>Buyurtmani Rasmiylashtirish</span> <span>→</span>`;
-
-      switchNavTab('orders');
     }
 
-    // Orders History Render
-    function renderOrdersHistory() {
-      const container = document.getElementById('orders-history-list');
-      if (!container) return;
+    // ==========================================================================
+    // 👑 CRM ADMIN PANEL FUNCTIONS
+    // ==========================================================================
 
-      if (ordersHistory.length === 0) {
-        container.innerHTML = `
-          <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 32px 14px; text-align: center; color: var(--text-muted);">
-            <div style="font-size: 36px; margin-bottom: 6px;">📦</div>
-            <div style="font-size: 14px; font-weight: 700; color: #fff;">Sizda hali buyurtmalar yo'q</div>
-            <div style="font-size: 12px; margin-top: 4px;">Uzum Market tovarlaridan birini xarid qilib ko'ring</div>
-          </div>
-        `;
-        return;
+    function toggleCRMMode() {
+      haptic('medium');
+      isCRMMode = !isCRMMode;
+
+      const storeView = document.getElementById('client-store-view');
+      const crmView = document.getElementById('admin-crm-view');
+      const searchField = document.getElementById('store-search-field');
+      const btnToggle = document.getElementById('btn-toggle-crm');
+
+      if (isCRMMode) {
+        storeView.style.display = 'none';
+        searchField.style.display = 'none';
+        crmView.classList.add('active');
+        btnToggle.innerHTML = "<span>🛍 Do'konga qaytish</span>";
+        btnToggle.style.background = "#fff";
+        btnToggle.style.color = "#000";
+        refreshCRMData();
+      } else {
+        crmView.classList.remove('active');
+        storeView.style.display = 'block';
+        searchField.style.display = 'block';
+        btnToggle.innerHTML = "<span>👑 CRM Panel</span>";
+        btnToggle.style.background = "#191c26";
+        btnToggle.style.color = "#c084fc";
       }
-
-      container.innerHTML = ordersHistory.map(ord => `
-        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 12px 16px; display: flex; justify-content: space-between; align-items: center;">
-          <div>
-            <div style="font-size: 14px; font-weight: 800; color: #fff;">Buyurtma #${ord.id}</div>
-            <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">${ord.date} • ${ord.count} ta tovar</div>
-          </div>
-          <div style="text-align: right;">
-            <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 800; color: #c084fc;">${ord.total}</div>
-            <div style="font-size: 10px; font-weight: 700; color: #06d6a0; margin-top: 2px;">● ${ord.status}</div>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    // Dock Navigation Switcher
-    function switchNavTab(tabId) {
-      hapticFeedback('light');
-      document.querySelectorAll('.bottom-dock .dock-btn').forEach(btn => {
-        if (btn.dataset.tab === tabId) {
-          btn.classList.add('active');
-        } else {
-          btn.classList.remove('active');
-        }
-      });
-
-      document.querySelectorAll('.market-view').forEach(view => view.classList.remove('active'));
-      const activeView = document.getElementById(`tab-${tabId}`);
-      if (activeView) activeView.classList.add('active');
-
-      if (tabId === 'wishlist') {
-        renderWishlistTab();
-      }
-
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    async function refreshCRMData() {
+      haptic('light');
+      // Load Stats
+      try {
+        const sRes = await fetch('/api/crm/stats');
+        const sData = await sRes.json();
+        if (sData.status === 'success') {
+          const st = sData.data;
+          document.getElementById('crm-total-revenue').innerText = formatUZS(st.total_revenue);
+          document.getElementById('crm-new-orders').innerText = `${st.new_orders} ta`;
+          document.getElementById('crm-customers-count').innerText = `${st.total_customers} ta`;
+          document.getElementById('crm-low-stock').innerText = `${st.low_stock_count} ta`;
+        }
+      } catch (e) {}
+
+      // Load Orders
+      loadCRMOrders();
+      // Load Inventory
+      loadCRMInventory();
+      // Load Customers
+      loadCRMCustomers();
+    }
+
+    function switchCRMTab(tab, btn) {
+      haptic('light');
+      document.querySelectorAll('.crm-tabs-row .crm-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.getElementById('crm-tab-orders').style.display = tab === 'orders' ? 'block' : 'none';
+      document.getElementById('crm-tab-inventory').style.display = tab === 'inventory' ? 'block' : 'none';
+      document.getElementById('crm-tab-customers').style.display = tab === 'customers' ? 'block' : 'none';
+    }
+
+    // Load CRM Orders
+    async function loadCRMOrders() {
+      const container = document.getElementById('crm-orders-pipeline-list');
+      try {
+        const res = await fetch('/api/crm/orders');
+        const json = await res.json();
+        if (json.status === 'success' && json.data) {
+          const orders = json.data;
+          if (orders.length === 0) {
+            container.innerHTML = `
+              <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 30px; text-align: center; color: var(--text-muted);">
+                <div style="font-size: 32px; margin-bottom: 6px;">📦</div>
+                <div>Hozircha buyurtmalar yo'q</div>
+              </div>
+            `;
+            return;
+          }
+
+          container.innerHTML = orders.map(ord => {
+            const statusMap = {
+              new: { text: "Yangi", class: "status-new" },
+              shipping: { text: "Kuryerda", class: "status-shipping" },
+              completed: { text: "Yetkazildi", class: "status-completed" },
+              cancelled: { text: "Bekor", class: "status-cancelled" }
+            };
+            const st = statusMap[ord.status] || { text: ord.status, class: "status-new" };
+
+            return `
+              <div class="order-pipeline-card">
+                <div class="order-top">
+                  <div>
+                    <span style="font-size: 13px; font-weight: 800; color: #fff;">Buyurtma #${ord.id}</span>
+                    <span style="font-size: 11px; color: var(--text-muted); display: block;">${ord.created_at || ''}</span>
+                  </div>
+                  <span class="order-status-badge ${st.class}">${st.text}</span>
+                </div>
+
+                <div style="margin: 8px 0; font-size: 12px;">
+                  <div>👤 <b>${ord.user_name}</b> &bull; <a href="tel:${ord.user_phone}" style="color: #60a5fa; text-decoration: none;">📞 ${ord.user_phone}</a></div>
+                  ${ord.address ? `<div style="color: var(--text-gray); margin-top: 2px;">📍 ${ord.address}</div>` : ''}
+                </div>
+
+                <div style="background: #171922; border-radius: 6px; padding: 8px; font-size: 11px; margin: 8px 0;">
+                  ${ord.items && ord.items.length > 0 ? ord.items.map(it => `
+                    <div>• ${it.name} ${it.option ? `(${it.option})` : ''} — <b>${it.qty}x</b> (${it.price || ''})</div>
+                  `).join('') : "Aksessuarlar"}
+                  <div style="margin-top: 4px; font-weight: 800; color: #10b981;">Jami: ${formatUZS(ord.total_amount)}</div>
+                </div>
+
+                <!-- Action Pipeline buttons -->
+                <div class="order-action-btns">
+                  <button class="act-btn" onclick="updateOrderStatusCRM(${ord.id}, 'shipping')">🚗 Kuryerga</button>
+                  <button class="act-btn" onclick="updateOrderStatusCRM(${ord.id}, 'completed')">✅ Yetkazildi</button>
+                  <button class="act-btn" style="color: #ef4444;" onclick="updateOrderStatusCRM(${ord.id}, 'cancelled')">❌ Bekor</button>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+      } catch (e) {}
+    }
+
+    async function updateOrderStatusCRM(orderId, status) {
+      haptic('medium');
+      try {
+        await fetch('/api/crm/orders/status', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ order_id: orderId, status: status })
+        });
+        showToast("Status o'zgartirildi!");
+        refreshCRMData();
+      } catch (e) {}
+    }
+
+    // Load CRM Inventory
+    async function loadCRMInventory() {
+      const container = document.getElementById('crm-inventory-list');
+      try {
+        const res = await fetch('/api/products?category=all');
+        const json = await res.json();
+        if (json.status === 'success' && json.data) {
+          container.innerHTML = json.data.map(p => `
+            <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 12px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between;">
+              <div style="flex: 1;">
+                <div style="font-size: 13px; font-weight: 700; color: #fff;">${p.icon} ${p.name}</div>
+                <div style="font-size: 11px; color: var(--text-gray); margin-top: 2px;">
+                  Sotish: <b>${formatUZS(p.price)}</b> &bull; Tannarx: <b>${formatUZS(p.cost_price || 0)}</b>
+                </div>
+                <div style="font-size: 11px; color: ${p.stock <= 5 ? '#f59e0b' : '#10b981'}; font-weight: 700; margin-top: 2px;">
+                  Ombor: ${p.stock || 0} dona
+                </div>
+              </div>
+              <div style="display: flex; gap: 4px;">
+                <button onclick="deleteProductCRM(${p.id})" style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: #ef4444; padding: 6px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer;">
+                  O'chirish
+                </button>
+              </div>
+            </div>
+          `).join('');
+        }
+      } catch (e) {}
+    }
+
+    async function deleteProductCRM(id) {
+      if (!confirm("Haqiqatan ham bu aksessuarni o'chirmoqchimisiz?")) return;
+      haptic('heavy');
+      try {
+        await fetch('/api/crm/products/delete', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: id })
+        });
+        showToast("Aksessuar o'chirildi");
+        refreshCRMData();
+        loadProducts();
+      } catch (e) {}
+    }
+
+    // Add Product Modal
+    function openAddProductModal() {
+      haptic('light');
+      document.getElementById('crm-add-modal').classList.add('active');
+    }
+    function closeAddProductModal(e = null) {
+      document.getElementById('crm-add-modal').classList.remove('active');
+    }
+
+    async function submitNewProductCRM() {
+      const name = document.getElementById('add-prod-name').value.trim();
+      const cat = document.getElementById('add-prod-cat').value;
+      const price = parseInt(document.getElementById('add-prod-price').value || 0);
+      const cost = parseInt(document.getElementById('add-prod-cost').value || 0);
+      const stock = parseInt(document.getElementById('add-prod-stock').value || 10);
+      const oldPrice = parseInt(document.getElementById('add-prod-oldprice').value || 0);
+      const desc = document.getElementById('add-prod-desc').value.trim();
+
+      if (!name || !price) {
+        alert("Nom va narxni kiriting!");
+        return;
+      }
+
+      haptic('heavy');
+      try {
+        await fetch('/api/crm/products/add', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name, category: cat, price, cost_price: cost, old_price: oldPrice, stock, description: desc
+          })
+        });
+
+        closeAddProductModal();
+        showToast("Yangi aksessuar qo'shildi!");
+        refreshCRMData();
+        loadProducts();
+      } catch (e) {}
+    }
+
+    // Load CRM Customers
+    async function loadCRMCustomers() {
+      const container = document.getElementById('crm-customers-table-list');
+      try {
+        const res = await fetch('/api/crm/customers');
+        const json = await res.json();
+        if (json.status === 'success' && json.data) {
+          const list = json.data;
+          if (list.length === 0) {
+            container.innerHTML = `
+              <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 30px; text-align: center; color: var(--text-muted);">
+                <div style="font-size: 32px; margin-bottom: 6px;">👥</div>
+                <div>Hozircha mijozlar ro'yxati shakllanmagan</div>
+              </div>
+            `;
+            return;
+          }
+
+          container.innerHTML = list.map(c => `
+            <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 12px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <div style="font-size: 13px; font-weight: 700; color: #fff;">${c.name}</div>
+                <div style="font-size: 11px; color: #60a5fa; margin-top: 2px;">📞 <a href="tel:${c.phone}" style="color: inherit; text-decoration: none;">${c.phone}</a></div>
+                <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">Xaridlar: <b>${c.orders_count} ta</b></div>
+              </div>
+              <div style="text-align: right;">
+                <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 800; color: #10b981;">${formatUZS(c.total_spent)}</div>
+                <div style="font-size: 10px; color: var(--text-muted);">Jami xarid (LTV)</div>
+              </div>
+            </div>
+          `).join('');
+        }
+      } catch (e) {}
+    }
+
+    function switchMainDock(tab) {
+      if (tab === 'crm') {
+        if (!isCRMMode) toggleCRMMode();
+      } else {
+        if (isCRMMode) toggleCRMMode();
+      }
+    }
+
     function showToast(text) {
-      const toast = document.getElementById('market-toast');
-      toast.innerText = text;
-      toast.classList.add('show');
+      const t = document.getElementById('toast-el');
+      t.innerText = text;
+      t.classList.add('show');
       setTimeout(() => {
-        toast.classList.remove('show');
+        t.classList.remove('show');
       }, 3000);
     }
 

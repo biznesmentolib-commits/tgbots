@@ -260,6 +260,7 @@ async def update_order_status_handler(callback: CallbackQuery):
     
     status_text = {
         "in_progress": "🟡 Jarayonda",
+        "shipping": "🚗 Kuryerda",
         "completed": "✅ Yakunlandi",
         "cancelled": "❌ Bekor qilindi"
     }.get(status, status)
