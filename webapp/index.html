@@ -3,46 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>MARDONOV STORE | Luxury E-Commerce</title>
+  <title>MARDONOV MARKET | Uzum & AliExpress uslubidagi marketpleys</title>
   
   <!-- Telegram Web App JS SDK -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-  <!-- Google Fonts: Plus Jakarta Sans & Space Grotesk -->
+  <!-- Google Font: Plus Jakarta Sans & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
 
   <style>
     /* ==========================================================================
-       APPLE STORE & FARFETCH LUXURY E-COMMERCE DESIGN SYSTEM
+       UZUM MARKET & ALIEXPRESS MARKETPLACE DESIGN SYSTEM
        ========================================================================== */
     :root {
-      --bg-main: #050608;
-      --bg-card: #0f1115;
-      --bg-card-hover: #16181f;
-      --bg-input: #151820;
+      --uzum-purple: #7000ff;
+      --uzum-purple-hover: #5d00d6;
+      --uzum-purple-light: rgba(112, 0, 255, 0.12);
       
-      --border-subtle: rgba(255, 255, 255, 0.07);
-      --border-medium: rgba(255, 255, 255, 0.14);
-      --border-focus: rgba(255, 255, 255, 0.4);
+      --uzum-yellow: #ffbe0b;
+      --uzum-red: #f72585;
+      --uzum-green: #06d6a0;
       
-      --text-white: #ffffff;
-      --text-gray: #9ba1b0;
-      --text-muted: #5e6473;
+      --bg-base: #0a0b0e;
+      --bg-surface: #12141a;
+      --bg-surface-elevated: #1a1d26;
+      --bg-input: #161822;
       
-      --gold-accent: #e5c378;
-      --badge-bg: #1c202a;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-medium: rgba(255, 255, 255, 0.16);
       
-      --btn-white: #ffffff;
-      --btn-white-text: #050608;
+      --text-main: #ffffff;
+      --text-sub: #9ca3af;
+      --text-muted: #6b7280;
       
       --radius-sm: 8px;
       --radius-md: 14px;
       --radius-lg: 20px;
-      --radius-pill: 9999px;
+      --radius-full: 9999px;
       
-      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       --font-mono: 'Space Grotesk', -apple-system, monospace;
       
       --safe-bottom: env(safe-area-inset-bottom, 0px);
@@ -56,9 +57,9 @@
     }
 
     body {
-      font-family: var(--font-body);
-      background-color: var(--bg-main);
-      color: var(--text-white);
+      font-family: var(--font-family);
+      background-color: var(--bg-base);
+      color: var(--text-main);
       min-height: 100vh;
       overflow-x: hidden;
       padding-bottom: calc(85px + var(--safe-bottom));
@@ -68,111 +69,78 @@
     .container {
       max-width: 480px;
       margin: 0 auto;
-      padding: 0 16px;
+      padding: 0 14px;
     }
 
     /* ==========================================================================
-       TOP STORE BAR & SEARCH
+       HEADER (Marketplace Search & Delivery Badge)
        ========================================================================== */
-    .store-header {
+    .market-header {
       position: sticky;
       top: 0;
-      z-index: 50;
-      background: rgba(5, 6, 8, 0.88);
+      z-index: 60;
+      background: rgba(10, 11, 14, 0.92);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--border-subtle);
-      padding: 12px 16px;
+      padding: 10px 14px 12px;
     }
 
-    .header-top-row {
+    .header-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
-    .store-brand {
+    .brand-box {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
-    .brand-icon {
+    .brand-logo-badge {
+      background: linear-gradient(135deg, #7000ff 0%, #a855f7 100%);
+      color: #fff;
+      font-weight: 800;
+      font-size: 14px;
       width: 32px;
       height: 32px;
-      background: #141720;
-      border: 1px solid var(--border-medium);
       border-radius: 9px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 800;
-      font-size: 14px;
-      color: #fff;
+      box-shadow: 0 4px 12px rgba(112, 0, 255, 0.4);
     }
 
-    .brand-titles h1 {
-      font-size: 14px;
+    .brand-name {
+      font-size: 15px;
       font-weight: 800;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
+      letter-spacing: -0.3px;
       color: #fff;
       display: flex;
       align-items: center;
       gap: 5px;
     }
 
-    .verified-mark {
-      color: #3b82f6;
-      font-size: 13px;
+    .brand-name span {
+      color: var(--uzum-purple);
     }
 
-    .brand-titles p {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.4px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-
-    .header-cart-btn {
-      position: relative;
-      background: #151821;
-      border: 1px solid var(--border-subtle);
-      color: #fff;
-      padding: 8px 14px;
-      border-radius: var(--radius-pill);
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      transition: all 0.2s;
-    }
-
-    .header-cart-btn:active {
-      transform: scale(0.95);
-      background: #1e222e;
-    }
-
-    .cart-badge {
-      background: #ffffff;
-      color: #000;
+    .delivery-pill {
+      background: var(--uzum-purple-light);
+      border: 1px solid rgba(112, 0, 255, 0.3);
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
       font-size: 11px;
-      font-weight: 800;
-      min-width: 18px;
-      height: 18px;
-      padding: 0 5px;
-      border-radius: var(--radius-pill);
+      font-weight: 700;
+      color: #c084fc;
       display: flex;
       align-items: center;
-      justify-content: center;
-      line-height: 1;
+      gap: 4px;
     }
 
-    .search-box {
+    .search-bar {
       position: relative;
     }
 
@@ -180,8 +148,8 @@
       width: 100%;
       background: var(--bg-input);
       border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-pill);
-      padding: 10px 16px 10px 38px;
+      border-radius: var(--radius-md);
+      padding: 11px 16px 11px 40px;
       color: #fff;
       font-size: 13px;
       font-family: inherit;
@@ -190,8 +158,9 @@
     }
 
     .search-input:focus {
-      border-color: var(--border-medium);
-      background: #1c202b;
+      border-color: var(--uzum-purple);
+      background: #1c1f2c;
+      box-shadow: 0 0 0 3px rgba(112, 0, 255, 0.15);
     }
 
     .search-icon {
@@ -200,201 +169,240 @@
       top: 50%;
       transform: translateY(-50%);
       color: var(--text-muted);
-      font-size: 14px;
-      pointer-events: none;
+      font-size: 15px;
     }
 
     /* ==========================================================================
-       EDITORIAL HERO SHOWCASE (Apple Store Style)
+       PROMO CAROUSEL / BANNERS (Uzum Market Style)
        ========================================================================== */
-    .store-hero {
-      margin: 16px 0;
-      background: linear-gradient(180deg, #161822 0%, #0d0f14 100%);
-      border: 1px solid var(--border-medium);
+    .promo-banner {
+      margin: 12px 0 16px;
       border-radius: var(--radius-lg);
-      padding: 24px 20px;
+      padding: 18px 20px;
+      background: linear-gradient(135deg, #4c00b0 0%, #7000ff 50%, #9333ea 100%);
       position: relative;
       overflow: hidden;
+      box-shadow: 0 12px 28px -6px rgba(112, 0, 255, 0.4);
     }
 
-    .store-hero::after {
-      content: '';
+    .promo-banner::after {
+      content: '⚡';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      right: 15px;
+      bottom: -15px;
+      font-size: 90px;
+      opacity: 0.15;
+      transform: rotate(15deg);
+      pointer-events: none;
     }
 
-    .hero-tag {
+    .banner-badge {
+      display: inline-block;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
       font-size: 10px;
       font-weight: 800;
-      letter-spacing: 1px;
       text-transform: uppercase;
-      color: var(--gold-accent);
+      letter-spacing: 0.5px;
+      color: #ffbe0b;
       margin-bottom: 8px;
-      display: inline-block;
     }
 
-    .hero-heading {
-      font-size: 22px;
+    .banner-title {
+      font-size: 20px;
       font-weight: 800;
       line-height: 1.25;
-      letter-spacing: -0.6px;
-      color: #ffffff;
-      margin-bottom: 8px;
+      letter-spacing: -0.4px;
+      color: #fff;
+      margin-bottom: 6px;
     }
 
-    .hero-desc {
+    .banner-desc {
       font-size: 12px;
-      color: var(--text-gray);
-      line-height: 1.5;
-      margin-bottom: 18px;
-      max-width: 90%;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 14px;
+      line-height: 1.4;
     }
 
-    .hero-btn {
-      background: var(--btn-white);
-      color: var(--btn-white-text);
+    .banner-btn {
+      background: #ffffff;
+      color: #000;
       border: none;
-      padding: 10px 20px;
-      border-radius: var(--radius-pill);
+      padding: 9px 18px;
+      border-radius: var(--radius-full);
       font-size: 12px;
       font-weight: 800;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
-    .hero-btn:active {
+    .banner-btn:active {
       transform: scale(0.96);
-      background: #e6e8ec;
     }
 
     /* ==========================================================================
-       CATEGORY FILTER BAR (Farfetch Style)
+       CIRCULAR STORY CATEGORIES (Uzum & AliExpress Style)
        ========================================================================== */
-    .category-scroll {
+    .story-categories {
       display: flex;
-      gap: 8px;
+      gap: 14px;
       overflow-x: auto;
       scrollbar-width: none;
-      padding: 4px 0 16px;
+      padding: 4px 2px 16px;
+      margin-bottom: 4px;
     }
 
-    .category-scroll::-webkit-scrollbar {
+    .story-categories::-webkit-scrollbar {
       display: none;
     }
 
-    .cat-chip {
-      flex-shrink: 0;
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-gray);
-      padding: 8px 16px;
-      border-radius: var(--radius-pill);
-      font-size: 12px;
-      font-weight: 700;
+    .story-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
       cursor: pointer;
-      transition: all 0.2s;
+      flex-shrink: 0;
+      width: 68px;
     }
 
-    .cat-chip.active {
-      background: #ffffff;
-      color: #000;
-      border-color: #ffffff;
-      box-shadow: 0 4px 14px rgba(255, 255, 255, 0.15);
+    .story-ring {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      border: 2px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      transition: all 0.25s;
+      position: relative;
     }
 
-    .cat-chip:active {
-      transform: scale(0.96);
+    .story-item.active .story-ring {
+      border-color: var(--uzum-purple);
+      background: var(--uzum-purple-light);
+      box-shadow: 0 0 0 2px rgba(112, 0, 255, 0.3);
+    }
+
+    .story-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-sub);
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
+
+    .story-item.active .story-label {
+      color: #fff;
+      font-weight: 700;
     }
 
     /* ==========================================================================
-       BOUTIQUE PRODUCT CARDS (2-Column & 1-Column)
+       MARKETPLACE PRODUCT CARDS (2-Column Uzum Grid)
        ========================================================================== */
-    .section-title {
-      font-size: 16px;
-      font-weight: 800;
-      letter-spacing: -0.3px;
-      margin-bottom: 14px;
+    .feed-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 12px;
+      padding: 0 2px;
+    }
+
+    .feed-title {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      color: #fff;
+    }
+
+    .feed-count {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
     }
 
     .products-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      gap: 10px;
       margin-bottom: 24px;
     }
 
     .product-card {
-      background: var(--bg-card);
+      background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
       overflow: hidden;
       display: flex;
       flex-direction: column;
       position: relative;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.2s;
     }
 
-    .product-card:hover {
+    .product-card:active {
+      transform: scale(0.98);
       border-color: var(--border-medium);
-      background: var(--bg-card-hover);
     }
 
-    .product-thumb {
-      height: 130px;
-      background: #141720;
+    .product-media {
+      height: 145px;
+      background: #171923;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 44px;
       position: relative;
       border-bottom: 1px solid var(--border-subtle);
-      font-size: 40px;
       user-select: none;
     }
 
-    .badge-corner {
+    .discount-badge {
       position: absolute;
       top: 8px;
       left: 8px;
-      background: rgba(18, 21, 28, 0.9);
-      border: 1px solid var(--border-medium);
-      backdrop-filter: blur(8px);
-      padding: 3px 7px;
+      background: #f72585;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 3px 6px;
       border-radius: 6px;
+      line-height: 1;
+    }
+
+    .fast-delivery-badge {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      background: rgba(10, 11, 14, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      color: #10b981;
       font-size: 9px;
       font-weight: 800;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      color: #fff;
+      padding: 3px 6px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 3px;
     }
 
-    .badge-corner.hot {
-      color: #f59e0b;
-      border-color: rgba(245, 158, 11, 0.4);
-    }
-
-    .badge-corner.sale {
-      color: #ef4444;
-      border-color: rgba(239, 68, 68, 0.4);
-    }
-
-    .wishlist-btn {
+    .fav-btn {
       position: absolute;
       top: 8px;
       right: 8px;
       width: 28px;
       height: 28px;
       border-radius: 50%;
-      background: rgba(18, 21, 28, 0.7);
+      background: rgba(10, 11, 14, 0.7);
       border: 1px solid var(--border-subtle);
       display: flex;
       align-items: center;
@@ -405,169 +413,286 @@
       transition: all 0.2s;
     }
 
-    .wishlist-btn.active {
-      color: #ef4444;
-      background: #ffffff;
-      border-color: #ffffff;
+    .fav-btn.active {
+      color: #f72585;
+      background: #fff;
+      border-color: #fff;
     }
 
-    .product-content {
-      padding: 12px;
+    .product-body {
+      padding: 10px;
       display: flex;
       flex-direction: column;
       flex: 1;
       justify-content: space-between;
     }
 
-    .product-brand {
-      font-size: 9px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-      color: var(--text-muted);
-      margin-bottom: 3px;
-    }
-
-    .product-name {
-      font-size: 13px;
-      font-weight: 700;
-      color: #fff;
+    .product-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-main);
       line-height: 1.35;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      min-height: 35px;
+      min-height: 32px;
     }
 
-    .product-rating {
-      font-size: 10px;
-      color: #f59e0b;
+    .product-rating-row {
       display: flex;
       align-items: center;
       gap: 3px;
+      font-size: 10px;
       font-weight: 700;
-      margin-bottom: 10px;
+      color: #ffbe0b;
+      margin-bottom: 8px;
     }
 
-    .product-rating span {
+    .product-rating-row span {
       color: var(--text-muted);
       font-weight: 500;
     }
 
-    .price-box {
-      margin-bottom: 10px;
+    /* Uzum Installment Tag (Nasiya) */
+    .installment-tag {
+      background: rgba(255, 190, 11, 0.15);
+      color: #ffbe0b;
+      font-size: 9px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 6px;
+      width: fit-content;
     }
 
-    .current-price {
+    .price-action-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 4px;
+    }
+
+    .price-stack {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main-price {
       font-family: var(--font-mono);
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 800;
       color: #fff;
       letter-spacing: -0.3px;
     }
 
-    .old-price {
+    .strike-price {
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 10px;
       color: var(--text-muted);
       text-decoration: line-through;
-      margin-left: 4px;
     }
 
-    .btn-add-cart {
-      width: 100%;
-      background: #171a22;
-      border: 1px solid var(--border-medium);
+    /* Uzum Round Plus / Cart Button */
+    .add-to-cart-round {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--uzum-purple);
+      border: none;
       color: #fff;
-      padding: 9px 0;
-      border-radius: var(--radius-sm);
-      font-size: 11px;
-      font-weight: 700;
-      cursor: pointer;
+      font-size: 16px;
+      font-weight: 800;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(112, 0, 255, 0.35);
       transition: all 0.2s;
+      flex-shrink: 0;
     }
 
-    .btn-add-cart:active {
-      transform: scale(0.96);
+    .add-to-cart-round:active {
+      transform: scale(0.9);
+      background: var(--uzum-purple-hover);
     }
 
-    .btn-add-cart.added {
-      background: #ffffff;
-      color: #000;
-      border-color: #ffffff;
+    .add-to-cart-round.in-cart {
+      background: #10b981;
+      box-shadow: 0 4px 10px rgba(16, 185, 129, 0.35);
     }
 
     /* ==========================================================================
-       FLOATING CART BAR (Above dock when items > 0)
+       PRODUCT DETAIL BOTTOM SHEET (Uzum Quick View)
        ========================================================================== */
-    .floating-cart-pill {
+    .sheet-overlay {
       position: fixed;
-      bottom: calc(75px + var(--safe-bottom));
-      left: 16px;
-      right: 16px;
-      max-width: 448px;
-      margin: 0 auto;
-      background: #ffffff;
-      color: #050608;
-      border-radius: var(--radius-pill);
-      padding: 12px 18px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85);
-      cursor: pointer;
-      z-index: 90;
-      transform: translateY(120px);
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 150;
       opacity: 0;
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
     }
 
-    .floating-cart-pill.visible {
-      transform: translateY(0);
+    .sheet-overlay.active {
       opacity: 1;
+      pointer-events: auto;
     }
 
-    .pill-left {
+    .detail-sheet {
+      background: #12141a;
+      border: 1px solid var(--border-medium);
+      border-bottom: none;
+      border-radius: 26px 26px 0 0;
+      width: 100%;
+      max-width: 500px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.85);
+    }
+
+    .sheet-overlay.active .detail-sheet {
+      transform: translateY(0);
+    }
+
+    .sheet-handle {
+      width: 36px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-full);
+      margin: 10px auto 4px;
+    }
+
+    .sheet-content {
+      padding: 14px 20px 20px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .sheet-media-box {
+      height: 180px;
+      background: #1a1d28;
+      border-radius: var(--radius-md);
       display: flex;
       align-items: center;
+      justify-content: center;
+      font-size: 60px;
+      margin-bottom: 14px;
+    }
+
+    .sheet-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .sheet-main-price {
+      font-family: var(--font-mono);
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .sheet-strike-price {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+
+    .sheet-product-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+
+    .sheet-option-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-sub);
+      margin-bottom: 8px;
+    }
+
+    .options-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .opt-chip {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .opt-chip.active {
+      border-color: var(--uzum-purple);
+      background: var(--uzum-purple-light);
+      color: #c084fc;
+    }
+
+    .sheet-desc-box {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 1.5;
+      background: #171922;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 16px;
+    }
+
+    .sheet-footer {
+      padding: 14px 20px calc(20px + var(--safe-bottom));
+      border-top: 1px solid var(--border-subtle);
+      background: #12141a;
+      display: flex;
       gap: 10px;
     }
 
-    .pill-count-bubble {
-      background: #050608;
-      color: #ffffff;
-      font-size: 11px;
+    .btn-sheet-cart {
+      flex: 1;
+      background: var(--uzum-purple);
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      font-size: 14px;
       font-weight: 800;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 6px;
+      box-shadow: 0 4px 14px rgba(112, 0, 255, 0.4);
     }
 
-    .pill-total-text {
-      font-family: var(--font-mono);
-      font-size: 14px;
-      font-weight: 800;
-    }
-
-    .pill-action-text {
-      font-size: 12px;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      gap: 4px;
+    .btn-sheet-cart:active {
+      transform: scale(0.98);
+      background: var(--uzum-purple-hover);
     }
 
     /* ==========================================================================
-       SHOPPING BAG / CART DRAWER (Farfetch Style Checkout)
+       SHOPPING BAG / CART DRAWER (Checkout Modal)
        ========================================================================== */
     .cart-drawer-overlay {
       position: fixed;
@@ -575,10 +700,10 @@
       background: rgba(0, 0, 0, 0.8);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      z-index: 150;
+      z-index: 170;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.25s ease;
       display: flex;
       align-items: flex-end;
       justify-content: center;
@@ -590,10 +715,10 @@
     }
 
     .cart-drawer {
-      background: #0f1116;
+      background: #12141a;
       border: 1px solid var(--border-medium);
       border-bottom: none;
-      border-radius: 28px 28px 0 0;
+      border-radius: 26px 26px 0 0;
       width: 100%;
       max-width: 500px;
       max-height: 92vh;
@@ -601,59 +726,50 @@
       flex-direction: column;
       transform: translateY(100%);
       transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.9);
     }
 
     .cart-drawer-overlay.active .cart-drawer {
       transform: translateY(0);
     }
 
-    .drawer-handle {
-      width: 36px;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: var(--radius-pill);
-      margin: 12px auto 6px;
-    }
-
-    .drawer-header {
-      padding: 12px 20px 14px;
+    .cart-head {
+      padding: 14px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid var(--border-subtle);
     }
 
-    .drawer-header h2 {
+    .cart-head h2 {
       font-size: 17px;
       font-weight: 800;
       color: #fff;
     }
 
-    .drawer-close {
-      background: #1b1e28;
+    .cart-close {
+      background: #1f232e;
       border: 1px solid var(--border-subtle);
       width: 30px;
       height: 30px;
       border-radius: 50%;
-      color: var(--text-gray);
+      color: var(--text-sub);
       font-size: 16px;
-      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
     }
 
-    .drawer-body {
-      padding: 16px 20px;
+    .cart-list-body {
+      padding: 14px 20px;
       overflow-y: auto;
       flex: 1;
     }
 
-    .cart-item-row {
+    .cart-item {
       display: flex;
       gap: 12px;
-      padding: 14px 0;
+      padding: 12px 0;
       border-bottom: 1px solid var(--border-subtle);
       align-items: center;
     }
@@ -661,9 +777,8 @@
     .cart-item-icon {
       width: 48px;
       height: 48px;
-      border-radius: 10px;
-      background: #171a22;
-      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      background: #1c1f2b;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -675,206 +790,245 @@
       flex: 1;
     }
 
-    .cart-item-name {
-      font-size: 13px;
+    .cart-item-title {
+      font-size: 12px;
       font-weight: 700;
       color: #fff;
-      margin-bottom: 3px;
+      margin-bottom: 2px;
     }
 
     .cart-item-price {
       font-family: var(--font-mono);
       font-size: 13px;
-      font-weight: 700;
-      color: var(--gold-accent);
+      font-weight: 800;
+      color: var(--uzum-purple);
     }
 
-    .cart-item-controls {
+    .cart-controls {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
-    .stepper-btn {
+    .ctrl-btn {
       width: 26px;
       height: 26px;
-      background: #1b1e28;
+      background: #1e2230;
       border: 1px solid var(--border-subtle);
-      border-radius: 7px;
+      border-radius: 6px;
       color: #fff;
+      font-weight: 800;
       font-size: 14px;
-      font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
     }
 
-    .stepper-val {
+    .ctrl-qty {
       font-family: var(--font-mono);
-      font-size: 13px;
-      font-weight: 700;
+      font-size: 12px;
+      font-weight: 800;
       min-width: 18px;
       text-align: center;
     }
 
-    /* Checkout Form in Cart */
-    .checkout-section {
-      margin-top: 18px;
-      background: #141720;
+    .checkout-box {
+      margin-top: 14px;
+      background: #171922;
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 16px;
+      padding: 14px;
     }
 
-    .summary-line {
-      display: flex;
-      justify-content: space-between;
-      font-size: 13px;
-      color: var(--text-gray);
-      margin-bottom: 8px;
-    }
-
-    .summary-line.total {
-      font-size: 16px;
-      font-weight: 800;
-      color: #fff;
-      border-top: 1px solid var(--border-subtle);
-      padding-top: 10px;
-      margin-top: 8px;
-    }
-
-    .drawer-footer {
-      padding: 16px 20px calc(24px + var(--safe-bottom));
-      border-top: 1px solid var(--border-subtle);
-      background: #0f1116;
-    }
-
-    .btn-checkout-action {
+    .checkout-input {
       width: 100%;
-      background: #ffffff;
-      color: #050608;
-      border: none;
-      padding: 15px;
-      border-radius: var(--radius-md);
-      font-size: 14px;
-      font-weight: 800;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: all 0.2s;
-    }
-
-    .btn-checkout-action:active {
-      transform: scale(0.98);
-      background: #e2e4e8;
-    }
-
-    .form-input {
-      width: 100%;
-      background: #191c26;
-      border: 1px solid var(--border-medium);
+      background: #1f232f;
+      border: 1px solid var(--border-subtle);
       border-radius: var(--radius-sm);
       padding: 11px 12px;
       color: #fff;
       font-size: 13px;
       font-family: inherit;
       outline: none;
-      margin-top: 6px;
-      margin-bottom: 12px;
+      margin-top: 5px;
+      margin-bottom: 10px;
     }
 
-    .form-input:focus {
-      border-color: #fff;
+    .checkout-input:focus {
+      border-color: var(--uzum-purple);
+    }
+
+    .sum-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-sub);
+      margin-bottom: 6px;
+    }
+
+    .sum-row.total {
+      font-size: 15px;
+      font-weight: 800;
+      color: #fff;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 8px;
+      margin-top: 6px;
+    }
+
+    .btn-confirm-order {
+      width: 100%;
+      background: var(--uzum-purple);
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 4px 14px rgba(112, 0, 255, 0.4);
+    }
+
+    .btn-confirm-order:active {
+      transform: scale(0.98);
+      background: var(--uzum-purple-hover);
+    }
+
+    /* Floating Cart Pill at Bottom */
+    .floating-cart-bar {
+      position: fixed;
+      bottom: calc(75px + var(--safe-bottom));
+      left: 14px;
+      right: 14px;
+      max-width: 452px;
+      margin: 0 auto;
+      background: var(--uzum-purple);
+      color: #fff;
+      border-radius: var(--radius-full);
+      padding: 12px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 14px 30px rgba(112, 0, 255, 0.5);
+      cursor: pointer;
+      z-index: 80;
+      transform: translateY(120px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .floating-cart-bar.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .bar-pill-bubble {
+      background: #ffffff;
+      color: var(--uzum-purple);
+      font-weight: 800;
+      font-size: 11px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     /* ==========================================================================
-       BOTTOM DOCK (Navigation)
+       BOTTOM NAVIGATION (Uzum Market Style Dock)
        ========================================================================== */
-    .dock-wrapper {
+    .bottom-dock {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
+      background: rgba(14, 16, 21, 0.95);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-top: 1px solid var(--border-subtle);
       display: flex;
-      justify-content: center;
-      padding: 10px 16px calc(10px + var(--safe-bottom));
+      justify-content: space-around;
+      padding: 8px 6px calc(8px + var(--safe-bottom));
       z-index: 100;
-      pointer-events: none;
     }
 
-    .dock-bar {
-      pointer-events: auto;
-      background: rgba(15, 17, 22, 0.92);
-      backdrop-filter: blur(28px);
-      -webkit-backdrop-filter: blur(28px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: var(--radius-pill);
-      padding: 6px 10px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
-    }
-
-    .dock-tab {
+    .dock-btn {
       background: transparent;
       border: none;
       color: var(--text-muted);
-      padding: 8px 16px;
-      border-radius: var(--radius-pill);
-      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      font-size: 10px;
       font-weight: 600;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.2s;
+      padding: 4px 10px;
+      position: relative;
     }
 
-    .dock-tab.active {
-      background: #ffffff;
-      color: #050608;
+    .dock-btn.active {
+      color: #c084fc;
       font-weight: 800;
     }
 
-    /* Views */
-    .view-page {
-      display: none;
-      animation: fadeIn 0.25s ease forwards;
+    .dock-icon {
+      font-size: 18px;
     }
 
-    .view-page.active {
+    .dock-badge-count {
+      position: absolute;
+      top: 0;
+      right: 6px;
+      background: #f72585;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 800;
+      padding: 1px 5px;
+      border-radius: var(--radius-full);
+      line-height: 1;
+    }
+
+    /* Views */
+    .market-view {
+      display: none;
+      animation: fadeIn 0.2s ease forwards;
+    }
+
+    .market-view.active {
       display: block;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
+      from { opacity: 0; transform: translateY(4px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     /* Toast */
-    .toast {
+    .toast-popup {
       position: fixed;
       top: 16px;
       left: 50%;
-      transform: translateX(-50%) translateY(-40px);
+      transform: translateX(-50%) translateY(-50px);
       background: #ffffff;
       color: #000;
       padding: 10px 18px;
-      border-radius: var(--radius-pill);
+      border-radius: var(--radius-full);
       font-size: 12px;
-      font-weight: 700;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      font-weight: 800;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
       opacity: 0;
       pointer-events: none;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       z-index: 300;
     }
 
-    .toast.show {
+    .toast-popup.show {
       transform: translateX(-50%) translateY(0);
       opacity: 1;
     }
@@ -882,382 +1036,473 @@
 </head>
 <body>
 
-  <!-- Sticky Store Top Header -->
-  <header class="store-header">
-    <div class="header-top-row">
-      <div class="store-brand">
-        <div class="brand-icon">M</div>
-        <div class="brand-titles">
-          <h1>MARDONOV BOUTIQUE <span class="verified-mark">✓</span></h1>
-          <p>Official Luxury Store</p>
-        </div>
+  <!-- Sticky Top Header -->
+  <header class="market-header">
+    <div class="header-top">
+      <div class="brand-box">
+        <div class="brand-logo-badge">M</div>
+        <div class="brand-name">MARDONOV <span>MARKET</span></div>
       </div>
-      <button class="header-cart-btn" onclick="openCartDrawer()">
-        <span>🛍 Savat</span>
-        <span class="cart-badge" id="header-cart-count">0</span>
-      </button>
+      <div class="delivery-pill">
+        <span>🚀 1 kunda bepul yetkazish</span>
+      </div>
     </div>
 
     <!-- Search Input -->
-    <div class="search-box">
+    <div class="search-bar">
       <span class="search-icon">🔍</span>
-      <input type="text" class="search-input" id="search-input" placeholder="Mahsulot yoki xizmatlarni qidirish..." oninput="handleSearch(this.value)">
+      <input type="text" class="search-input" id="search-input-box" placeholder="Kiyimlar, kitoblar, gadjetlar qidirish..." oninput="handleMarketSearch(this.value)">
     </div>
   </header>
 
   <div class="container">
 
     <!-- ====================================================================
-         VIEW: 1. DO'KON (Store)
+         VIEW: 1. ASOSIY (Home / Feed)
          ==================================================================== -->
-    <main id="view-store" class="view-page active">
+    <main id="tab-home" class="market-view active">
       
-      <!-- Editorial Hero Banner -->
-      <section class="store-hero">
-        <span class="hero-tag">✦ Yangi Kolleksiya 2026</span>
-        <h2 class="hero-heading">Premium Digital Yechimlar va Xizmatlar.</h2>
-        <p class="hero-desc">Biznesingiz uchun professional tizimlar, kafolatlangan savdo botlari va nufuzli veb-saytlar.</p>
-        <button class="hero-btn" onclick="filterCategory('hot')">
-          <span>Ommaboplarini ko'rish</span>
-          <span>→</span>
+      <!-- Promo Banner -->
+      <section class="promo-banner">
+        <span class="banner-badge">Hafta Chegirmalari</span>
+        <h2 class="banner-title">Katta Mavsumiy Savdo — 50% gacha!</h2>
+        <p class="banner-desc">Kiyim-kechak, sara kitoblar va smart aksessuarlar eng qulay narxlarda.</p>
+        <button class="banner-btn" onclick="filterByStory('all')">
+          <span>Katalogga o'tish →</span>
         </button>
       </section>
 
-      <!-- Category Filter Chips -->
-      <div class="category-scroll" id="cat-chips">
-        <button class="cat-chip active" onclick="filterCategory('all', this)">Barchasi</button>
-        <button class="cat-chip" onclick="filterCategory('hot', this)">🔥 Xit savdo</button>
-        <button class="cat-chip" onclick="filterCategory('bots', this)">🤖 Bot & App</button>
-        <button class="cat-chip" onclick="filterCategory('web', this)">💻 Veb & IT</button>
-        <button class="cat-chip" onclick="filterCategory('design', this)">🎨 Dizayn</button>
-      </div>
-
-      <!-- Products Grid -->
-      <div class="section-title">
-        <span id="catalog-title">Barcha Mahsulot va Xizmatlar</span>
-        <span id="catalog-count" style="font-size: 12px; color: var(--text-muted); font-weight: 600;">8 ta mavjud</span>
-      </div>
-
-      <div class="products-grid" id="products-catalog-grid">
-        <!-- Rendered dynamically -->
-      </div>
-    </main>
-
-    <!-- ====================================================================
-         VIEW: 2. BUYURTMALAR / SAQLANGANLAR (Orders & Saved)
-         ==================================================================== -->
-    <main id="view-orders" class="view-page">
-      <div class="section-title" style="margin-top: 20px;">
-        <span>Mening Buyurtmalarim</span>
-        <span style="font-size: 12px; color: var(--text-muted); font-weight: 600;">Faol</span>
-      </div>
-
-      <div id="user-orders-history" style="display: flex; flex-direction: column; gap: 12px;">
-        <!-- Dynamically populated from local history -->
-      </div>
-    </main>
-
-    <!-- ====================================================================
-         VIEW: 3. ALOQA (Concierge Support)
-         ==================================================================== -->
-    <main id="view-support" class="view-page">
-      <div class="section-title" style="margin-top: 20px;">
-        <span>Do'kon Mijozlar Xizmati</span>
-        <span style="font-size: 12px; color: var(--text-muted); font-weight: 600;">24/7 Aloqa</span>
-      </div>
-
-      <div style="display: flex; flex-direction: column; gap: 12px;">
-        <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 18px;">
-          <h3 style="font-size: 15px; font-weight: 800; margin-bottom: 6px;">VIP Konsyerj Xizmati</h3>
-          <p style="font-size: 12px; color: var(--text-gray); line-height: 1.5; margin-bottom: 14px;">
-            Buyurtma bo'yicha maxsus talablar yoki yirik korporativ loyihalar uchun shaxsiy menejerimiz bilan to'g'ridan-to'g'ri bog'lanishingiz mumkin.
-          </p>
-          <a href="https://t.me/mardonov_sale_bot" target="_blank" style="display: block; text-decoration: none; background: #fff; color: #000; text-align: center; padding: 12px; border-radius: var(--radius-pill); font-size: 12px; font-weight: 800;">
-            Telegram orqali yozish →
-          </a>
+      <!-- Circular Story Categories (Uzum & AliExpress Style) -->
+      <div class="story-categories" id="story-cats">
+        <div class="story-item active" onclick="filterByStory('all', this)">
+          <div class="story-ring">⚡</div>
+          <span class="story-label">Barchasi</span>
         </div>
+        <div class="story-item" onclick="filterByStory('clothes', this)">
+          <div class="story-ring">👗</div>
+          <span class="story-label">Kiyimlar</span>
+        </div>
+        <div class="story-item" onclick="filterByStory('books', this)">
+          <div class="story-ring">📚</div>
+          <span class="story-label">Kitoblar</span>
+        </div>
+        <div class="story-item" onclick="filterByStory('gadgets', this)">
+          <div class="story-ring">📱</div>
+          <span class="story-label">Gadjetlar</span>
+        </div>
+        <div class="story-item" onclick="filterByStory('home', this)">
+          <div class="story-ring">🏠</div>
+          <span class="story-label">Uy & Sovg'a</span>
+        </div>
+        <div class="story-item" onclick="filterByStory('shoes', this)">
+          <div class="story-ring">👟</div>
+          <span class="story-label">Poyabzal</span>
+        </div>
+      </div>
+
+      <!-- Feed Section Header -->
+      <div class="feed-header">
+        <span class="feed-title" id="feed-category-title">Barcha Takliflar</span>
+        <span class="feed-count" id="feed-items-count">8 ta tovar</span>
+      </div>
+
+      <!-- 2-Column Marketplace Product Grid -->
+      <div class="products-grid" id="market-products-grid">
+        <!-- Rendered via JS -->
+      </div>
+    </main>
+
+    <!-- ====================================================================
+         VIEW: 2. SEVIMLILAR (Wishlist)
+         ==================================================================== -->
+    <main id="tab-wishlist" class="market-view">
+      <div class="feed-header" style="margin-top: 14px;">
+        <span class="feed-title">Saqlangan Mahsulotlar</span>
+        <span class="feed-count" id="wishlist-count-label">0 ta</span>
+      </div>
+
+      <div class="products-grid" id="wishlist-products-grid">
+        <!-- Populated via JS -->
+      </div>
+    </main>
+
+    <!-- ====================================================================
+         VIEW: 3. BUYURTMALAR (Orders History)
+         ==================================================================== -->
+    <main id="tab-orders" class="market-view">
+      <div class="feed-header" style="margin-top: 14px;">
+        <span class="feed-title">Mening Xaridlarim</span>
+        <span class="feed-count">Tarix</span>
+      </div>
+
+      <div id="orders-history-list" style="display: flex; flex-direction: column; gap: 10px;">
+        <!-- Populated via JS -->
       </div>
     </main>
 
   </div>
 
   <!-- ====================================================================
-       FLOATING QUICK CART PILL (Appears when items are in cart)
+       FLOATING CART BAR (Bottom pill when cart has items)
        ==================================================================== -->
-  <div class="floating-cart-pill" id="floating-cart" onclick="openCartDrawer()">
-    <div class="pill-left">
-      <div class="pill-count-bubble" id="pill-items-count">1</div>
-      <div class="pill-total-text" id="pill-total-amount">0 UZS</div>
+  <div class="floating-cart-bar" id="floating-cart-pill" onclick="openCartModal()">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <div class="bar-pill-bubble" id="bar-items-qty">1</div>
+      <div style="font-family: var(--font-mono); font-size: 14px; font-weight: 800;" id="bar-total-sum">0 so'm</div>
     </div>
-    <div class="pill-action-text">
-      <span>Savatga o'tish</span>
+    <div style="font-size: 12px; font-weight: 800; display: flex; align-items: center; gap: 4px;">
+      <span>Savatchaga o'tish</span>
       <span>→</span>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       PRODUCT DETAIL BOTTOM SHEET (Quick View Sheet)
+       ==================================================================== -->
+  <div class="sheet-overlay" id="product-detail-modal" onclick="closeProductDetail(event)">
+    <div class="detail-sheet" onclick="event.stopPropagation()">
+      <div class="sheet-handle"></div>
+
+      <div class="sheet-content">
+        <div class="sheet-media-box" id="modal-product-icon">🛍</div>
+
+        <div class="sheet-price-row">
+          <span class="sheet-main-price" id="modal-product-price">0 so'm</span>
+          <span class="sheet-strike-price" id="modal-product-oldprice">0 so'm</span>
+        </div>
+
+        <div class="installment-tag" id="modal-product-installment">12 000 so'm/oyiga</div>
+        <h3 class="sheet-product-title" id="modal-product-title">Mahsulot Nomi</h3>
+
+        <!-- Options / Sizes selector -->
+        <div class="sheet-option-title" id="modal-option-label">O'lcham yoki Variant:</div>
+        <div class="options-row" id="modal-options-chips">
+          <!-- Populated dynamically -->
+        </div>
+
+        <div class="sheet-desc-box" id="modal-product-desc">
+          Mahsulot tavsifi bu yerda ko'rinadi.
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #10b981; font-weight: 700; margin-bottom: 10px;">
+          <span>✓</span>
+          <span>Omborda mavjud • 1 kunda yetkazib beriladi</span>
+        </div>
+      </div>
+
+      <div class="sheet-footer">
+        <button class="btn-sheet-cart" onclick="addModalItemToCart()">
+          <span>Savatga qo'shish</span>
+          <span>🛒</span>
+        </button>
+      </div>
     </div>
   </div>
 
   <!-- ====================================================================
        SHOPPING BAG / CART DRAWER (Checkout Sheet)
        ==================================================================== -->
-  <div class="cart-drawer-overlay" id="cart-drawer-modal" onclick="closeCartDrawer(event)">
+  <div class="cart-drawer-overlay" id="cart-checkout-modal" onclick="closeCartModal(event)">
     <div class="cart-drawer" onclick="event.stopPropagation()">
-      <div class="drawer-handle"></div>
-      
-      <div class="drawer-header">
-        <h2>Xarid Savatchasi</h2>
-        <button class="drawer-close" onclick="closeCartDrawer()">&times;</button>
+      <div class="sheet-handle"></div>
+
+      <div class="cart-head">
+        <h2>Xarid Savati</h2>
+        <button class="cart-close" onclick="closeCartModal()">&times;</button>
       </div>
 
-      <div class="drawer-body">
-        <!-- Cart Items List -->
-        <div id="cart-items-container">
-          <!-- Populated via JS -->
+      <div class="cart-list-body">
+        <div id="cart-items-wrapper">
+          <!-- Populated dynamically -->
         </div>
 
-        <!-- Checkout Form -->
-        <div class="checkout-section">
-          <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 10px;">
-            Buyurtmachi ma'lumotlari
+        <!-- Checkout Form (Uzum PVZ / Delivery) -->
+        <div class="checkout-box">
+          <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px;">
+            Yetkazib berish va Qabul qiluvchi
           </div>
 
-          <label style="font-size: 11px; color: var(--text-gray); font-weight: 600;">Ism va Familiya</label>
-          <input type="text" id="checkout-name" class="form-input" placeholder="Ismingizni kiriting" required>
+          <label style="font-size: 11px; color: var(--text-sub); font-weight: 600;">Ism va Familiya</label>
+          <input type="text" id="cust-name-input" class="checkout-input" placeholder="Ismingizni kiriting" required>
 
-          <label style="font-size: 11px; color: var(--text-gray); font-weight: 600;">Telefon raqami</label>
-          <input type="tel" id="checkout-phone" class="form-input" placeholder="+998 90 123 45 67" required>
+          <label style="font-size: 11px; color: var(--text-sub); font-weight: 600;">Telefon raqami</label>
+          <input type="tel" id="cust-phone-input" class="checkout-input" placeholder="+998 90 123 45 67" required>
 
-          <label style="font-size: 11px; color: var(--text-gray); font-weight: 600;">Qo'shimcha izoh yoki manzil (ixtiyoriy)</label>
-          <input type="text" id="checkout-comment" class="form-input" placeholder="Yetkazish / shartlar haqida izoh...">
+          <label style="font-size: 11px; color: var(--text-sub); font-weight: 600;">Yetkazish manzili yoki Uzum punkti</label>
+          <input type="text" id="cust-addr-input" class="checkout-input" placeholder="Shahar, tuman, ko'cha yoki eng yaqin manzil">
 
-          <!-- Summary calculation -->
-          <div style="margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border-subtle);">
-            <div class="summary-line">
+          <div style="margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--border-subtle);">
+            <div class="sum-row">
               <span>Mahsulotlar:</span>
-              <span id="summary-subtotal">0 UZS</span>
+              <span id="cart-calc-subtotal">0 so'm</span>
             </div>
-            <div class="summary-line">
-              <span>Yetkazish / Konsultatsiya:</span>
-              <span style="color: #10b981; font-weight: 700;">BEPUL</span>
+            <div class="sum-row">
+              <span>Yetkazish:</span>
+              <span style="color: #10b981; font-weight: 700;">BEPUL (1 kunda)</span>
             </div>
-            <div class="summary-line total">
-              <span>Jami To'lov:</span>
-              <span id="summary-total" style="font-family: var(--font-mono); color: #fff;">0 UZS</span>
+            <div class="sum-row total">
+              <span>Jami:</span>
+              <span id="cart-calc-total" style="color: #fff; font-family: var(--font-mono);">0 so'm</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="drawer-footer">
-        <button class="btn-checkout-action" id="btn-submit-checkout" onclick="submitCartOrder()">
-          <span>Buyurtmani Tasdiqlash</span>
+      <div style="padding: 12px 20px calc(20px + var(--safe-bottom)); border-top: 1px solid var(--border-subtle); background: #12141a;">
+        <button class="btn-confirm-order" id="btn-submit-order-act" onclick="submitFinalMarketOrder()">
+          <span>Buyurtmani Rasmiylashtirish</span>
           <span>→</span>
         </button>
       </div>
     </div>
   </div>
 
-  <!-- Bottom Navigation Dock -->
-  <div class="dock-wrapper">
-    <nav class="dock-bar">
-      <button class="dock-tab active" data-tab="store" onclick="switchDockTab('store')">
-        <span>🏪</span>
-        <span>Do'kon</span>
-      </button>
+  <!-- Bottom Navigation Dock (Uzum Market Style) -->
+  <nav class="bottom-dock">
+    <button class="dock-btn active" data-tab="home" onclick="switchNavTab('home')">
+      <span class="dock-icon">🏪</span>
+      <span>Asosiy</span>
+    </button>
 
-      <button class="dock-tab" data-tab="orders" onclick="switchDockTab('orders')">
-        <span>📦</span>
-        <span>Buyurtmalar</span>
-      </button>
+    <button class="dock-btn" data-tab="wishlist" onclick="switchNavTab('wishlist')">
+      <span class="dock-icon">❤️</span>
+      <span>Istaklar</span>
+      <span class="dock-badge-count" id="nav-wishlist-count" style="display: none;">0</span>
+    </button>
 
-      <button class="dock-tab" data-tab="support" onclick="switchDockTab('support')">
-        <span>💬</span>
-        <span>Qo'llab-quvvatlash</span>
-      </button>
-    </nav>
-  </div>
+    <button class="dock-btn" onclick="openCartModal()">
+      <span class="dock-icon">🛍</span>
+      <span>Savatcha</span>
+      <span class="dock-badge-count" id="nav-cart-count" style="display: none;">0</span>
+    </button>
 
-  <!-- App Toast Notification -->
-  <div id="toast-notify" class="toast">✓ Savatga qo'shildi</div>
+    <button class="dock-btn" data-tab="orders" onclick="switchNavTab('orders')">
+      <span class="dock-icon">📦</span>
+      <span>Buyurtmalar</span>
+    </button>
+  </nav>
+
+  <!-- Toast Notification -->
+  <div id="market-toast" class="toast-popup">✓ Savatga qo'shildi</div>
 
   <!-- ==========================================================================
-       BOUTIQUE JAVASCRIPT LOGIC
-       ========================================================================== */ -->
+       MARKETPLACE LOGIC SCRIPT
+       ========================================================================== -->
   <script>
     const tg = window.Telegram?.WebApp;
     if (tg) {
       tg.ready();
       tg.expand();
       try {
-        tg.setHeaderColor('#050608');
-        tg.setBackgroundColor('#050608');
+        tg.setHeaderColor('#0a0b0e');
+        tg.setBackgroundColor('#0a0b0e');
       } catch (e) {}
     }
 
-    function haptic(type = 'light') {
+    function hapticFeedback(style = 'light') {
       try {
         if (tg?.HapticFeedback) {
-          tg.HapticFeedback.impactOccurred(type);
+          tg.HapticFeedback.impactOccurred(style);
         }
       } catch (e) {}
     }
 
-    // Curated Luxury Boutique Catalog
-    const boutiqueCatalog = [
+    // Comprehensive Uzum & AliExpress Catalog (Diverse Products)
+    const marketplaceCatalog = [
+      // 1. Kiyim-kechak
       {
         id: 1,
-        name: "Telegram E-Commerce Do'kon Boti",
-        category: "bots",
-        priceNumber: 1500000,
-        priceFormatted: "1,500,000 UZS",
-        oldPrice: "1,900,000 UZS",
-        badge: "Xit savdo",
-        badgeClass: "hot",
-        icon: "🛍",
+        category: "clothes",
+        name: "Erkaklar va ayollar uchun Premium Oversize Xudi (100% paxta)",
+        price: 189000,
+        oldPrice: 280000,
+        discount: "-32%",
+        installment: "15 750 so'm/oyiga",
+        icon: "🧥",
         rating: 4.9,
-        reviews: 58,
-        description: "To'liq katalog, to'lov tizimlari (Payme/Click) va admin paneli bilan jihozlangan savdo boti."
+        reviews: 284,
+        options: ["S (42-44)", "M (46-48)", "L (50-52)", "XL (54)"],
+        description: "Qalin va yumshoq paxtali xudi. Sovuq kunlarda qulay, yuvilganda rangi o'chmaydi va cho'zilmaydi. Barcha fasllarga mos."
       },
       {
         id: 2,
-        name: "Avtomatlashtirilgan Telegram Mini App",
-        category: "bots",
-        priceNumber: 2800000,
-        priceFormatted: "2,800,000 UZS",
-        oldPrice: "3,500,000 UZS",
-        badge: "Premium",
-        badgeClass: "hot",
-        icon: "📱",
-        rating: 5.0,
-        reviews: 42,
-        description: "Iphone ilovasi kabi silliq ishlovchi, WebApp formatidagi yuqori konversiyali interfeys."
+        category: "clothes",
+        name: "Klassik Erkaklar Ko'ylagi (Slim Fit, g'ijim bo'lmaydi)",
+        price: 145000,
+        oldPrice: 210000,
+        discount: "-31%",
+        installment: "12 000 so'm/oyiga",
+        icon: "👔",
+        rating: 4.8,
+        reviews: 139,
+        options: ["Oq (M)", "Oq (L)", "Moviy (M)", "Qora (L)"],
+        description: "Rasmiy va kundalik kiyish uchun ideal. Yuqori sifatli mato, dazmollash oson."
       },
+      // 2. Kitoblar
       {
         id: 3,
-        name: "Zamonaviy Brend Web Sayt (Landing Page)",
-        category: "web",
-        priceNumber: 2200000,
-        priceFormatted: "2,200,000 UZS",
-        oldPrice: "2,600,000 UZS",
-        badge: "Yangi",
-        badgeClass: "",
-        icon: "💻",
-        rating: 4.8,
-        reviews: 31,
-        description: "Yuqori tezlikdagi, qidiruv tizimlariga (SEO) moslashtirilgan eksklyuziv sayt."
+        category: "books",
+        name: "Atom Odatlari — Jeyms Klir (Bestseller, o'zbek tilida)",
+        price: 45000,
+        oldPrice: 65000,
+        discount: "-30%",
+        installment: "3 750 so'm/oyiga",
+        icon: "📚",
+        rating: 5.0,
+        reviews: 820,
+        options: ["Qattiq muqova", "Yumshoq muqova"],
+        description: "Dunyo bo'ylab millionlab nusxada sotilgan asar. Kichik odatlar orqali ulkan natijalarga erishish bo'yicha amaliy qo'llanma."
       },
       {
         id: 4,
-        name: "Korporativ Brending & Logotip Paketi",
-        category: "design",
-        priceNumber: 950000,
-        priceFormatted: "950,000 UZS",
-        oldPrice: "1,200,000 UZS",
-        badge: "-20%",
-        badgeClass: "sale",
-        icon: "🎨",
+        category: "books",
+        name: "Molxona (Animal Farm) — Jorj Oruell",
+        price: 35000,
+        oldPrice: 50000,
+        discount: "-30%",
+        installment: "2 900 so'm/oyiga",
+        icon: "📖",
         rating: 4.9,
-        reviews: 64,
-        description: "Nufuzli brend qiyofasi: logotip, ranglar palitrasi, shriftlar va ijtimoiy tarmoqlar shablonlari."
+        reviews: 412,
+        options: ["O'zbekcha", "Ruscha", "Inglizcha"],
+        description: "Jahon adabiyoti durdonasi. Barcha yoshdagi kitobxonlar uchun chuqur falsafiy allegoriya."
       },
+      // 3. Gadjetlar & Elektronika
       {
         id: 5,
-        name: "VIP Biznes Arxitektura & Konsultatsiya",
-        category: "hot",
-        priceNumber: 600000,
-        priceFormatted: "600,000 UZS",
-        oldPrice: "850,000 UZS",
-        badge: "Eksklyuziv",
-        badgeClass: "hot",
-        icon: "⚡",
-        rating: 5.0,
-        reviews: 89,
-        description: "Biznesingizni raqamlashtirish, CRM tanlash va IT jarayonlarni optimallashtirish bo'yicha to'liq sessiya."
+        category: "gadgets",
+        name: "TWS Simsiz Quloqchinlar Bluetooth 5.3 (Shovqinni so'ndirish)",
+        price: 125000,
+        oldPrice: 195000,
+        discount: "-36%",
+        installment: "10 400 so'm/oyiga",
+        icon: "🎧",
+        rating: 4.8,
+        reviews: 531,
+        options: ["Qora (Matte)", "Oq (Glossy)"],
+        description: "Kuchli bas, toza ovoz va 24 soatlik avtonom ishlash quvvati. iPhone va Android qurilmalarga bir zumda ulanadi."
       },
       {
         id: 6,
-        name: "Klinika & Xizmatlar Bron Tizimi Boti",
-        category: "bots",
-        priceNumber: 1800000,
-        priceFormatted: "1,800,000 UZS",
-        oldPrice: "2,200,000 UZS",
-        badge: "Ommabop",
-        badgeClass: "",
-        icon: "🗓",
+        category: "gadgets",
+        name: "Smart Soat Ultra 2 (Suvga chidamli, bosim va yurak urishini o'lchash)",
+        price: 255000,
+        oldPrice: 380000,
+        discount: "-33%",
+        installment: "21 250 so'm/oyiga",
+        icon: "⌚",
         rating: 4.9,
-        reviews: 27,
-        description: "Mijozlar qabuliga onlayn navbat olish, eslatmalar yuborish va kalendar integratsiyasi."
+        reviews: 219,
+        options: ["To'q sariq tasma", "Qora tasma", "Kulrang tasma"],
+        description: "Katta AMOLED ekran, qo'ng'iroqlarga javob berish, sport rejimlari va 7 kunlik batareya zaryadi."
+      },
+      // 4. Uy va Sovg'alar
+      {
+        id: 7,
+        category: "home",
+        name: "Smart Termos Krujka LED sensorli harorat ko'rsatkichi bilan",
+        price: 68000,
+        oldPrice: 110000,
+        discount: "-38%",
+        installment: "5 600 so'm/oyiga",
+        icon: "☕",
+        rating: 4.9,
+        reviews: 367,
+        options: ["Qora 500ml", "Oq 500ml", "Gradient 500ml"],
+        description: "Ichimlik haroratini 12 soatgacha saqlaydi. Zanglamaydigan po'lat, oqmaydigan germetik qopqoq."
+      },
+      {
+        id: 8,
+        category: "shoes",
+        name: "Erkaklar Zamonaviy Krossovkasi (Yengil, nafas oluvchi ortopedik taglik)",
+        price: 220000,
+        oldPrice: 340000,
+        discount: "-35%",
+        installment: "18 300 so'm/oyiga",
+        icon: "👟",
+        rating: 4.8,
+        reviews: 175,
+        options: ["40 o'lcham", "41 o'lcham", "42 o'lcham", "43 o'lcham"],
+        description: "Yugurish va kundalik sayr uchun qulay, oyoqni charchatmaydigan yengil krossovka."
       }
     ];
 
     // State
-    let cart = []; // Array of { id, name, priceNumber, priceFormatted, icon, qty }
-    let displayedProducts = [...boutiqueCatalog];
+    let cart = []; // { id, name, price, icon, qty, selectedOption }
     let wishlist = new Set();
-    let placedOrdersHistory = JSON.parse(localStorage.getItem('mardonov_orders_history') || '[]');
+    let currentFeed = [...marketplaceCatalog];
+    let selectedModalProduct = null;
+    let selectedModalOption = "";
+    let ordersHistory = JSON.parse(localStorage.getItem('mardonov_market_orders') || '[]');
 
-    // Initialize
-    function init() {
-      // Pre-fill user data
+    function formatSoM(val) {
+      return val.toLocaleString('uz-UZ') + " so'm";
+    }
+
+    // Init App
+    function initApp() {
       if (tg?.initDataUnsafe?.user) {
         const u = tg.initDataUnsafe.user;
-        const nameInput = document.getElementById('checkout-name');
+        const nameInput = document.getElementById('cust-name-input');
         if (nameInput) {
           nameInput.value = `${u.first_name || ''} ${u.last_name || ''}`.trim();
         }
       }
-      renderCatalog(displayedProducts);
+
+      renderFeed(currentFeed);
       renderOrdersHistory();
-      updateCartUI();
+      updateCartBadge();
     }
 
-    // Format Currency
-    function formatCurrency(num) {
-      return num.toLocaleString('uz-UZ') + " UZS";
-    }
+    // Render Product Grid
+    function renderFeed(items, containerId = 'market-products-grid') {
+      const container = document.getElementById(containerId);
+      if (!container) return;
 
-    // Render Catalog
-    function renderCatalog(items) {
-      const grid = document.getElementById('products-catalog-grid');
-      const countLabel = document.getElementById('catalog-count');
-      if (countLabel) countLabel.innerText = `${items.length} ta mahsulot`;
+      const countLabel = document.getElementById('feed-items-count');
+      if (countLabel && containerId === 'market-products-grid') {
+        countLabel.innerText = `${items.length} ta tovar`;
+      }
 
       if (items.length === 0) {
-        grid.innerHTML = `
-          <div style="grid-column: 1 / -1; text-align: center; padding: 40px 20px; color: var(--text-muted);">
-            <div style="font-size: 32px; margin-bottom: 8px;">🔍</div>
+        container.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 40px 10px; color: var(--text-muted);">
+            <div style="font-size: 36px; margin-bottom: 6px;">📦</div>
             <div style="font-size: 14px; font-weight: 700; color: #fff;">Mahsulot topilmadi</div>
-            <div style="font-size: 12px; margin-top: 4px;">Qidiruv so'zini o'zgartirib ko'ring</div>
+            <div style="font-size: 12px; margin-top: 4px;">Boshqa kategoriya yoki qidiruv so'zini sinab ko'ring</div>
           </div>
         `;
         return;
       }
 
-      grid.innerHTML = items.map(item => {
-        const inCart = cart.find(c => c.id === item.id);
-        const isWish = wishlist.has(item.id);
+      container.innerHTML = items.map(item => {
+        const inCart = cart.some(c => c.id === item.id);
+        const isFav = wishlist.has(item.id);
         return `
-          <div class="product-card">
-            <div class="product-thumb">
-              ${item.badge ? `<div class="badge-corner ${item.badgeClass || ''}">${item.badge}</div>` : ''}
-              <button class="wishlist-btn ${isWish ? 'active' : ''}" onclick="toggleWishlist(${item.id}, event)">
-                ${isWish ? '❤️' : '♡'}
+          <div class="product-card" onclick="openProductDetail(${item.id})">
+            <div class="product-media">
+              ${item.discount ? `<div class="discount-badge">${item.discount}</div>` : ''}
+              <div class="fast-delivery-badge">⚡ 1 KUNDA</div>
+              <button class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFav(${item.id}, event)">
+                ${isFav ? '❤️' : '♡'}
               </button>
               <span>${item.icon}</span>
             </div>
-            <div class="product-content">
+            <div class="product-body">
               <div>
-                <div class="product-brand">MARDONOV BOUTIQUE</div>
-                <h3 class="product-name">${item.name}</h3>
-                <div class="product-rating">
+                <div class="installment-tag">${item.installment}</div>
+                <h3 class="product-title">${item.name}</h3>
+                <div class="product-rating-row">
                   ★ ${item.rating} <span>(${item.reviews})</span>
                 </div>
               </div>
-              <div>
-                <div class="price-box">
-                  <span class="current-price">${item.priceFormatted}</span>
-                  ${item.oldPrice ? `<span class="old-price">${item.oldPrice}</span>` : ''}
+              <div class="price-action-row">
+                <div class="price-stack">
+                  <span class="main-price">${formatSoM(item.price)}</span>
+                  ${item.oldPrice ? `<span class="strike-price">${formatSoM(item.oldPrice)}</span>` : ''}
                 </div>
-                <button class="btn-add-cart ${inCart ? 'added' : ''}" onclick="addToCart(${item.id})">
-                  ${inCart ? `✓ Savatda (${inCart.qty})` : `+ Savatga qo'shish`}
+                <button class="add-to-cart-round ${inCart ? 'in-cart' : ''}" onclick="quickAddToCart(${item.id}, event)">
+                  ${inCart ? '✓' : '+'}
                 </button>
               </div>
             </div>
@@ -1266,93 +1511,246 @@
       }).join('');
     }
 
-    // Cart Operations
-    function addToCart(productId) {
-      haptic('medium');
-      const item = boutiqueCatalog.find(p => p.id === productId);
-      if (!item) return;
+    // Filter by Story Category
+    function filterByStory(cat, elem = null) {
+      hapticFeedback('light');
+      if (elem) {
+        document.querySelectorAll('#story-cats .story-item').forEach(el => el.classList.remove('active'));
+        elem.classList.add('active');
+      }
 
-      const existing = cart.find(c => c.id === productId);
+      const titleElem = document.getElementById('feed-category-title');
+      const catNames = {
+        all: "Barcha Takliflar",
+        clothes: "👗 Kiyim-kechak",
+        books: "📚 Sara Kitoblar",
+        gadgets: "📱 Smart Gadjetlar",
+        home: "🏠 Uy va Sovg'alar",
+        shoes: "👟 Poyabzallar"
+      };
+      if (titleElem) titleElem.innerText = catNames[cat] || "Mahsulotlar";
+
+      if (cat === 'all') {
+        currentFeed = [...marketplaceCatalog];
+      } else {
+        currentFeed = marketplaceCatalog.filter(p => p.category === cat);
+      }
+      renderFeed(currentFeed);
+    }
+
+    // Search
+    function handleMarketSearch(query) {
+      const q = query.toLowerCase().trim();
+      if (!q) {
+        currentFeed = [...marketplaceCatalog];
+      } else {
+        currentFeed = marketplaceCatalog.filter(p => 
+          p.name.toLowerCase().includes(q) || 
+          p.description.toLowerCase().includes(q)
+        );
+      }
+      renderFeed(currentFeed);
+    }
+
+    // Wishlist Toggle
+    function toggleFav(id, e) {
+      e.stopPropagation();
+      hapticFeedback('medium');
+      if (wishlist.has(id)) {
+        wishlist.delete(id);
+      } else {
+        wishlist.add(id);
+      }
+
+      // Update wishlist count badge
+      const count = wishlist.size;
+      const navBadge = document.getElementById('nav-wishlist-count');
+      const label = document.getElementById('wishlist-count-label');
+      if (navBadge) {
+        navBadge.style.display = count > 0 ? 'inline-block' : 'none';
+        navBadge.innerText = count;
+      }
+      if (label) label.innerText = `${count} ta`;
+
+      renderFeed(currentFeed);
+      renderWishlistTab();
+    }
+
+    function renderWishlistTab() {
+      const favProducts = marketplaceCatalog.filter(p => wishlist.has(p.id));
+      renderFeed(favProducts, 'wishlist-products-grid');
+    }
+
+    // Quick Add to Cart
+    function quickAddToCart(id, e) {
+      e.stopPropagation();
+      hapticFeedback('medium');
+      const prod = marketplaceCatalog.find(p => p.id === id);
+      if (!prod) return;
+
+      const existing = cart.find(c => c.id === id);
       if (existing) {
         existing.qty += 1;
       } else {
         cart.push({
-          id: item.id,
-          name: item.name,
-          priceNumber: item.priceNumber,
-          priceFormatted: item.priceFormatted,
-          icon: item.icon,
-          qty: 1
+          id: prod.id,
+          name: prod.name,
+          price: prod.price,
+          icon: prod.icon,
+          qty: 1,
+          option: prod.options ? prod.options[0] : ""
         });
       }
 
-      showToast(`✓ "${item.name}" savatga qo'shildi`);
-      updateCartUI();
-      renderCatalog(displayedProducts);
+      showToast(`✓ "${prod.name}" savatga qo'shildi`);
+      updateCartBadge();
+      renderFeed(currentFeed);
     }
 
-    function changeCartQty(productId, delta) {
-      haptic('light');
-      const idx = cart.findIndex(c => c.id === productId);
-      if (idx === -1) return;
+    // Product Detail Sheet
+    function openProductDetail(id) {
+      hapticFeedback('light');
+      const prod = marketplaceCatalog.find(p => p.id === id);
+      if (!prod) return;
 
-      cart[idx].qty += delta;
-      if (cart[idx].qty <= 0) {
-        cart.splice(idx, 1);
+      selectedModalProduct = prod;
+      selectedModalOption = prod.options ? prod.options[0] : "";
+
+      document.getElementById('modal-product-icon').innerText = prod.icon;
+      document.getElementById('modal-product-price').innerText = formatSoM(prod.price);
+      document.getElementById('modal-product-oldprice').innerText = prod.oldPrice ? formatSoM(prod.oldPrice) : "";
+      document.getElementById('modal-product-installment').innerText = prod.installment;
+      document.getElementById('modal-product-title').innerText = prod.name;
+      document.getElementById('modal-product-desc').innerText = prod.description;
+
+      const chipsBox = document.getElementById('modal-options-chips');
+      if (prod.options && prod.options.length > 0) {
+        chipsBox.innerHTML = prod.options.map((opt, i) => `
+          <button class="opt-chip ${i === 0 ? 'active' : ''}" onclick="selectModalOption('${opt}', this)">
+            ${opt}
+          </button>
+        `).join('');
+      } else {
+        chipsBox.innerHTML = "";
       }
-      updateCartUI();
-      renderCatalog(displayedProducts);
+
+      document.getElementById('product-detail-modal').classList.add('active');
+      document.body.style.overflow = 'hidden';
     }
 
-    function removeCartItem(productId) {
-      haptic('medium');
-      cart = cart.filter(c => c.id !== productId);
-      updateCartUI();
-      renderCatalog(displayedProducts);
+    function selectModalOption(opt, btn) {
+      hapticFeedback('light');
+      selectedModalOption = opt;
+      document.querySelectorAll('#modal-options-chips .opt-chip').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
     }
 
-    function updateCartUI() {
-      const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
-      const totalSum = cart.reduce((sum, i) => sum + (i.priceNumber * i.qty), 0);
+    function closeProductDetail(e = null) {
+      hapticFeedback('light');
+      document.getElementById('product-detail-modal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
 
-      // Header Count
-      const headerBadge = document.getElementById('header-cart-count');
-      if (headerBadge) headerBadge.innerText = totalItems;
+    function addModalItemToCart() {
+      if (!selectedModalProduct) return;
+      hapticFeedback('heavy');
 
-      // Floating Cart Pill
-      const pill = document.getElementById('floating-cart');
-      const pillCount = document.getElementById('pill-items-count');
-      const pillTotal = document.getElementById('pill-total-amount');
+      const existing = cart.find(c => c.id === selectedModalProduct.id && c.option === selectedModalOption);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({
+          id: selectedModalProduct.id,
+          name: selectedModalProduct.name,
+          price: selectedModalProduct.price,
+          icon: selectedModalProduct.icon,
+          qty: 1,
+          option: selectedModalOption
+        });
+      }
+
+      closeProductDetail();
+      showToast(`✓ Savatga qo'shildi (${selectedModalOption || 'Standart'})`);
+      updateCartBadge();
+      renderFeed(currentFeed);
+    }
+
+    // Cart Modal Handlers
+    function openCartModal() {
+      hapticFeedback('medium');
+      renderCartDrawer();
+      document.getElementById('cart-checkout-modal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCartModal(e = null) {
+      hapticFeedback('light');
+      document.getElementById('cart-checkout-modal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function changeCartItemQty(index, delta) {
+      hapticFeedback('light');
+      cart[index].qty += delta;
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+      }
+      updateCartBadge();
+      renderCartDrawer();
+      renderFeed(currentFeed);
+    }
+
+    function removeCartIndex(index) {
+      hapticFeedback('medium');
+      cart.splice(index, 1);
+      updateCartBadge();
+      renderCartDrawer();
+      renderFeed(currentFeed);
+    }
+
+    function updateCartBadge() {
+      const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+      const totalSum = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+
+      // Nav dock badge
+      const navCartCount = document.getElementById('nav-cart-count');
+      if (navCartCount) {
+        navCartCount.style.display = totalQty > 0 ? 'inline-block' : 'none';
+        navCartCount.innerText = totalQty;
+      }
+
+      // Floating bottom pill
+      const pill = document.getElementById('floating-cart-pill');
+      const qtyElem = document.getElementById('bar-items-qty');
+      const sumElem = document.getElementById('bar-total-sum');
 
       if (pill) {
-        if (totalItems > 0) {
+        if (totalQty > 0) {
           pill.classList.add('visible');
-          if (pillCount) pillCount.innerText = totalItems;
-          if (pillTotal) pillTotal.innerText = formatCurrency(totalSum);
+          if (qtyElem) qtyElem.innerText = totalQty;
+          if (sumElem) sumElem.innerText = formatSoM(totalSum);
         } else {
           pill.classList.remove('visible');
         }
       }
-
-      // Drawer Content
-      renderDrawerCart(totalSum);
     }
 
-    function renderDrawerCart(totalSum) {
-      const container = document.getElementById('cart-items-container');
-      const subtotalElem = document.getElementById('summary-subtotal');
-      const totalElem = document.getElementById('summary-total');
-      const submitBtn = document.getElementById('btn-submit-checkout');
+    function renderCartDrawer() {
+      const container = document.getElementById('cart-items-wrapper');
+      const subtotalElem = document.getElementById('cart-calc-subtotal');
+      const totalElem = document.getElementById('cart-calc-total');
+      const submitBtn = document.getElementById('btn-submit-order-act');
 
-      if (subtotalElem) subtotalElem.innerText = formatCurrency(totalSum);
-      if (totalElem) totalElem.innerText = formatCurrency(totalSum);
+      const totalSum = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+      if (subtotalElem) subtotalElem.innerText = formatSoM(totalSum);
+      if (totalElem) totalElem.innerText = formatSoM(totalSum);
 
       if (cart.length === 0) {
         container.innerHTML = `
-          <div style="text-align: center; padding: 30px 10px; color: var(--text-muted);">
-            <div style="font-size: 38px; margin-bottom: 10px;">🛍</div>
+          <div style="text-align: center; padding: 36px 10px; color: var(--text-muted);">
+            <div style="font-size: 42px; margin-bottom: 8px;">🛒</div>
             <div style="font-size: 15px; font-weight: 700; color: #fff;">Savatchangiz bo'sh</div>
-            <div style="font-size: 12px; margin-top: 4px;">Katalogdan kerakli xizmat yoki mahsulotlarni tanlang</div>
+            <div style="font-size: 12px; margin-top: 4px;">Uzum Market katalogidan tovarlarni tanlang</div>
           </div>
         `;
         if (submitBtn) {
@@ -1366,49 +1764,35 @@
       if (submitBtn) {
         submitBtn.disabled = false;
         submitBtn.style.opacity = '1';
-        submitBtn.innerHTML = `<span>Buyurtmani Tasdiqlash (${formatCurrency(totalSum)})</span> <span>→</span>`;
+        submitBtn.innerHTML = `<span>Buyurtma Berish (${formatSoM(totalSum)})</span> <span>→</span>`;
       }
 
-      container.innerHTML = cart.map(item => `
-        <div class="cart-item-row">
+      container.innerHTML = cart.map((item, idx) => `
+        <div class="cart-item">
           <div class="cart-item-icon">${item.icon}</div>
           <div class="cart-item-details">
-            <div class="cart-item-name">${item.name}</div>
-            <div class="cart-item-price">${formatCurrency(item.priceNumber * item.qty)}</div>
+            <div class="cart-item-title">${item.name}</div>
+            ${item.option ? `<div style="font-size: 10px; color: #a855f7; font-weight: 700;">Tanlangan: ${item.option}</div>` : ''}
+            <div class="cart-item-price">${formatSoM(item.price * item.qty)}</div>
           </div>
-          <div class="cart-item-controls">
-            <button class="stepper-btn" onclick="changeCartQty(${item.id}, -1)">-</button>
-            <span class="stepper-val">${item.qty}</span>
-            <button class="stepper-btn" onclick="changeCartQty(${item.id}, 1)">+</button>
-            <button class="stepper-btn" style="margin-left: 4px; color: #ef4444;" onclick="removeCartItem(${item.id})">&times;</button>
+          <div class="cart-controls">
+            <button class="ctrl-btn" onclick="changeCartItemQty(${idx}, -1)">-</button>
+            <span class="ctrl-qty">${item.qty}</span>
+            <button class="ctrl-btn" onclick="changeCartItemQty(${idx}, 1)">+</button>
+            <button class="ctrl-btn" style="margin-left: 2px; color: #f72585;" onclick="removeCartIndex(${idx})">&times;</button>
           </div>
         </div>
       `).join('');
     }
 
-    // Cart Drawer Open/Close
-    function openCartDrawer() {
-      haptic('medium');
-      const drawer = document.getElementById('cart-drawer-modal');
-      drawer.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeCartDrawer(event = null) {
-      haptic('light');
-      const drawer = document.getElementById('cart-drawer-modal');
-      drawer.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    // Submit Checkout
-    async function submitCartOrder() {
+    // Submit Order to Server and Telegram
+    async function submitFinalMarketOrder() {
       if (cart.length === 0) return;
-      haptic('heavy');
+      hapticFeedback('heavy');
 
-      const name = document.getElementById('checkout-name').value.trim();
-      const phone = document.getElementById('checkout-phone').value.trim();
-      const comment = document.getElementById('checkout-comment').value.trim();
+      const name = document.getElementById('cust-name-input').value.trim();
+      const phone = document.getElementById('cust-phone-input').value.trim();
+      const addr = document.getElementById('cust-addr-input').value.trim();
       const userId = tg?.initDataUnsafe?.user?.id || 0;
 
       if (!name) {
@@ -1420,8 +1804,8 @@
         return;
       }
 
-      const totalSum = cart.reduce((sum, i) => sum + (i.priceNumber * i.qty), 0);
-      const submitBtn = document.getElementById('btn-submit-checkout');
+      const totalSum = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+      const submitBtn = document.getElementById('btn-submit-order-act');
       submitBtn.disabled = true;
       submitBtn.innerHTML = `<span>Yuborilmoqda...</span>`;
 
@@ -1431,14 +1815,14 @@
         user_phone: phone,
         items: cart.map(c => ({
           id: c.id,
-          name: c.name,
+          name: c.option ? `${c.name} (${c.option})` : c.name,
           qty: c.qty,
-          price: formatCurrency(c.priceNumber * c.qty)
+          price: formatSoM(c.price * c.qty)
         })),
-        total_price: formatCurrency(totalSum),
-        comment: comment,
+        total_price: formatSoM(totalSum),
+        comment: addr ? `Manzil/PVZ: ${addr}` : "Tezkor yetkazish",
         service_id: cart[0].id,
-        service_name: cart.length === 1 ? cart[0].name : `${cart.length} ta mahsulot savati`
+        service_name: cart.length === 1 ? cart[0].name : `${cart.length} xil tovar buyurtmasi`
       };
 
       try {
@@ -1447,142 +1831,98 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
-      } catch (err) {
-        console.warn("API error:", err);
+      } catch (e) {
+        console.warn("API request fallback", e);
       }
 
-      // Telegram sendData fallback
       if (tg && typeof tg.sendData === 'function') {
         try {
           tg.sendData(JSON.stringify({
-            action: "store_cart_order",
+            action: "uzum_market_order",
             ...payload
           }));
         } catch (e) {}
       }
 
-      // Save to local order history
-      const orderRecord = {
-        id: Math.floor(1000 + Math.random() * 9000),
+      // Record to local order history
+      const orderEntry = {
+        id: Math.floor(10000 + Math.random() * 90000),
         date: new Date().toLocaleDateString('uz-UZ', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }),
-        itemsCount: cart.reduce((s, i) => s + i.qty, 0),
-        total: formatCurrency(totalSum),
-        status: "Qabul qilindi"
+        count: cart.reduce((s, i) => s + i.qty, 0),
+        total: formatSoM(totalSum),
+        status: "Kuryerga tayyorlanmoqda"
       };
-      placedOrdersHistory.unshift(orderRecord);
-      localStorage.setItem('mardonov_orders_history', JSON.stringify(placedOrdersHistory));
+      ordersHistory.unshift(orderEntry);
+      localStorage.setItem('mardonov_market_orders', JSON.stringify(ordersHistory));
 
-      // Reset Cart
+      // Reset
       cart = [];
-      updateCartUI();
-      closeCartDrawer();
+      updateCartBadge();
+      closeCartModal();
       renderOrdersHistory();
-      renderCatalog(displayedProducts);
+      renderFeed(currentFeed);
 
-      showToast("🎉 Buyurtmangiz qabul qilindi!");
+      showToast("🎉 Buyurtmangiz qabul qilindi! Kuryer tez orada yetkazadi.");
       submitBtn.disabled = false;
-      submitBtn.innerHTML = `<span>Buyurtmani Tasdiqlash</span> <span>→</span>`;
+      submitBtn.innerHTML = `<span>Buyurtmani Rasmiylashtirish</span> <span>→</span>`;
 
-      // Switch to Orders Tab to show their new order
-      switchDockTab('orders');
+      switchNavTab('orders');
     }
 
-    // Orders History View
+    // Orders History Render
     function renderOrdersHistory() {
-      const container = document.getElementById('user-orders-history');
+      const container = document.getElementById('orders-history-list');
       if (!container) return;
 
-      if (placedOrdersHistory.length === 0) {
+      if (ordersHistory.length === 0) {
         container.innerHTML = `
-          <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 30px 16px; text-align: center; color: var(--text-muted);">
-            <div style="font-size: 32px; margin-bottom: 8px;">📦</div>
-            <div style="font-size: 14px; font-weight: 700; color: #fff;">Buyurtmalar tarixi bo'sh</div>
-            <div style="font-size: 12px; margin-top: 4px;">Siz hali xarid amalga oshirmadingiz</div>
+          <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 32px 14px; text-align: center; color: var(--text-muted);">
+            <div style="font-size: 36px; margin-bottom: 6px;">📦</div>
+            <div style="font-size: 14px; font-weight: 700; color: #fff;">Sizda hali buyurtmalar yo'q</div>
+            <div style="font-size: 12px; margin-top: 4px;">Uzum Market tovarlaridan birini xarid qilib ko'ring</div>
           </div>
         `;
         return;
       }
 
-      container.innerHTML = placedOrdersHistory.map(ord => `
-        <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 14px 16px; display: flex; justify-content: space-between; align-items: center;">
+      container.innerHTML = ordersHistory.map(ord => `
+        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 12px 16px; display: flex; justify-content: space-between; align-items: center;">
           <div>
             <div style="font-size: 14px; font-weight: 800; color: #fff;">Buyurtma #${ord.id}</div>
-            <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">${ord.date} • ${ord.itemsCount} ta mahsulot</div>
+            <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">${ord.date} • ${ord.count} ta tovar</div>
           </div>
           <div style="text-align: right;">
-            <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 800; color: var(--gold-accent);">${ord.total}</div>
-            <div style="font-size: 10px; font-weight: 700; color: #10b981; margin-top: 2px;">● ${ord.status}</div>
+            <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 800; color: #c084fc;">${ord.total}</div>
+            <div style="font-size: 10px; font-weight: 700; color: #06d6a0; margin-top: 2px;">● ${ord.status}</div>
           </div>
         </div>
       `).join('');
     }
 
-    // Filter by Category
-    function filterCategory(cat, btn = null) {
-      haptic('light');
-      if (btn) {
-        document.querySelectorAll('#cat-chips .cat-chip').forEach(c => c.classList.remove('active'));
-        btn.classList.add('active');
-      }
-
-      if (cat === 'all') {
-        displayedProducts = [...boutiqueCatalog];
-      } else if (cat === 'hot') {
-        displayedProducts = boutiqueCatalog.filter(p => p.badge && (p.badge.includes('Xit') || p.badge.includes('Premium') || p.badge.includes('Eksklyuziv')));
-      } else {
-        displayedProducts = boutiqueCatalog.filter(p => p.category === cat);
-      }
-      renderCatalog(displayedProducts);
-    }
-
-    // Live Search
-    function handleSearch(query) {
-      const q = query.toLowerCase().trim();
-      if (!q) {
-        displayedProducts = [...boutiqueCatalog];
-      } else {
-        displayedProducts = boutiqueCatalog.filter(p => 
-          p.name.toLowerCase().includes(q) || 
-          p.description.toLowerCase().includes(q) ||
-          p.priceFormatted.toLowerCase().includes(q)
-        );
-      }
-      renderCatalog(displayedProducts);
-    }
-
-    // Wishlist Toggle
-    function toggleWishlist(id, e) {
-      e.stopPropagation();
-      haptic('light');
-      if (wishlist.has(id)) {
-        wishlist.delete(id);
-      } else {
-        wishlist.add(id);
-      }
-      renderCatalog(displayedProducts);
-    }
-
-    // Dock Tabs Navigation
-    function switchDockTab(tabId) {
-      haptic('medium');
-      document.querySelectorAll('.dock-tab').forEach(t => {
-        if (t.dataset.tab === tabId) {
-          t.classList.add('active');
+    // Dock Navigation Switcher
+    function switchNavTab(tabId) {
+      hapticFeedback('light');
+      document.querySelectorAll('.bottom-dock .dock-btn').forEach(btn => {
+        if (btn.dataset.tab === tabId) {
+          btn.classList.add('active');
         } else {
-          t.classList.remove('active');
+          btn.classList.remove('active');
         }
       });
 
-      document.querySelectorAll('.view-page').forEach(p => p.classList.remove('active'));
-      const target = document.getElementById(`view-${tabId}`);
-      if (target) target.classList.add('active');
+      document.querySelectorAll('.market-view').forEach(view => view.classList.remove('active'));
+      const activeView = document.getElementById(`tab-${tabId}`);
+      if (activeView) activeView.classList.add('active');
+
+      if (tabId === 'wishlist') {
+        renderWishlistTab();
+      }
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Toast Notification
     function showToast(text) {
-      const toast = document.getElementById('toast-notify');
+      const toast = document.getElementById('market-toast');
       toast.innerText = text;
       toast.classList.add('show');
       setTimeout(() => {
@@ -1590,7 +1930,7 @@
       }, 3000);
     }
 
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', initApp);
   </script>
 </body>
 </html>
