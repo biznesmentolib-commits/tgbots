@@ -67,8 +67,8 @@ async def get_contacts_handler(request):
         logger.error(f"Aloqalarni olishda xatolik: {e}")
         return web.json_response({"status": "error", "message": str(e)}, status=500)
 
-async def notify_admin_via_bot(order_id, user_name, user_phone, service_name, user_id=0):
-    """Adminga bot orqali bildirishnoma yuborish"""
+async def notify_admin_via_bot(order_id, user_name, user_phone, service_name, user_id=0, items=None, total_price="", comment=""):
+    """Adminga bot orqali bildirishnoma yuborish (Savat tafsilotlari bilan)"""
     bot_token = os.getenv("BOT_TOKEN")
     admin_id = os.getenv("ADMIN_ID")
     if not bot_token or not admin_id:
@@ -76,13 +76,30 @@ async def notify_admin_via_bot(order_id, user_name, user_phone, service_name, us
         return
 
     text = (
-        f"🆕 <b>Yangi Mini App buyurtmasi!</b> #{order_id}\n\n"
-        f"🛠 <b>Xizmat:</b> {service_name}\n"
+        f"🛍 <b>Yangi Do'kon Buyurtmasi!</b> #{order_id}\n\n"
         f"👤 <b>Mijoz:</b> {user_name}\n"
         f"📞 <b>Telefon:</b> {user_phone}\n"
     )
+
+    if items and isinstance(items, list) and len(items) > 0:
+        text += "\n📦 <b>Savat tarkibi:</b>\n"
+        for idx, item in enumerate(items, 1):
+            i_name = item.get("name", "Noma'lum")
+            i_qty = item.get("qty", 1)
+            i_price = item.get("price", "")
+            text += f"{idx}. {i_name} — {i_qty} dona ({i_price})\n"
+        if total_price:
+            text += f"\n💰 <b>Jami to'lov:</b> <b>{total_price}</b>\n"
+    else:
+        text += f"🛠 <b>Tanlangan xizmat/mahsulot:</b> {service_name}\n"
+        if total_price:
+            text += f"💰 <b>Narxi:</b> {total_price}\n"
+
+    if comment:
+        text += f"💬 <b>Izoh:</b> {comment}\n"
+
     if user_id:
-        text += f"🆔 <b>Telegram ID:</b> <code>{user_id}</code>\n"
+        text += f"\n🆔 <b>Telegram ID:</b> <code>{user_id}</code>\n"
         text += f"🔗 <a href='tg://user?id={user_id}'>Profilga o'tish</a>"
 
     telegram_api_url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
@@ -105,7 +122,7 @@ async def notify_admin_via_bot(order_id, user_name, user_phone, service_name, us
         logger.error(f"Telegram xabar yuborishda xatolik: {e}")
 
 async def create_order_handler(request):
-    """POST /api/orders"""
+    """POST /api/orders (Do'kon savati va yagona buyurtmalar)"""
     try:
         data = await request.json()
     except Exception:
@@ -119,24 +136,26 @@ async def create_order_handler(request):
 
     user_name = str(data.get("user_name", "")).strip()
     user_phone = str(data.get("user_phone", "")).strip()
-    service_id = data.get("service_id")
+    items = data.get("items", [])
+    total_price = str(data.get("total_price", "")).strip()
+    comment = str(data.get("comment", "")).strip()
+    service_id = data.get("service_id", 1)
 
     if not user_name:
         return web.json_response({"status": "error", "message": "Ism kiritilishi shart"}, status=400)
     if not user_phone:
         return web.json_response({"status": "error", "message": "Telefon raqami kiritilishi shart"}, status=400)
-    if not service_id:
-        return web.json_response({"status": "error", "message": "Xizmat tanlanishi shart"}, status=400)
 
     try:
         service_id = int(service_id)
     except (ValueError, TypeError):
-        return web.json_response({"status": "error", "message": "Noto'g'ri xizmat ID"}, status=400)
+        service_id = 1
 
     try:
-        # Xizmat nomini aniqlash
-        service = await db.get_service(service_id)
-        service_name = service['name'] if service else f"Xizmat #{service_id}"
+        service_name = data.get("service_name") or ""
+        if not service_name:
+            service = await db.get_service(service_id)
+            service_name = service['name'] if service else f"Mahsulot #{service_id}"
 
         order_id = await db.add_order(
             user_id=user_id,
@@ -145,8 +164,17 @@ async def create_order_handler(request):
             service_id=service_id
         )
 
-        # Adminga xabar yuborish (fondda)
-        await notify_admin_via_bot(order_id, user_name, user_phone, service_name, user_id)
+        # Adminga to'liq savat tafsilotlari bilan bildirishnoma yuborish
+        await notify_admin_via_bot(
+            order_id=order_id,
+            user_name=user_name,
+            user_phone=user_phone,
+            service_name=service_name,
+            user_id=user_id,
+            items=items,
+            total_price=total_price,
+            comment=comment
+        )
 
         return web.json_response({
             "status": "success",

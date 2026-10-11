@@ -3,47 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Services | Stealth Edition</title>
+  <title>MARDONOV STORE | Luxury E-Commerce</title>
   
   <!-- Telegram Web App JS SDK -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-  <!-- Google Font: Inter Display & Text -->
+  <!-- Google Fonts: Plus Jakarta Sans & Space Grotesk -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
   <style>
     /* ==========================================================================
-       STEALTH TITANIUM DESIGN SYSTEM (Apple / Minimalist Luxury)
+       APPLE STORE & FARFETCH LUXURY E-COMMERCE DESIGN SYSTEM
        ========================================================================== */
     :root {
-      --bg-base: #08090b;
-      --bg-surface: #111317;
-      --bg-surface-elevated: #171a20;
-      --bg-surface-card: #13151a;
+      --bg-main: #050608;
+      --bg-card: #0f1115;
+      --bg-card-hover: #16181f;
+      --bg-input: #151820;
       
-      --border-subtle: rgba(255, 255, 255, 0.06);
-      --border-medium: rgba(255, 255, 255, 0.12);
-      --border-active: rgba(255, 255, 255, 0.28);
+      --border-subtle: rgba(255, 255, 255, 0.07);
+      --border-medium: rgba(255, 255, 255, 0.14);
+      --border-focus: rgba(255, 255, 255, 0.4);
       
-      --text-primary: #ffffff;
-      --text-secondary: #9aa0ad;
-      --text-muted: #5e6573;
+      --text-white: #ffffff;
+      --text-gray: #9ba1b0;
+      --text-muted: #5e6473;
       
-      --titanium-pill: #1d2129;
-      --titanium-accent: #f3f4f6;
-      --accent-badge: #232832;
+      --gold-accent: #e5c378;
+      --badge-bg: #1c202a;
       
-      --btn-primary-bg: #ffffff;
-      --btn-primary-text: #0a0b0e;
+      --btn-white: #ffffff;
+      --btn-white-text: #050608;
       
-      --radius-sm: 10px;
-      --radius-md: 16px;
-      --radius-lg: 22px;
-      --radius-full: 9999px;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-pill: 9999px;
       
-      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
       --font-mono: 'Space Grotesk', -apple-system, monospace;
       
       --safe-bottom: env(safe-area-inset-bottom, 0px);
@@ -57,533 +56,742 @@
     }
 
     body {
-      font-family: var(--font-main);
-      background-color: var(--bg-base);
-      color: var(--text-primary);
+      font-family: var(--font-body);
+      background-color: var(--bg-main);
+      color: var(--text-white);
       min-height: 100vh;
       overflow-x: hidden;
-      padding-bottom: calc(90px + var(--safe-bottom));
+      padding-bottom: calc(85px + var(--safe-bottom));
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      line-height: 1.5;
-    }
-
-    /* Subtle luxury top ambient highlight */
-    .top-vignette {
-      position: fixed;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      max-width: 600px;
-      height: 280px;
-      background: radial-gradient(50% 60% at 50% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
-      pointer-events: none;
-      z-index: 0;
     }
 
     .container {
       max-width: 480px;
       margin: 0 auto;
-      padding: 0 18px;
-      position: relative;
-      z-index: 1;
+      padding: 0 16px;
     }
 
     /* ==========================================================================
-       HEADER (Minimalist Status & Brand)
+       TOP STORE BAR & SEARCH
        ========================================================================== */
-    .app-header {
-      padding: 16px 0 12px;
+    .store-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(5, 6, 8, 0.88);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 12px 16px;
+    }
+
+    .header-top-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 12px;
     }
 
-    .brand-group {
+    .store-brand {
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .brand-mark {
+    .brand-icon {
       width: 32px;
       height: 32px;
-      background: #191c22;
+      background: #141720;
       border: 1px solid var(--border-medium);
       border-radius: 9px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 14px;
-      letter-spacing: -0.5px;
       color: #fff;
     }
 
-    .brand-meta h1 {
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: -0.3px;
-      color: var(--text-primary);
-    }
-
-    .brand-meta p {
-      font-size: 11px;
-      color: var(--text-muted);
-      font-weight: 500;
+    .brand-titles h1 {
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #fff;
       display: flex;
       align-items: center;
       gap: 5px;
     }
 
-    .status-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #10b981;
-      display: inline-block;
-      box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+    .verified-mark {
+      color: #3b82f6;
+      font-size: 13px;
     }
 
-    .header-action {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-full);
-      padding: 6px 14px;
-      font-size: 12px;
+    .brand-titles p {
+      font-size: 10px;
       font-weight: 600;
-      color: var(--text-secondary);
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .header-cart-btn {
+      position: relative;
+      background: #151821;
+      border: 1px solid var(--border-subtle);
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 700;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 6px;
-      transition: all 0.2s ease;
+      gap: 7px;
+      transition: all 0.2s;
     }
 
-    .header-action:active {
-      transform: scale(0.96);
-      background: var(--bg-surface-elevated);
+    .header-cart-btn:active {
+      transform: scale(0.95);
+      background: #1e222e;
+    }
+
+    .cart-badge {
+      background: #ffffff;
+      color: #000;
+      font-size: 11px;
+      font-weight: 800;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      border-radius: var(--radius-pill);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    .search-box {
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-pill);
+      padding: 10px 16px 10px 38px;
       color: #fff;
+      font-size: 13px;
+      font-family: inherit;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--border-medium);
+      background: #1c202b;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 14px;
+      pointer-events: none;
     }
 
     /* ==========================================================================
-       HERO CARD (Stealth Luxury Banner)
+       EDITORIAL HERO SHOWCASE (Apple Store Style)
        ========================================================================== */
-    .hero-box {
-      margin: 12px 0 24px;
-      padding: 24px 20px;
-      background: linear-gradient(180deg, #16181e 0%, #101216 100%);
+    .store-hero {
+      margin: 16px 0;
+      background: linear-gradient(180deg, #161822 0%, #0d0f14 100%);
       border: 1px solid var(--border-medium);
       border-radius: var(--radius-lg);
+      padding: 24px 20px;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.5);
     }
 
-    .hero-box::before {
+    .store-hero::after {
       content: '';
       position: absolute;
       top: 0;
-      left: 15%;
-      right: 15%;
+      left: 0;
+      right: 0;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
     }
 
-    .hero-badge {
+    .hero-tag {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--gold-accent);
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .hero-heading {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -0.6px;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .hero-desc {
+      font-size: 12px;
+      color: var(--text-gray);
+      line-height: 1.5;
+      margin-bottom: 18px;
+      max-width: 90%;
+    }
+
+    .hero-btn {
+      background: var(--btn-white);
+      color: var(--btn-white-text);
+      border: none;
+      padding: 10px 20px;
+      border-radius: var(--radius-pill);
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 4px 10px;
-      border-radius: var(--radius-full);
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-secondary);
-      margin-bottom: 14px;
-      letter-spacing: 0.3px;
-      text-transform: uppercase;
+      transition: all 0.2s;
     }
 
-    .hero-title {
-      font-size: 24px;
-      font-weight: 800;
-      line-height: 1.25;
-      letter-spacing: -0.8px;
-      margin-bottom: 10px;
-      color: #ffffff;
-    }
-
-    .hero-subtitle {
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.55;
-      margin-bottom: 20px;
-      font-weight: 400;
-    }
-
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      padding-top: 18px;
-      border-top: 1px solid var(--border-subtle);
-    }
-
-    .stat-item {
-      text-align: left;
-    }
-
-    .stat-val {
-      font-family: var(--font-mono);
-      font-size: 17px;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: -0.5px;
-    }
-
-    .stat-lbl {
-      font-size: 10px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      font-weight: 600;
-      letter-spacing: 0.4px;
-      margin-top: 2px;
+    .hero-btn:active {
+      transform: scale(0.96);
+      background: #e6e8ec;
     }
 
     /* ==========================================================================
-       SECTION HEADERS
+       CATEGORY FILTER BAR (Farfetch Style)
        ========================================================================== */
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin: 28px 0 14px;
-      padding: 0 2px;
-    }
-
-    .section-header h2 {
-      font-size: 17px;
-      font-weight: 700;
-      letter-spacing: -0.4px;
-      color: var(--text-primary);
-    }
-
-    .section-header .see-all {
-      font-size: 12px;
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-weight: 600;
-      cursor: pointer;
-      transition: color 0.2s;
-    }
-
-    .section-header .see-all:hover {
-      color: #fff;
-    }
-
-    /* ==========================================================================
-       CATEGORY FILTER PILLS (Segmented Filter)
-       ========================================================================== */
-    .pills-scroll {
+    .category-scroll {
       display: flex;
       gap: 8px;
       overflow-x: auto;
       scrollbar-width: none;
-      -ms-overflow-style: none;
-      padding-bottom: 6px;
-      margin-bottom: 16px;
+      padding: 4px 0 16px;
     }
 
-    .pills-scroll::-webkit-scrollbar {
+    .category-scroll::-webkit-scrollbar {
       display: none;
     }
 
-    .pill-btn {
+    .cat-chip {
       flex-shrink: 0;
-      background: var(--bg-surface);
+      background: var(--bg-card);
       border: 1px solid var(--border-subtle);
-      color: var(--text-secondary);
+      color: var(--text-gray);
       padding: 8px 16px;
-      border-radius: var(--radius-full);
+      border-radius: var(--radius-pill);
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.2s;
     }
 
-    .pill-btn.active {
+    .cat-chip.active {
       background: #ffffff;
-      color: #090a0c;
+      color: #000;
       border-color: #ffffff;
       box-shadow: 0 4px 14px rgba(255, 255, 255, 0.15);
     }
 
-    .pill-btn:active {
+    .cat-chip:active {
       transform: scale(0.96);
     }
 
     /* ==========================================================================
-       SERVICE CARDS (Clean Precision Geometry)
+       BOUTIQUE PRODUCT CARDS (2-Column & 1-Column)
        ========================================================================== */
-    .services-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .service-card {
-      background: var(--bg-surface-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 16px;
-      position: relative;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .service-card:hover, .service-card:focus-within {
-      border-color: var(--border-medium);
-      background: var(--bg-surface-elevated);
-    }
-
-    .service-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 12px;
-    }
-
-    .service-info {
-      flex: 1;
-    }
-
-    .service-tag {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
-
-    .service-title {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--text-primary);
+    .section-title {
+      font-size: 16px;
+      font-weight: 800;
       letter-spacing: -0.3px;
-      line-height: 1.35;
-    }
-
-    .service-desc {
-      font-size: 12px;
-      color: var(--text-secondary);
-      line-height: 1.5;
-      margin-top: 4px;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    .service-icon-box {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      background: #1a1e26;
-      border: 1px solid var(--border-subtle);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
-    }
-
-    .service-bottom {
+      margin-bottom: 14px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-top: 12px;
-      border-top: 1px solid var(--border-subtle);
     }
 
-    .price-group {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .price-label {
-      font-size: 10px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      font-weight: 600;
-      letter-spacing: 0.3px;
-    }
-
-    .price-value {
-      font-family: var(--font-mono);
-      font-size: 15px;
-      font-weight: 700;
-      color: #ffffff;
-      letter-spacing: -0.3px;
-    }
-
-    .btn-order-pill {
-      background: #ffffff;
-      color: #0b0c0e;
-      border: none;
-      padding: 9px 18px;
-      border-radius: var(--radius-full);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: -0.2px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.2s ease;
-    }
-
-    .btn-order-pill:active {
-      transform: scale(0.95);
-      background: #e2e4e8;
-    }
-
-    /* ==========================================================================
-       PORTFOLIO GRID
-       ========================================================================== */
-    .portfolio-grid {
+    .products-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
+      margin-bottom: 24px;
     }
 
-    .portfolio-card {
-      background: var(--bg-surface-card);
+    .product-card {
+      background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
       overflow: hidden;
-      cursor: pointer;
-      transition: all 0.25s ease;
       display: flex;
       flex-direction: column;
+      position: relative;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .portfolio-card:hover {
+    .product-card:hover {
       border-color: var(--border-medium);
-      transform: translateY(-2px);
+      background: var(--bg-card-hover);
     }
 
-    .portfolio-media {
-      height: 110px;
-      background: #181c24;
+    .product-thumb {
+      height: 130px;
+      background: #141720;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 28px;
       position: relative;
       border-bottom: 1px solid var(--border-subtle);
+      font-size: 40px;
+      user-select: none;
     }
 
-    .portfolio-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .badge-corner {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(18, 21, 28, 0.9);
+      border: 1px solid var(--border-medium);
+      backdrop-filter: blur(8px);
+      padding: 3px 7px;
+      border-radius: 6px;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #fff;
     }
 
-    .portfolio-body {
+    .badge-corner.hot {
+      color: #f59e0b;
+      border-color: rgba(245, 158, 11, 0.4);
+    }
+
+    .badge-corner.sale {
+      color: #ef4444;
+      border-color: rgba(239, 68, 68, 0.4);
+    }
+
+    .wishlist-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(18, 21, 28, 0.7);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: all 0.2s;
+    }
+
+    .wishlist-btn.active {
+      color: #ef4444;
+      background: #ffffff;
+      border-color: #ffffff;
+    }
+
+    .product-content {
       padding: 12px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
     }
 
-    .portfolio-title {
+    .product-brand {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+
+    .product-name {
       font-size: 13px;
       font-weight: 700;
       color: #fff;
-      line-height: 1.3;
-      margin-bottom: 4px;
-    }
-
-    .portfolio-desc {
-      font-size: 11px;
-      color: var(--text-muted);
-      line-height: 1.4;
+      line-height: 1.35;
+      margin-bottom: 6px;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      min-height: 35px;
     }
 
-    /* ==========================================================================
-       CONTACT & FAQ CARDS
-       ========================================================================== */
-    .contact-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .contact-row {
+    .product-rating {
+      font-size: 10px;
+      color: #f59e0b;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      background: var(--bg-surface-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 14px 16px;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.2s ease;
+      gap: 3px;
+      font-weight: 700;
+      margin-bottom: 10px;
     }
 
-    .contact-row:active {
-      background: var(--bg-surface-elevated);
-      border-color: var(--border-medium);
-      transform: scale(0.99);
+    .product-rating span {
+      color: var(--text-muted);
+      font-weight: 500;
     }
 
-    .contact-meta {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .price-box {
+      margin-bottom: 10px;
     }
 
-    .contact-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: #1a1e26;
+    .current-price {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.3px;
+    }
+
+    .old-price {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      text-decoration: line-through;
+      margin-left: 4px;
+    }
+
+    .btn-add-cart {
+      width: 100%;
+      background: #171a22;
+      border: 1px solid var(--border-medium);
+      color: #fff;
+      padding: 9px 0;
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
-      color: #fff;
-      border: 1px solid var(--border-subtle);
+      gap: 5px;
+      transition: all 0.2s;
     }
 
-    .contact-text h3 {
-      font-size: 13px;
-      font-weight: 700;
-      color: #fff;
+    .btn-add-cart:active {
+      transform: scale(0.96);
     }
 
-    .contact-text p {
-      font-size: 12px;
-      color: var(--text-secondary);
-      margin-top: 1px;
-    }
-
-    .contact-arrow {
-      color: var(--text-muted);
-      font-size: 14px;
+    .btn-add-cart.added {
+      background: #ffffff;
+      color: #000;
+      border-color: #ffffff;
     }
 
     /* ==========================================================================
-       iOS FLOATING DOCK (Bottom Navigation)
+       FLOATING CART BAR (Above dock when items > 0)
+       ========================================================================== */
+    .floating-cart-pill {
+      position: fixed;
+      bottom: calc(75px + var(--safe-bottom));
+      left: 16px;
+      right: 16px;
+      max-width: 448px;
+      margin: 0 auto;
+      background: #ffffff;
+      color: #050608;
+      border-radius: var(--radius-pill);
+      padding: 12px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85);
+      cursor: pointer;
+      z-index: 90;
+      transform: translateY(120px);
+      opacity: 0;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .floating-cart-pill.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .pill-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pill-count-bubble {
+      background: #050608;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 800;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pill-total-text {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .pill-action-text {
+      font-size: 12px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* ==========================================================================
+       SHOPPING BAG / CART DRAWER (Farfetch Style Checkout)
+       ========================================================================== */
+    .cart-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 150;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .cart-drawer-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cart-drawer {
+      background: #0f1116;
+      border: 1px solid var(--border-medium);
+      border-bottom: none;
+      border-radius: 28px 28px 0 0;
+      width: 100%;
+      max-width: 500px;
+      max-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      transform: translateY(100%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.9);
+    }
+
+    .cart-drawer-overlay.active .cart-drawer {
+      transform: translateY(0);
+    }
+
+    .drawer-handle {
+      width: 36px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-pill);
+      margin: 12px auto 6px;
+    }
+
+    .drawer-header {
+      padding: 12px 20px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .drawer-header h2 {
+      font-size: 17px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .drawer-close {
+      background: #1b1e28;
+      border: 1px solid var(--border-subtle);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      color: var(--text-gray);
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .drawer-body {
+      padding: 16px 20px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .cart-item-row {
+      display: flex;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border-subtle);
+      align-items: center;
+    }
+
+    .cart-item-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: #171a22;
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .cart-item-details {
+      flex: 1;
+    }
+
+    .cart-item-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 3px;
+    }
+
+    .cart-item-price {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold-accent);
+    }
+
+    .cart-item-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stepper-btn {
+      width: 26px;
+      height: 26px;
+      background: #1b1e28;
+      border: 1px solid var(--border-subtle);
+      border-radius: 7px;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .stepper-val {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      min-width: 18px;
+      text-align: center;
+    }
+
+    /* Checkout Form in Cart */
+    .checkout-section {
+      margin-top: 18px;
+      background: #141720;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px;
+    }
+
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--text-gray);
+      margin-bottom: 8px;
+    }
+
+    .summary-line.total {
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 10px;
+      margin-top: 8px;
+    }
+
+    .drawer-footer {
+      padding: 16px 20px calc(24px + var(--safe-bottom));
+      border-top: 1px solid var(--border-subtle);
+      background: #0f1116;
+    }
+
+    .btn-checkout-action {
+      width: 100%;
+      background: #ffffff;
+      color: #050608;
+      border: none;
+      padding: 15px;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-checkout-action:active {
+      transform: scale(0.98);
+      background: #e2e4e8;
+    }
+
+    .form-input {
+      width: 100%;
+      background: #191c26;
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-sm);
+      padding: 11px 12px;
+      color: #fff;
+      font-size: 13px;
+      font-family: inherit;
+      outline: none;
+      margin-top: 6px;
+      margin-bottom: 12px;
+    }
+
+    .form-input:focus {
+      border-color: #fff;
+    }
+
+    /* ==========================================================================
+       BOTTOM DOCK (Navigation)
        ========================================================================== */
     .dock-wrapper {
       position: fixed;
@@ -592,23 +800,23 @@
       right: 0;
       display: flex;
       justify-content: center;
-      padding: 12px 18px calc(12px + var(--safe-bottom));
+      padding: 10px 16px calc(10px + var(--safe-bottom));
       z-index: 100;
       pointer-events: none;
     }
 
     .dock-bar {
       pointer-events: auto;
-      background: rgba(18, 20, 26, 0.88);
+      background: rgba(15, 17, 22, 0.92);
       backdrop-filter: blur(28px);
       -webkit-backdrop-filter: blur(28px);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: var(--radius-full);
-      padding: 6px 8px;
+      border-radius: var(--radius-pill);
+      padding: 6px 10px;
       display: flex;
       align-items: center;
       gap: 4px;
-      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
     }
 
     .dock-tab {
@@ -616,40 +824,23 @@
       border: none;
       color: var(--text-muted);
       padding: 8px 16px;
-      border-radius: var(--radius-full);
+      border-radius: var(--radius-pill);
       font-size: 12px;
       font-weight: 600;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 6px;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .dock-tab svg {
-      width: 16px;
-      height: 16px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 2.2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+      transition: all 0.2s;
     }
 
     .dock-tab.active {
       background: #ffffff;
-      color: #0b0c0e;
-      font-weight: 700;
-      box-shadow: 0 4px 14px rgba(255, 255, 255, 0.2);
+      color: #050608;
+      font-weight: 800;
     }
 
-    .dock-tab:active {
-      transform: scale(0.95);
-    }
-
-    /* ==========================================================================
-       VIEW ROUTING (Single Page App Sections)
-       ========================================================================== */
+    /* Views */
     .view-page {
       display: none;
       animation: fadeIn 0.25s ease forwards;
@@ -664,174 +855,23 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ==========================================================================
-       NATIVE iOS BOTTOM SHEET MODAL (Order Sheet)
-       ========================================================================== */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      z-index: 200;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-    }
-
-    .modal-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .sheet-card {
-      background: #14171e;
-      border: 1px solid var(--border-medium);
-      border-bottom: none;
-      border-radius: 28px 28px 0 0;
-      width: 100%;
-      max-width: 500px;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 16px 22px calc(30px + var(--safe-bottom));
-      transform: translateY(100%);
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.8);
-    }
-
-    .modal-overlay.active .sheet-card {
-      transform: translateY(0);
-    }
-
-    .sheet-handle {
-      width: 38px;
-      height: 4px;
-      border-radius: var(--radius-full);
-      background: rgba(255, 255, 255, 0.2);
-      margin: 0 auto 18px;
-    }
-
-    .sheet-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 20px;
-    }
-
-    .sheet-title {
-      font-size: 19px;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -0.4px;
-    }
-
-    .sheet-close {
-      background: #20242e;
-      border: 1px solid var(--border-subtle);
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      color: var(--text-secondary);
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-
-    .sheet-selected-summary {
-      background: #191c25;
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 14px;
-      margin-bottom: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .form-group {
-      margin-bottom: 16px;
-    }
-
-    .form-label {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-      display: block;
-    }
-
-    .form-input, .form-select {
-      width: 100%;
-      background: #1a1e27;
-      border: 1px solid var(--border-medium);
-      border-radius: var(--radius-md);
-      padding: 13px 14px;
-      color: #fff;
-      font-size: 14px;
-      font-family: inherit;
-      outline: none;
-      transition: all 0.2s;
-    }
-
-    .form-input:focus, .form-select:focus {
-      border-color: #ffffff;
-      background: #202430;
-    }
-
-    .btn-submit-order {
-      width: 100%;
-      background: #ffffff;
-      color: #0b0c0e;
-      border: none;
-      padding: 15px;
-      border-radius: var(--radius-md);
-      font-size: 14px;
-      font-weight: 800;
-      letter-spacing: -0.2px;
-      cursor: pointer;
-      margin-top: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: all 0.2s;
-    }
-
-    .btn-submit-order:active {
-      transform: scale(0.98);
-      background: #e2e4e8;
-    }
-
-    /* Notification Toast */
+    /* Toast */
     .toast {
       position: fixed;
-      top: 20px;
+      top: 16px;
       left: 50%;
-      transform: translateX(-50%) translateY(-30px);
+      transform: translateX(-50%) translateY(-40px);
       background: #ffffff;
-      color: #0b0c0e;
-      padding: 10px 20px;
-      border-radius: var(--radius-full);
-      font-size: 13px;
+      color: #000;
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      font-size: 12px;
       font-weight: 700;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
       opacity: 0;
       pointer-events: none;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       z-index: 300;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .toast.show {
@@ -842,545 +882,546 @@
 </head>
 <body>
 
-  <!-- Top Ambient Highlight -->
-  <div class="top-vignette"></div>
-
-  <!-- Main App Shell -->
-  <div class="container">
-    
-    <!-- Header -->
-    <header class="app-header">
-      <div class="brand-group">
-        <div class="brand-mark">M</div>
-        <div class="brand-meta">
-          <h1>MARDONOV SERVICES</h1>
-          <p><span class="status-dot"></span> 24/7 Premium Qabul</p>
+  <!-- Sticky Store Top Header -->
+  <header class="store-header">
+    <div class="header-top-row">
+      <div class="store-brand">
+        <div class="brand-icon">M</div>
+        <div class="brand-titles">
+          <h1>MARDONOV BOUTIQUE <span class="verified-mark">✓</span></h1>
+          <p>Official Luxury Store</p>
         </div>
       </div>
-      <button class="header-action" onclick="switchTab('contacts')">
-        <span>Bog'lanish</span>
+      <button class="header-cart-btn" onclick="openCartDrawer()">
+        <span>🛍 Savat</span>
+        <span class="cart-badge" id="header-cart-count">0</span>
       </button>
-    </header>
+    </div>
+
+    <!-- Search Input -->
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" class="search-input" id="search-input" placeholder="Mahsulot yoki xizmatlarni qidirish..." oninput="handleSearch(this.value)">
+    </div>
+  </header>
+
+  <div class="container">
 
     <!-- ====================================================================
-         VIEW: 1. ASOSIY (Home / Overview)
+         VIEW: 1. DO'KON (Store)
          ==================================================================== -->
-    <main id="view-home" class="view-page active">
+    <main id="view-store" class="view-page active">
       
-      <!-- Hero Box -->
-      <section class="hero-box">
-        <div class="hero-badge">✦ Eksklyuziv sifat</div>
-        <h2 class="hero-title">Yuqori darajadagi professional xizmatlar.</h2>
-        <p class="hero-subtitle">Biznesingiz va shaxsiy talablaringiz uchun kafolatlangan, tezkor va nufuzli yechimlar katalogi.</p>
-        
-        <div class="hero-stats">
-          <div class="stat-item">
-            <div class="stat-val">100%</div>
-            <div class="stat-lbl">Kafolat</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-val">15 min</div>
-            <div class="stat-lbl">Bog'lanish</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-val">500+</div>
-            <div class="stat-lbl">Mijozlar</div>
-          </div>
-        </div>
+      <!-- Editorial Hero Banner -->
+      <section class="store-hero">
+        <span class="hero-tag">✦ Yangi Kolleksiya 2026</span>
+        <h2 class="hero-heading">Premium Digital Yechimlar va Xizmatlar.</h2>
+        <p class="hero-desc">Biznesingiz uchun professional tizimlar, kafolatlangan savdo botlari va nufuzli veb-saytlar.</p>
+        <button class="hero-btn" onclick="filterCategory('hot')">
+          <span>Ommaboplarini ko'rish</span>
+          <span>→</span>
+        </button>
       </section>
 
-      <!-- Quick Action Buttons -->
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px;">
-        <div onclick="switchTab('services')" style="background: var(--bg-surface-card); border: 1px solid var(--border-subtle); padding: 14px; border-radius: var(--radius-md); cursor: pointer;">
-          <div style="font-size: 18px; margin-bottom: 6px;">📂</div>
-          <div style="font-size: 13px; font-weight: 700; color: #fff;">Barcha Xizmatlar</div>
-          <div style="font-size: 11px; color: var(--text-muted);">Katalogdan tanlash</div>
-        </div>
-        <div onclick="openOrderModal()" style="background: var(--bg-surface-card); border: 1px solid var(--border-subtle); padding: 14px; border-radius: var(--radius-md); cursor: pointer;">
-          <div style="font-size: 18px; margin-bottom: 6px;">⚡</div>
-          <div style="font-size: 13px; font-weight: 700; color: #fff;">Tezkor Buyurtma</div>
-          <div style="font-size: 11px; color: var(--text-muted);">1 daqiqada yuborish</div>
-        </div>
+      <!-- Category Filter Chips -->
+      <div class="category-scroll" id="cat-chips">
+        <button class="cat-chip active" onclick="filterCategory('all', this)">Barchasi</button>
+        <button class="cat-chip" onclick="filterCategory('hot', this)">🔥 Xit savdo</button>
+        <button class="cat-chip" onclick="filterCategory('bots', this)">🤖 Bot & App</button>
+        <button class="cat-chip" onclick="filterCategory('web', this)">💻 Veb & IT</button>
+        <button class="cat-chip" onclick="filterCategory('design', this)">🎨 Dizayn</button>
       </div>
 
-      <!-- Top Services Highlight -->
-      <div class="section-header">
-        <h2>Tavsiya etilgan xizmatlar</h2>
-        <span class="see-all" onclick="switchTab('services')">Barchasi →</span>
+      <!-- Products Grid -->
+      <div class="section-title">
+        <span id="catalog-title">Barcha Mahsulot va Xizmatlar</span>
+        <span id="catalog-count" style="font-size: 12px; color: var(--text-muted); font-weight: 600;">8 ta mavjud</span>
       </div>
 
-      <div id="home-featured-services" class="services-grid">
-        <!-- Rendered dynamically or via fallback -->
-      </div>
-
-      <!-- Recent Works Preview -->
-      <div class="section-header">
-        <h2>Oxirgi ishlarimiz</h2>
-        <span class="see-all" onclick="switchTab('portfolio')">Portfolio →</span>
-      </div>
-
-      <div id="home-featured-portfolio" class="portfolio-grid">
+      <div class="products-grid" id="products-catalog-grid">
         <!-- Rendered dynamically -->
       </div>
     </main>
 
     <!-- ====================================================================
-         VIEW: 2. XIZMATLAR (Services Catalog)
+         VIEW: 2. BUYURTMALAR / SAQLANGANLAR (Orders & Saved)
          ==================================================================== -->
-    <main id="view-services" class="view-page">
-      <div class="section-header" style="margin-top: 14px;">
-        <h2>Xizmatlar katalogi</h2>
-        <span id="services-counter" style="font-size: 12px; color: var(--text-muted); font-weight: 600;">Faol</span>
+    <main id="view-orders" class="view-page">
+      <div class="section-title" style="margin-top: 20px;">
+        <span>Mening Buyurtmalarim</span>
+        <span style="font-size: 12px; color: var(--text-muted); font-weight: 600;">Faol</span>
       </div>
 
-      <!-- Category Filter Pills -->
-      <div class="pills-scroll" id="category-pills">
-        <button class="pill-btn active" onclick="filterServices('all', this)">Barchasi</button>
-        <button class="pill-btn" onclick="filterServices('popular', this)">Ommabop</button>
-        <button class="pill-btn" onclick="filterServices('premium', this)">Premium</button>
-      </div>
-
-      <!-- All Services List -->
-      <div id="all-services-list" class="services-grid">
-        <!-- Dynamically populated -->
+      <div id="user-orders-history" style="display: flex; flex-direction: column; gap: 12px;">
+        <!-- Dynamically populated from local history -->
       </div>
     </main>
 
     <!-- ====================================================================
-         VIEW: 3. PORTFOLIO (Gallery)
+         VIEW: 3. ALOQA (Concierge Support)
          ==================================================================== -->
-    <main id="view-portfolio" class="view-page">
-      <div class="section-header" style="margin-top: 14px;">
-        <h2>Bajarilgan ishlar</h2>
-        <span style="font-size: 12px; color: var(--text-muted); font-weight: 600;">Galereya</span>
+    <main id="view-support" class="view-page">
+      <div class="section-title" style="margin-top: 20px;">
+        <span>Do'kon Mijozlar Xizmati</span>
+        <span style="font-size: 12px; color: var(--text-muted); font-weight: 600;">24/7 Aloqa</span>
       </div>
 
-      <div id="all-portfolio-list" class="portfolio-grid">
-        <!-- Dynamically populated -->
-      </div>
-    </main>
-
-    <!-- ====================================================================
-         VIEW: 4. ALOQA (Concierge / Contacts)
-         ==================================================================== -->
-    <main id="view-contacts" class="view-page">
-      <div class="section-header" style="margin-top: 14px;">
-        <h2>Biz bilan aloqa</h2>
-        <span style="font-size: 12px; color: var(--text-muted); font-weight: 600;">24/7 Bog'lanish</span>
-      </div>
-
-      <div class="contact-list" id="contacts-list-container">
-        <!-- Dynamically populated or fallback -->
-      </div>
-
-      <div style="margin-top: 24px; padding: 18px; background: var(--bg-surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);">
-        <div style="font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 6px;">💼 Shaxsiy konsultatsiya kerakmi?</div>
-        <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 14px;">
-          Xizmatlar bo'yicha aniq narx yoki maxsus loyihani muhokama qilish uchun bevosita menejerimiz bilan bog'laning.
-        </p>
-        <button class="btn-submit-order" onclick="openOrderModal()" style="margin: 0;">
-          Ariza qoldirish
-        </button>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 18px;">
+          <h3 style="font-size: 15px; font-weight: 800; margin-bottom: 6px;">VIP Konsyerj Xizmati</h3>
+          <p style="font-size: 12px; color: var(--text-gray); line-height: 1.5; margin-bottom: 14px;">
+            Buyurtma bo'yicha maxsus talablar yoki yirik korporativ loyihalar uchun shaxsiy menejerimiz bilan to'g'ridan-to'g'ri bog'lanishingiz mumkin.
+          </p>
+          <a href="https://t.me/mardonov_sale_bot" target="_blank" style="display: block; text-decoration: none; background: #fff; color: #000; text-align: center; padding: 12px; border-radius: var(--radius-pill); font-size: 12px; font-weight: 800;">
+            Telegram orqali yozish →
+          </a>
+        </div>
       </div>
     </main>
 
   </div>
 
   <!-- ====================================================================
-       iOS BOTTOM DOCK (Navigation)
+       FLOATING QUICK CART PILL (Appears when items are in cart)
        ==================================================================== -->
+  <div class="floating-cart-pill" id="floating-cart" onclick="openCartDrawer()">
+    <div class="pill-left">
+      <div class="pill-count-bubble" id="pill-items-count">1</div>
+      <div class="pill-total-text" id="pill-total-amount">0 UZS</div>
+    </div>
+    <div class="pill-action-text">
+      <span>Savatga o'tish</span>
+      <span>→</span>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       SHOPPING BAG / CART DRAWER (Checkout Sheet)
+       ==================================================================== -->
+  <div class="cart-drawer-overlay" id="cart-drawer-modal" onclick="closeCartDrawer(event)">
+    <div class="cart-drawer" onclick="event.stopPropagation()">
+      <div class="drawer-handle"></div>
+      
+      <div class="drawer-header">
+        <h2>Xarid Savatchasi</h2>
+        <button class="drawer-close" onclick="closeCartDrawer()">&times;</button>
+      </div>
+
+      <div class="drawer-body">
+        <!-- Cart Items List -->
+        <div id="cart-items-container">
+          <!-- Populated via JS -->
+        </div>
+
+        <!-- Checkout Form -->
+        <div class="checkout-section">
+          <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 10px;">
+            Buyurtmachi ma'lumotlari
+          </div>
+
+          <label style="font-size: 11px; color: var(--text-gray); font-weight: 600;">Ism va Familiya</label>
+          <input type="text" id="checkout-name" class="form-input" placeholder="Ismingizni kiriting" required>
+
+          <label style="font-size: 11px; color: var(--text-gray); font-weight: 600;">Telefon raqami</label>
+          <input type="tel" id="checkout-phone" class="form-input" placeholder="+998 90 123 45 67" required>
+
+          <label style="font-size: 11px; color: var(--text-gray); font-weight: 600;">Qo'shimcha izoh yoki manzil (ixtiyoriy)</label>
+          <input type="text" id="checkout-comment" class="form-input" placeholder="Yetkazish / shartlar haqida izoh...">
+
+          <!-- Summary calculation -->
+          <div style="margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border-subtle);">
+            <div class="summary-line">
+              <span>Mahsulotlar:</span>
+              <span id="summary-subtotal">0 UZS</span>
+            </div>
+            <div class="summary-line">
+              <span>Yetkazish / Konsultatsiya:</span>
+              <span style="color: #10b981; font-weight: 700;">BEPUL</span>
+            </div>
+            <div class="summary-line total">
+              <span>Jami To'lov:</span>
+              <span id="summary-total" style="font-family: var(--font-mono); color: #fff;">0 UZS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="drawer-footer">
+        <button class="btn-checkout-action" id="btn-submit-checkout" onclick="submitCartOrder()">
+          <span>Buyurtmani Tasdiqlash</span>
+          <span>→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation Dock -->
   <div class="dock-wrapper">
     <nav class="dock-bar">
-      <button class="dock-tab active" data-tab="home" onclick="switchTab('home')">
-        <svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        <span>Asosiy</span>
+      <button class="dock-tab active" data-tab="store" onclick="switchDockTab('store')">
+        <span>🏪</span>
+        <span>Do'kon</span>
       </button>
 
-      <button class="dock-tab" data-tab="services" onclick="switchTab('services')">
-        <svg viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
-        <span>Xizmatlar</span>
+      <button class="dock-tab" data-tab="orders" onclick="switchDockTab('orders')">
+        <span>📦</span>
+        <span>Buyurtmalar</span>
       </button>
 
-      <button class="dock-tab" data-tab="portfolio" onclick="switchTab('portfolio')">
-        <svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-        <span>Portfolio</span>
-      </button>
-
-      <button class="dock-tab" data-tab="contacts" onclick="switchTab('contacts')">
-        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        <span>Aloqa</span>
+      <button class="dock-tab" data-tab="support" onclick="switchDockTab('support')">
+        <span>💬</span>
+        <span>Qo'llab-quvvatlash</span>
       </button>
     </nav>
   </div>
 
-  <!-- ====================================================================
-       NATIVE BOTTOM SHEET (Order Form)
-       ==================================================================== -->
-  <div id="order-modal" class="modal-overlay" onclick="closeOrderModal(event)">
-    <div class="sheet-card" onclick="event.stopPropagation()">
-      <div class="sheet-handle"></div>
-      
-      <div class="sheet-head">
-        <div>
-          <h3 class="sheet-title">Buyurtma rasmiylashtirish</h3>
-          <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Ma'lumotlaringizni tasdiqlang</p>
-        </div>
-        <button class="sheet-close" onclick="closeOrderModal()">&times;</button>
-      </div>
+  <!-- App Toast Notification -->
+  <div id="toast-notify" class="toast">✓ Savatga qo'shildi</div>
 
-      <div class="sheet-selected-summary" id="modal-service-summary">
-        <div>
-          <div style="font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--text-muted);">Tanlangan xizmat</div>
-          <div id="modal-service-name" style="font-size: 14px; font-weight: 700; color: #fff; margin-top: 2px;">Tanlanmagan</div>
-        </div>
-        <div id="modal-service-price" style="font-family: var(--font-mono); font-size: 14px; font-weight: 700; color: #fff;">-</div>
-      </div>
-
-      <form id="order-form" onsubmit="handleOrderSubmit(event)">
-        <div class="form-group">
-          <label class="form-label">Xizmat turini o'zgartirish</label>
-          <select id="input-service-select" class="form-select" onchange="onSelectServiceChange(this)">
-            <!-- Populated via JS -->
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">Ism va Familiyangiz</label>
-          <input type="text" id="input-user-name" class="form-input" placeholder="Ismingizni kiriting" required autocomplete="name">
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">Telefon raqamingiz</label>
-          <input type="tel" id="input-user-phone" class="form-input" placeholder="+998 90 123 45 67" required autocomplete="tel">
-        </div>
-
-        <button type="submit" class="btn-submit-order" id="btn-submit-order-elem">
-          <span>Tasdiqlash va Yuborish</span>
-          <span>→</span>
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Toast Notification -->
-  <div id="app-toast" class="toast">
-    <span id="toast-icon">✓</span>
-    <span id="toast-text">Buyurtmangiz qabul qilindi</span>
-  </div>
-
-  <!-- ====================================================================
-       APPLICATION SCRIPT LOGIC
-       ==================================================================== -->
+  <!-- ==========================================================================
+       BOUTIQUE JAVASCRIPT LOGIC
+       ========================================================================== */ -->
   <script>
-    // 1. Telegram WebApp Initialization
     const tg = window.Telegram?.WebApp;
     if (tg) {
       tg.ready();
       tg.expand();
       try {
-        tg.setHeaderColor('#08090b');
-        tg.setBackgroundColor('#08090b');
+        tg.setHeaderColor('#050608');
+        tg.setBackgroundColor('#050608');
       } catch (e) {}
     }
 
-    function hapticFeedback(style = 'light') {
+    function haptic(type = 'light') {
       try {
         if (tg?.HapticFeedback) {
-          tg.HapticFeedback.impactOccurred(style);
+          tg.HapticFeedback.impactOccurred(type);
         }
       } catch (e) {}
     }
 
-    // 2. High-End Fallback Data (Precision Curated)
-    const fallbackServices = [
+    // Curated Luxury Boutique Catalog
+    const boutiqueCatalog = [
       {
         id: 1,
-        name: "Telegram Bot & Mini App Ishlab Chiqish",
-        description: "Biznesingiz uchun to'liq avtomatlashtirilgan, CRM integratsiyali va to'lov tizimlariga ulangan yuqori tezlikdagi Telegram tizimlari.",
-        price: "1,500,000 UZS dan",
-        tag: "Ommabop",
-        icon: "🤖"
+        name: "Telegram E-Commerce Do'kon Boti",
+        category: "bots",
+        priceNumber: 1500000,
+        priceFormatted: "1,500,000 UZS",
+        oldPrice: "1,900,000 UZS",
+        badge: "Xit savdo",
+        badgeClass: "hot",
+        icon: "🛍",
+        rating: 4.9,
+        reviews: 58,
+        description: "To'liq katalog, to'lov tizimlari (Payme/Click) va admin paneli bilan jihozlangan savdo boti."
       },
       {
         id: 2,
-        name: "Premium Web Sayt & Landing Page",
-        description: "Zamonaviy minimalist dizaynda, yuqori konversiyali va mobil qurilmalarga mukammal moslashgan brend web-sahifasi.",
-        price: "2,800,000 UZS dan",
-        tag: "Premium",
-        icon: "💻"
+        name: "Avtomatlashtirilgan Telegram Mini App",
+        category: "bots",
+        priceNumber: 2800000,
+        priceFormatted: "2,800,000 UZS",
+        oldPrice: "3,500,000 UZS",
+        badge: "Premium",
+        badgeClass: "hot",
+        icon: "📱",
+        rating: 5.0,
+        reviews: 42,
+        description: "Iphone ilovasi kabi silliq ishlovchi, WebApp formatidagi yuqori konversiyali interfeys."
       },
       {
         id: 3,
-        name: "Grafik Dizayn & Brending Identika",
-        description: "Logotip, korporativ ranglar, bannerlar va professional ijtimoiy tarmoqlar vizual qiyofasi yaratish.",
-        price: "900,000 UZS dan",
-        tag: "Kreativ",
-        icon: "🎨"
+        name: "Zamonaviy Brend Web Sayt (Landing Page)",
+        category: "web",
+        priceNumber: 2200000,
+        priceFormatted: "2,200,000 UZS",
+        oldPrice: "2,600,000 UZS",
+        badge: "Yangi",
+        badgeClass: "",
+        icon: "💻",
+        rating: 4.8,
+        reviews: 31,
+        description: "Yuqori tezlikdagi, qidiruv tizimlariga (SEO) moslashtirilgan eksklyuziv sayt."
       },
       {
         id: 4,
-        name: "Shaxsiy Biznes Konsultatsiya",
-        description: "Loyihangizni tahlil qilish, arxitekturasini loyihalash va optimal IT yechimlarni tanlash bo'yicha ekspert maslahati.",
-        price: "Bepul (Dastlabki)",
-        tag: "Eksklyuziv",
-        icon: "⚡"
+        name: "Korporativ Brending & Logotip Paketi",
+        category: "design",
+        priceNumber: 950000,
+        priceFormatted: "950,000 UZS",
+        oldPrice: "1,200,000 UZS",
+        badge: "-20%",
+        badgeClass: "sale",
+        icon: "🎨",
+        rating: 4.9,
+        reviews: 64,
+        description: "Nufuzli brend qiyofasi: logotip, ranglar palitrasi, shriftlar va ijtimoiy tarmoqlar shablonlari."
+      },
+      {
+        id: 5,
+        name: "VIP Biznes Arxitektura & Konsultatsiya",
+        category: "hot",
+        priceNumber: 600000,
+        priceFormatted: "600,000 UZS",
+        oldPrice: "850,000 UZS",
+        badge: "Eksklyuziv",
+        badgeClass: "hot",
+        icon: "⚡",
+        rating: 5.0,
+        reviews: 89,
+        description: "Biznesingizni raqamlashtirish, CRM tanlash va IT jarayonlarni optimallashtirish bo'yicha to'liq sessiya."
+      },
+      {
+        id: 6,
+        name: "Klinika & Xizmatlar Bron Tizimi Boti",
+        category: "bots",
+        priceNumber: 1800000,
+        priceFormatted: "1,800,000 UZS",
+        oldPrice: "2,200,000 UZS",
+        badge: "Ommabop",
+        badgeClass: "",
+        icon: "🗓",
+        rating: 4.9,
+        reviews: 27,
+        description: "Mijozlar qabuliga onlayn navbat olish, eslatmalar yuborish va kalendar integratsiyasi."
       }
     ];
 
-    const fallbackPortfolio = [
-      {
-        id: 1,
-        title: "E-Commerce Mini App",
-        description: "20,000 dan ortiq mahsulotlar katalogiga ega zamonaviy internet-do'kon boti.",
-        icon: "🛍"
-      },
-      {
-        id: 2,
-        title: "Klinika Bron Qilish Tizimi",
-        description: "Shifokorlar qabuliga onlayn navbat olish va SMS xabarnomalar tizimi.",
-        icon: "🏥"
-      },
-      {
-        id: 3,
-        title: "Logistika & Yetkazib Berish",
-        description: "Kuryerlar harakatini real vaqtda kuzatish va buyurtma boshqaruvi platformasi.",
-        icon: "🚚"
-      },
-      {
-        id: 4,
-        title: "Restoran & Kafe Menyu",
-        description: "QR-kod orqali ochiladigan interaktiv raqamli taomnoma va to'lov tizimi.",
-        icon: "🍽"
-      }
-    ];
+    // State
+    let cart = []; // Array of { id, name, priceNumber, priceFormatted, icon, qty }
+    let displayedProducts = [...boutiqueCatalog];
+    let wishlist = new Set();
+    let placedOrdersHistory = JSON.parse(localStorage.getItem('mardonov_orders_history') || '[]');
 
-    const fallbackContacts = [
-      { type: "telegram", label: "Telegram Menejer", value: "https://t.me/mardonov_sale_bot", icon: "✈️" },
-      { type: "phone", label: "Aloqa Markazi", value: "+998 90 000 00 00", icon: "📞" },
-      { type: "instagram", label: "Rasmiy Instagram", value: "https://instagram.com", icon: "📷" }
-    ];
-
-    let currentServices = [];
-    let currentSelectedService = null;
-
-    // 3. Tab Switching Logic
-    function switchTab(tabId) {
-      hapticFeedback('medium');
-      
-      // Update Tab UI
-      document.querySelectorAll('.dock-tab').forEach(tab => {
-        if (tab.dataset.tab === tabId) {
-          tab.classList.add('active');
-        } else {
-          tab.classList.remove('active');
-        }
-      });
-
-      // Update Pages
-      document.querySelectorAll('.view-page').forEach(page => {
-        page.classList.remove('active');
-      });
-
-      const activePage = document.getElementById(`view-${tabId}`);
-      if (activePage) {
-        activePage.classList.add('active');
-      }
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // 4. Data Loading
-    async function loadAppData() {
-      // Load Services
-      try {
-        const res = await fetch('/api/services');
-        const json = await res.json();
-        if (json.status === 'success' && json.data && json.data.length > 0) {
-          currentServices = json.data;
-        } else {
-          currentServices = fallbackServices;
-        }
-      } catch (e) {
-        currentServices = fallbackServices;
-      }
-      renderServices(currentServices);
-
-      // Load Portfolio
-      try {
-        const res = await fetch('/api/portfolio');
-        const json = await res.json();
-        const portfolioData = (json.status === 'success' && json.data && json.data.length > 0) ? json.data : fallbackPortfolio;
-        renderPortfolio(portfolioData);
-      } catch (e) {
-        renderPortfolio(fallbackPortfolio);
-      }
-
-      // Load Contacts
-      try {
-        const res = await fetch('/api/contacts');
-        const json = await res.json();
-        const contactsData = (json.status === 'success' && json.data && json.data.length > 0) ? json.data : fallbackContacts;
-        renderContacts(contactsData);
-      } catch (e) {
-        renderContacts(fallbackContacts);
-      }
-
-      // Pre-fill user data from Telegram if available
+    // Initialize
+    function init() {
+      // Pre-fill user data
       if (tg?.initDataUnsafe?.user) {
         const u = tg.initDataUnsafe.user;
-        const nameInput = document.getElementById('input-user-name');
+        const nameInput = document.getElementById('checkout-name');
         if (nameInput) {
           nameInput.value = `${u.first_name || ''} ${u.last_name || ''}`.trim();
         }
       }
+      renderCatalog(displayedProducts);
+      renderOrdersHistory();
+      updateCartUI();
     }
 
-    // 5. Render Services
-    function renderServices(services) {
-      const homeList = document.getElementById('home-featured-services');
-      const allList = document.getElementById('all-services-list');
-      const selectElem = document.getElementById('input-service-select');
+    // Format Currency
+    function formatCurrency(num) {
+      return num.toLocaleString('uz-UZ') + " UZS";
+    }
 
-      const html = services.map(s => `
-        <div class="service-card">
-          <div class="service-header">
-            <div class="service-info">
-              <span class="service-tag">${s.tag || 'Xizmat'}</span>
-              <h3 class="service-title">${s.name}</h3>
-              <p class="service-desc">${s.description || ''}</p>
-            </div>
-            <div class="service-icon-box">${s.icon || '✦'}</div>
+    // Render Catalog
+    function renderCatalog(items) {
+      const grid = document.getElementById('products-catalog-grid');
+      const countLabel = document.getElementById('catalog-count');
+      if (countLabel) countLabel.innerText = `${items.length} ta mahsulot`;
+
+      if (items.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 40px 20px; color: var(--text-muted);">
+            <div style="font-size: 32px; margin-bottom: 8px;">🔍</div>
+            <div style="font-size: 14px; font-weight: 700; color: #fff;">Mahsulot topilmadi</div>
+            <div style="font-size: 12px; margin-top: 4px;">Qidiruv so'zini o'zgartirib ko'ring</div>
           </div>
-          <div class="service-bottom">
-            <div class="price-group">
-              <span class="price-label">Narxi</span>
-              <span class="price-value">${s.price || 'Kelishilgan'}</span>
+        `;
+        return;
+      }
+
+      grid.innerHTML = items.map(item => {
+        const inCart = cart.find(c => c.id === item.id);
+        const isWish = wishlist.has(item.id);
+        return `
+          <div class="product-card">
+            <div class="product-thumb">
+              ${item.badge ? `<div class="badge-corner ${item.badgeClass || ''}">${item.badge}</div>` : ''}
+              <button class="wishlist-btn ${isWish ? 'active' : ''}" onclick="toggleWishlist(${item.id}, event)">
+                ${isWish ? '❤️' : '♡'}
+              </button>
+              <span>${item.icon}</span>
             </div>
-            <button class="btn-order-pill" onclick="openOrderModal(${s.id})">
-              Buyurtma berish
-            </button>
+            <div class="product-content">
+              <div>
+                <div class="product-brand">MARDONOV BOUTIQUE</div>
+                <h3 class="product-name">${item.name}</h3>
+                <div class="product-rating">
+                  ★ ${item.rating} <span>(${item.reviews})</span>
+                </div>
+              </div>
+              <div>
+                <div class="price-box">
+                  <span class="current-price">${item.priceFormatted}</span>
+                  ${item.oldPrice ? `<span class="old-price">${item.oldPrice}</span>` : ''}
+                </div>
+                <button class="btn-add-cart ${inCart ? 'added' : ''}" onclick="addToCart(${item.id})">
+                  ${inCart ? `✓ Savatda (${inCart.qty})` : `+ Savatga qo'shish`}
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Cart Operations
+    function addToCart(productId) {
+      haptic('medium');
+      const item = boutiqueCatalog.find(p => p.id === productId);
+      if (!item) return;
+
+      const existing = cart.find(c => c.id === productId);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({
+          id: item.id,
+          name: item.name,
+          priceNumber: item.priceNumber,
+          priceFormatted: item.priceFormatted,
+          icon: item.icon,
+          qty: 1
+        });
+      }
+
+      showToast(`✓ "${item.name}" savatga qo'shildi`);
+      updateCartUI();
+      renderCatalog(displayedProducts);
+    }
+
+    function changeCartQty(productId, delta) {
+      haptic('light');
+      const idx = cart.findIndex(c => c.id === productId);
+      if (idx === -1) return;
+
+      cart[idx].qty += delta;
+      if (cart[idx].qty <= 0) {
+        cart.splice(idx, 1);
+      }
+      updateCartUI();
+      renderCatalog(displayedProducts);
+    }
+
+    function removeCartItem(productId) {
+      haptic('medium');
+      cart = cart.filter(c => c.id !== productId);
+      updateCartUI();
+      renderCatalog(displayedProducts);
+    }
+
+    function updateCartUI() {
+      const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
+      const totalSum = cart.reduce((sum, i) => sum + (i.priceNumber * i.qty), 0);
+
+      // Header Count
+      const headerBadge = document.getElementById('header-cart-count');
+      if (headerBadge) headerBadge.innerText = totalItems;
+
+      // Floating Cart Pill
+      const pill = document.getElementById('floating-cart');
+      const pillCount = document.getElementById('pill-items-count');
+      const pillTotal = document.getElementById('pill-total-amount');
+
+      if (pill) {
+        if (totalItems > 0) {
+          pill.classList.add('visible');
+          if (pillCount) pillCount.innerText = totalItems;
+          if (pillTotal) pillTotal.innerText = formatCurrency(totalSum);
+        } else {
+          pill.classList.remove('visible');
+        }
+      }
+
+      // Drawer Content
+      renderDrawerCart(totalSum);
+    }
+
+    function renderDrawerCart(totalSum) {
+      const container = document.getElementById('cart-items-container');
+      const subtotalElem = document.getElementById('summary-subtotal');
+      const totalElem = document.getElementById('summary-total');
+      const submitBtn = document.getElementById('btn-submit-checkout');
+
+      if (subtotalElem) subtotalElem.innerText = formatCurrency(totalSum);
+      if (totalElem) totalElem.innerText = formatCurrency(totalSum);
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 30px 10px; color: var(--text-muted);">
+            <div style="font-size: 38px; margin-bottom: 10px;">🛍</div>
+            <div style="font-size: 15px; font-weight: 700; color: #fff;">Savatchangiz bo'sh</div>
+            <div style="font-size: 12px; margin-top: 4px;">Katalogdan kerakli xizmat yoki mahsulotlarni tanlang</div>
+          </div>
+        `;
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.style.opacity = '0.5';
+          submitBtn.innerText = "Savatcha bo'sh";
+        }
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+        submitBtn.innerHTML = `<span>Buyurtmani Tasdiqlash (${formatCurrency(totalSum)})</span> <span>→</span>`;
+      }
+
+      container.innerHTML = cart.map(item => `
+        <div class="cart-item-row">
+          <div class="cart-item-icon">${item.icon}</div>
+          <div class="cart-item-details">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-price">${formatCurrency(item.priceNumber * item.qty)}</div>
+          </div>
+          <div class="cart-item-controls">
+            <button class="stepper-btn" onclick="changeCartQty(${item.id}, -1)">-</button>
+            <span class="stepper-val">${item.qty}</span>
+            <button class="stepper-btn" onclick="changeCartQty(${item.id}, 1)">+</button>
+            <button class="stepper-btn" style="margin-left: 4px; color: #ef4444;" onclick="removeCartItem(${item.id})">&times;</button>
           </div>
         </div>
       `).join('');
-
-      if (homeList) homeList.innerHTML = html;
-      if (allList) allList.innerHTML = html;
-
-      // Populate Select in Order Sheet
-      if (selectElem) {
-        selectElem.innerHTML = services.map(s => `
-          <option value="${s.id}">${s.name} (${s.price})</option>
-        `).join('');
-      }
     }
 
-    // 6. Render Portfolio
-    function renderPortfolio(portfolio) {
-      const homePort = document.getElementById('home-featured-portfolio');
-      const allPort = document.getElementById('all-portfolio-list');
-
-      const html = portfolio.map(p => `
-        <div class="portfolio-card" onclick="openOrderModal()">
-          <div class="portfolio-media">
-            <span>${p.icon || '💼'}</span>
-          </div>
-          <div class="portfolio-body">
-            <h4 class="portfolio-title">${p.title}</h4>
-            <p class="portfolio-desc">${p.description || ''}</p>
-          </div>
-        </div>
-      `).join('');
-
-      if (homePort) homePort.innerHTML = html;
-      if (allPort) allPort.innerHTML = html;
-    }
-
-    // 7. Render Contacts
-    function renderContacts(contacts) {
-      const container = document.getElementById('contacts-list-container');
-      if (!container) return;
-
-      container.innerHTML = contacts.map(c => `
-        <a href="${c.value.startsWith('http') ? c.value : 'tel:' + c.value.replace(/[^0-9+]/g, '')}" target="_blank" class="contact-row" onclick="hapticFeedback()">
-          <div class="contact-meta">
-            <div class="contact-icon">${c.icon || '📱'}</div>
-            <div class="contact-text">
-              <h3>${c.label || c.type.toUpperCase()}</h3>
-              <p>${c.value}</p>
-            </div>
-          </div>
-          <span class="contact-arrow">→</span>
-        </a>
-      `).join('');
-    }
-
-    // 8. Order Modal Handlers
-    function openOrderModal(serviceId = null) {
-      hapticFeedback('medium');
-      const modal = document.getElementById('order-modal');
-      const select = document.getElementById('input-service-select');
-      
-      let s = null;
-      if (serviceId) {
-        s = currentServices.find(x => x.id === serviceId);
-      }
-      if (!s && currentServices.length > 0) {
-        s = currentServices[0];
-      }
-
-      if (s) {
-        currentSelectedService = s;
-        if (select) select.value = s.id;
-        document.getElementById('modal-service-name').innerText = s.name;
-        document.getElementById('modal-service-price').innerText = s.price || '-';
-      }
-
-      modal.classList.add('active');
+    // Cart Drawer Open/Close
+    function openCartDrawer() {
+      haptic('medium');
+      const drawer = document.getElementById('cart-drawer-modal');
+      drawer.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
 
-    function closeOrderModal(event = null) {
-      hapticFeedback('light');
-      const modal = document.getElementById('order-modal');
-      modal.classList.remove('active');
+    function closeCartDrawer(event = null) {
+      haptic('light');
+      const drawer = document.getElementById('cart-drawer-modal');
+      drawer.classList.remove('active');
       document.body.style.overflow = '';
     }
 
-    function onSelectServiceChange(select) {
-      const s = currentServices.find(x => x.id == select.value);
-      if (s) {
-        currentSelectedService = s;
-        document.getElementById('modal-service-name').innerText = s.name;
-        document.getElementById('modal-service-price').innerText = s.price || '-';
-      }
-    }
+    // Submit Checkout
+    async function submitCartOrder() {
+      if (cart.length === 0) return;
+      haptic('heavy');
 
-    function filterServices(filterType, btn) {
-      hapticFeedback('light');
-      document.querySelectorAll('#category-pills .pill-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      if (filterType === 'all') {
-        renderServices(currentServices);
-      } else if (filterType === 'popular') {
-        renderServices(currentServices.filter(s => (s.tag && s.tag.toLowerCase().includes('ommabop')) || s.id % 2 === 1));
-      } else {
-        renderServices(currentServices.filter(s => (s.tag && s.tag.toLowerCase().includes('premium')) || s.id % 2 === 0));
-      }
-    }
-
-    // 9. Order Submission (API + Telegram WebApp sendData)
-    async function handleOrderSubmit(e) {
-      e.preventDefault();
-      hapticFeedback('heavy');
-
-      const name = document.getElementById('input-user-name').value.trim();
-      const phone = document.getElementById('input-user-phone').value.trim();
-      const serviceId = currentSelectedService ? currentSelectedService.id : 1;
-      const serviceName = currentSelectedService ? currentSelectedService.name : 'Xizmat';
+      const name = document.getElementById('checkout-name').value.trim();
+      const phone = document.getElementById('checkout-phone').value.trim();
+      const comment = document.getElementById('checkout-comment').value.trim();
       const userId = tg?.initDataUnsafe?.user?.id || 0;
 
-      const submitBtn = document.getElementById('btn-submit-order-elem');
+      if (!name) {
+        alert("Iltimos, ismingizni kiriting");
+        return;
+      }
+      if (!phone) {
+        alert("Iltimos, telefon raqamingizni kiriting");
+        return;
+      }
+
+      const totalSum = cart.reduce((sum, i) => sum + (i.priceNumber * i.qty), 0);
+      const submitBtn = document.getElementById('btn-submit-checkout');
       submitBtn.disabled = true;
       submitBtn.innerHTML = `<span>Yuborilmoqda...</span>`;
 
@@ -1388,52 +1429,168 @@
         user_id: userId,
         user_name: name,
         user_phone: phone,
-        service_id: serviceId,
-        service_name: serviceName
+        items: cart.map(c => ({
+          id: c.id,
+          name: c.name,
+          qty: c.qty,
+          price: formatCurrency(c.priceNumber * c.qty)
+        })),
+        total_price: formatCurrency(totalSum),
+        comment: comment,
+        service_id: cart[0].id,
+        service_name: cart.length === 1 ? cart[0].name : `${cart.length} ta mahsulot savati`
       };
 
       try {
-        // A. Send to Backend REST API
         await fetch('/api/orders', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
       } catch (err) {
-        console.warn("API error, continuing with Telegram fallback", err);
+        console.warn("API error:", err);
       }
 
-      // B. Send through Telegram sendData if available
+      // Telegram sendData fallback
       if (tg && typeof tg.sendData === 'function') {
         try {
           tg.sendData(JSON.stringify({
-            action: "new_order",
+            action: "store_cart_order",
             ...payload
           }));
-        } catch (e) {
-          console.warn("sendData error:", e);
-        }
+        } catch (e) {}
       }
 
-      // Show toast and close sheet
-      closeOrderModal();
-      showToast("Buyurtmangiz muvaffaqiyatli qabul qilindi!");
+      // Save to local order history
+      const orderRecord = {
+        id: Math.floor(1000 + Math.random() * 9000),
+        date: new Date().toLocaleDateString('uz-UZ', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }),
+        itemsCount: cart.reduce((s, i) => s + i.qty, 0),
+        total: formatCurrency(totalSum),
+        status: "Qabul qilindi"
+      };
+      placedOrdersHistory.unshift(orderRecord);
+      localStorage.setItem('mardonov_orders_history', JSON.stringify(placedOrdersHistory));
+
+      // Reset Cart
+      cart = [];
+      updateCartUI();
+      closeCartDrawer();
+      renderOrdersHistory();
+      renderCatalog(displayedProducts);
+
+      showToast("🎉 Buyurtmangiz qabul qilindi!");
       submitBtn.disabled = false;
-      submitBtn.innerHTML = `<span>Tasdiqlash va Yuborish</span> <span>→</span>`;
+      submitBtn.innerHTML = `<span>Buyurtmani Tasdiqlash</span> <span>→</span>`;
+
+      // Switch to Orders Tab to show their new order
+      switchDockTab('orders');
     }
 
-    function showToast(msg) {
-      const toast = document.getElementById('app-toast');
-      const text = document.getElementById('toast-text');
-      text.innerText = msg;
+    // Orders History View
+    function renderOrdersHistory() {
+      const container = document.getElementById('user-orders-history');
+      if (!container) return;
+
+      if (placedOrdersHistory.length === 0) {
+        container.innerHTML = `
+          <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 30px 16px; text-align: center; color: var(--text-muted);">
+            <div style="font-size: 32px; margin-bottom: 8px;">📦</div>
+            <div style="font-size: 14px; font-weight: 700; color: #fff;">Buyurtmalar tarixi bo'sh</div>
+            <div style="font-size: 12px; margin-top: 4px;">Siz hali xarid amalga oshirmadingiz</div>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = placedOrdersHistory.map(ord => `
+        <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 14px 16px; display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <div style="font-size: 14px; font-weight: 800; color: #fff;">Buyurtma #${ord.id}</div>
+            <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">${ord.date} • ${ord.itemsCount} ta mahsulot</div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 800; color: var(--gold-accent);">${ord.total}</div>
+            <div style="font-size: 10px; font-weight: 700; color: #10b981; margin-top: 2px;">● ${ord.status}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Filter by Category
+    function filterCategory(cat, btn = null) {
+      haptic('light');
+      if (btn) {
+        document.querySelectorAll('#cat-chips .cat-chip').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+      }
+
+      if (cat === 'all') {
+        displayedProducts = [...boutiqueCatalog];
+      } else if (cat === 'hot') {
+        displayedProducts = boutiqueCatalog.filter(p => p.badge && (p.badge.includes('Xit') || p.badge.includes('Premium') || p.badge.includes('Eksklyuziv')));
+      } else {
+        displayedProducts = boutiqueCatalog.filter(p => p.category === cat);
+      }
+      renderCatalog(displayedProducts);
+    }
+
+    // Live Search
+    function handleSearch(query) {
+      const q = query.toLowerCase().trim();
+      if (!q) {
+        displayedProducts = [...boutiqueCatalog];
+      } else {
+        displayedProducts = boutiqueCatalog.filter(p => 
+          p.name.toLowerCase().includes(q) || 
+          p.description.toLowerCase().includes(q) ||
+          p.priceFormatted.toLowerCase().includes(q)
+        );
+      }
+      renderCatalog(displayedProducts);
+    }
+
+    // Wishlist Toggle
+    function toggleWishlist(id, e) {
+      e.stopPropagation();
+      haptic('light');
+      if (wishlist.has(id)) {
+        wishlist.delete(id);
+      } else {
+        wishlist.add(id);
+      }
+      renderCatalog(displayedProducts);
+    }
+
+    // Dock Tabs Navigation
+    function switchDockTab(tabId) {
+      haptic('medium');
+      document.querySelectorAll('.dock-tab').forEach(t => {
+        if (t.dataset.tab === tabId) {
+          t.classList.add('active');
+        } else {
+          t.classList.remove('active');
+        }
+      });
+
+      document.querySelectorAll('.view-page').forEach(p => p.classList.remove('active'));
+      const target = document.getElementById(`view-${tabId}`);
+      if (target) target.classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Toast Notification
+    function showToast(text) {
+      const toast = document.getElementById('toast-notify');
+      toast.innerText = text;
       toast.classList.add('show');
       setTimeout(() => {
         toast.classList.remove('show');
-      }, 3500);
+      }, 3000);
     }
 
-    // Initialize on load
-    document.addEventListener('DOMContentLoaded', loadAppData);
+    document.addEventListener('DOMContentLoaded', init);
   </script>
 </body>
 </html>
