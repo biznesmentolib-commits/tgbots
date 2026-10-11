@@ -3,39 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Premium Xizmatlar | Telegram Mini App</title>
+  <title>Services | Stealth Edition</title>
   
   <!-- Telegram Web App JS SDK -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-  <!-- Google Font Inter -->
+  <!-- Google Font: Inter Display & Text -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
   <style>
+    /* ==========================================================================
+       STEALTH TITANIUM DESIGN SYSTEM (Apple / Minimalist Luxury)
+       ========================================================================== */
     :root {
-      --tg-bg: var(--tg-theme-bg-color, #0b0f19);
-      --tg-text: var(--tg-theme-text-color, #f1f5f9);
-      --tg-hint: var(--tg-theme-hint-color, #94a3b8);
-      --tg-link: var(--tg-theme-link-color, #38bdf8);
-      --tg-button: var(--tg-theme-button-color, #4f46e5);
-      --tg-button-text: var(--tg-theme-button-text-color, #ffffff);
-      --tg-sec-bg: var(--tg-theme-secondary-bg-color, #131b2e);
-
-      --primary-gradient: linear-gradient(135deg, #6366f1 0%, #3b82f6 50%, #06b6d4 100%);
-      --accent-gradient: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
-      --emerald-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
-      --glass-bg: rgba(255, 255, 255, 0.05);
-      --glass-card-bg: rgba(26, 34, 53, 0.75);
-      --glass-border: rgba(255, 255, 255, 0.08);
-      --glass-highlight: rgba(255, 255, 255, 0.15);
+      --bg-base: #08090b;
+      --bg-surface: #111317;
+      --bg-surface-elevated: #171a20;
+      --bg-surface-card: #13151a;
+      
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --border-medium: rgba(255, 255, 255, 0.12);
+      --border-active: rgba(255, 255, 255, 0.28);
+      
+      --text-primary: #ffffff;
+      --text-secondary: #9aa0ad;
+      --text-muted: #5e6573;
+      
+      --titanium-pill: #1d2129;
+      --titanium-accent: #f3f4f6;
+      --accent-badge: #232832;
+      
+      --btn-primary-bg: #ffffff;
+      --btn-primary-text: #0a0b0e;
+      
       --radius-sm: 10px;
       --radius-md: 16px;
-      --radius-lg: 24px;
-      --shadow-soft: 0 10px 25px -5px rgba(0, 0, 0, 0.35);
-      --shadow-glow: 0 0 25px rgba(99, 102, 241, 0.25);
-      --nav-height: 70px;
+      --radius-lg: 22px;
+      --radius-full: 9999px;
+      
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+      --font-mono: 'Space Grotesk', -apple-system, monospace;
+      
       --safe-bottom: env(safe-area-inset-bottom, 0px);
     }
 
@@ -47,897 +57,783 @@
     }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-color: var(--tg-bg);
-      color: var(--tg-text);
+      font-family: var(--font-main);
+      background-color: var(--bg-base);
+      color: var(--text-primary);
       min-height: 100vh;
       overflow-x: hidden;
-      padding-bottom: calc(var(--nav-height) + var(--safe-bottom) + 20px);
-      user-select: none;
+      padding-bottom: calc(90px + var(--safe-bottom));
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.5;
     }
 
-    /* Ambient background lights */
-    .ambient-glow {
+    /* Subtle luxury top ambient highlight */
+    .top-vignette {
       position: fixed;
-      width: 280px;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 600px;
       height: 280px;
-      border-radius: 50%;
-      filter: blur(80px);
+      background: radial-gradient(50% 60% at 50% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
       pointer-events: none;
       z-index: 0;
-      opacity: 0.25;
-      animation: floatPulse 10s ease-in-out infinite alternate;
-    }
-    .ambient-glow-1 {
-      top: -60px;
-      left: -60px;
-      background: #6366f1;
-    }
-    .ambient-glow-2 {
-      bottom: 120px;
-      right: -80px;
-      background: #06b6d4;
     }
 
-    @keyframes floatPulse {
-      0% { transform: scale(1) translate(0, 0); }
-      100% { transform: scale(1.15) translate(20px, 15px); }
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 18px;
+      position: relative;
+      z-index: 1;
     }
 
-    /* Header Bar */
+    /* ==========================================================================
+       HEADER (Minimalist Status & Brand)
+       ========================================================================== */
     .app-header {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      background: rgba(11, 15, 25, 0.75);
-      border-bottom: 1px solid var(--glass-border);
-      padding: 12px 18px;
+      padding: 16px 0 12px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .brand {
+    .brand-group {
       display: flex;
       align-items: center;
       gap: 10px;
     }
-    .brand-logo {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: var(--primary-gradient);
+
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      background: #191c22;
+      border: 1px solid var(--border-medium);
+      border-radius: 9px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
-      box-shadow: var(--shadow-glow);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: -0.5px;
+      color: #fff;
     }
-    .brand-title {
-      font-size: 16px;
+
+    .brand-meta h1 {
+      font-size: 15px;
       font-weight: 700;
       letter-spacing: -0.3px;
-      background: linear-gradient(135deg, #ffffff, #94a3b8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .brand-subtitle {
-      font-size: 11px;
-      color: var(--tg-hint);
-      font-weight: 500;
+      color: var(--text-primary);
     }
 
-    .user-pill {
+    .brand-meta p {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
       display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 5px 12px;
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--tg-text);
+      gap: 5px;
     }
+
     .status-dot {
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: #10b981;
-      box-shadow: 0 0 8px #10b981;
+      display: inline-block;
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
     }
 
-    /* Page Navigation & Pages Container */
-    .pages-container {
-      position: relative;
-      z-index: 10;
-      padding: 16px;
-      max-width: 600px;
-      margin: 0 auto;
+    .header-action {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
     }
 
-    .page {
-      display: none;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.35s ease, transform 0.35s ease;
-    }
-    .page.active {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-      animation: fadeInPage 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    .header-action:active {
+      transform: scale(0.96);
+      background: var(--bg-surface-elevated);
+      color: #fff;
     }
 
-    @keyframes fadeInPage {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Hero Section */
-    .hero-card {
+    /* ==========================================================================
+       HERO CARD (Stealth Luxury Banner)
+       ========================================================================== */
+    .hero-box {
+      margin: 12px 0 24px;
+      padding: 24px 20px;
+      background: linear-gradient(180deg, #16181e 0%, #101216 100%);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-lg);
       position: relative;
       overflow: hidden;
-      border-radius: var(--radius-lg);
-      padding: 24px 20px;
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(6, 182, 212, 0.15)), var(--glass-card-bg);
-      border: 1px solid var(--glass-border);
-      backdrop-filter: blur(12px);
-      margin-bottom: 22px;
-      box-shadow: var(--shadow-soft);
-    }
-    .hero-card::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -30%;
-      width: 180px;
-      height: 180px;
-      background: var(--primary-gradient);
-      border-radius: 50%;
-      opacity: 0.18;
-      filter: blur(40px);
-      pointer-events: none;
+      box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.5);
     }
 
-    .badge-pill {
+    .hero-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 15%;
+      right: 15%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+    }
+
+    .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 4px 12px;
-      background: rgba(99, 102, 241, 0.2);
-      border: 1px solid rgba(99, 102, 241, 0.4);
-      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
       font-size: 11px;
       font-weight: 600;
-      color: #a5b4fc;
-      margin-bottom: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+      letter-spacing: 0.3px;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
     }
 
     .hero-title {
       font-size: 24px;
       font-weight: 800;
       line-height: 1.25;
+      letter-spacing: -0.8px;
       margin-bottom: 10px;
-      letter-spacing: -0.5px;
-    }
-    .hero-title span {
-      background: var(--primary-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: #ffffff;
     }
 
-    .hero-desc {
-      font-size: 13.5px;
-      line-height: 1.5;
-      color: var(--tg-hint);
+    .hero-subtitle {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.55;
       margin-bottom: 20px;
+      font-weight: 400;
     }
 
-    .hero-actions {
-      display: flex;
-      gap: 10px;
-    }
-
-    .btn-main {
-      flex: 1;
-      padding: 13px 18px;
-      border-radius: var(--radius-md);
-      background: var(--primary-gradient);
-      color: #fff;
-      font-size: 14px;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
-      transition: all 0.2s ease;
-    }
-    .btn-main:active {
-      transform: scale(0.97);
-      filter: brightness(0.92);
-    }
-
-    .btn-secondary {
-      padding: 13px 18px;
-      border-radius: var(--radius-md);
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      color: var(--tg-text);
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      transition: all 0.2s ease;
-    }
-    .btn-secondary:active {
-      transform: scale(0.97);
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    /* Stats Grid */
-    .stats-grid {
+    .hero-stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-bottom: 24px;
-    }
-    .stat-card {
-      background: var(--glass-card-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-md);
-      padding: 14px 10px;
-      text-align: center;
-      backdrop-filter: blur(10px);
-    }
-    .stat-num {
-      font-size: 18px;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 2px;
-      background: var(--primary-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .stat-label {
-      font-size: 11px;
-      color: var(--tg-hint);
-      font-weight: 500;
+      gap: 8px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-subtle);
     }
 
-    /* Section Headers */
-    .section-head {
+    .stat-item {
+      text-align: left;
+    }
+
+    .stat-val {
+      font-family: var(--font-mono);
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+
+    .stat-lbl {
+      font-size: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      margin-top: 2px;
+    }
+
+    /* ==========================================================================
+       SECTION HEADERS
+       ========================================================================== */
+    .section-header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      margin-bottom: 14px;
+      align-items: flex-end;
+      margin: 28px 0 14px;
+      padding: 0 2px;
     }
-    .section-title {
-      font-size: 18px;
+
+    .section-header h2 {
+      font-size: 17px;
       font-weight: 700;
-      letter-spacing: -0.3px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      letter-spacing: -0.4px;
+      color: var(--text-primary);
     }
-    .section-link {
-      font-size: 13px;
-      color: var(--tg-link);
+
+    .section-header .see-all {
+      font-size: 12px;
+      color: var(--text-secondary);
       text-decoration: none;
       font-weight: 600;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 4px;
+      transition: color 0.2s;
     }
 
-    /* Services List / Cards */
+    .section-header .see-all:hover {
+      color: #fff;
+    }
+
+    /* ==========================================================================
+       CATEGORY FILTER PILLS (Segmented Filter)
+       ========================================================================== */
+    .pills-scroll {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding-bottom: 6px;
+      margin-bottom: 16px;
+    }
+
+    .pills-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .pill-btn {
+      flex-shrink: 0;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .pill-btn.active {
+      background: #ffffff;
+      color: #090a0c;
+      border-color: #ffffff;
+      box-shadow: 0 4px 14px rgba(255, 255, 255, 0.15);
+    }
+
+    .pill-btn:active {
+      transform: scale(0.96);
+    }
+
+    /* ==========================================================================
+       SERVICE CARDS (Clean Precision Geometry)
+       ========================================================================== */
     .services-grid {
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      margin-bottom: 24px;
+      gap: 12px;
     }
 
     .service-card {
-      background: var(--glass-card-bg);
-      border: 1px solid var(--glass-border);
+      background: var(--bg-surface-card);
+      border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
       padding: 16px;
-      display: flex;
-      gap: 14px;
-      align-items: center;
-      cursor: pointer;
-      backdrop-filter: blur(12px);
-      box-shadow: var(--shadow-soft);
-      transition: transform 0.2s ease, border-color 0.2s ease;
       position: relative;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .service-card:hover, .service-card:focus-within {
+      border-color: var(--border-medium);
+      background: var(--bg-surface-elevated);
+    }
+
+    .service-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .service-info {
+      flex: 1;
+    }
+
+    .service-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .service-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.3px;
+      line-height: 1.35;
+    }
+
+    .service-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-top: 4px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
       overflow: hidden;
-    }
-    .service-card:active {
-      transform: scale(0.985);
-    }
-    .service-card:hover {
-      border-color: rgba(99, 102, 241, 0.4);
     }
 
     .service-icon-box {
-      width: 58px;
-      height: 58px;
-      min-width: 58px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(6, 182, 212, 0.2));
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: #1a1e26;
+      border: 1px solid var(--border-subtle);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 26px;
-      position: relative;
+      font-size: 18px;
+      flex-shrink: 0;
     }
 
-    .service-img {
+    .service-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .price-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .price-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .price-value {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.3px;
+    }
+
+    .btn-order-pill {
+      background: #ffffff;
+      color: #0b0c0e;
+      border: none;
+      padding: 9px 18px;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-order-pill:active {
+      transform: scale(0.95);
+      background: #e2e4e8;
+    }
+
+    /* ==========================================================================
+       PORTFOLIO GRID
+       ========================================================================== */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .portfolio-card {
+      background: var(--bg-surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .portfolio-card:hover {
+      border-color: var(--border-medium);
+      transform: translateY(-2px);
+    }
+
+    .portfolio-media {
+      height: 110px;
+      background: #181c24;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      position: relative;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .portfolio-media img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 14px;
     }
 
-    .service-content {
-      flex: 1;
-      min-width: 0;
+    .portfolio-body {
+      padding: 12px;
     }
-    .service-name {
-      font-size: 15px;
+
+    .portfolio-title {
+      font-size: 13px;
       font-weight: 700;
       color: #fff;
+      line-height: 1.3;
       margin-bottom: 4px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
-    .service-desc {
-      font-size: 12.5px;
-      color: var(--tg-hint);
+
+    .portfolio-desc {
+      font-size: 11px;
+      color: var(--text-muted);
       line-height: 1.4;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      margin-bottom: 8px;
-    }
-    .service-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .price-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 13px;
-      font-weight: 700;
-      color: #38bdf8;
-      background: rgba(56, 189, 248, 0.1);
-      padding: 3px 8px;
-      border-radius: 8px;
-      border: 1px solid rgba(56, 189, 248, 0.2);
     }
 
-    .btn-select-svc {
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
+    /* ==========================================================================
+       CONTACT & FAQ CARDS
+       ========================================================================== */
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .contact-row:active {
+      background: var(--bg-surface-elevated);
+      border-color: var(--border-medium);
+      transform: scale(0.99);
+    }
+
+    .contact-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .contact-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: #1a1e26;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
       color: #fff;
-      padding: 5px 12px;
-      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .contact-text h3 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .contact-text p {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 1px;
+    }
+
+    .contact-arrow {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* ==========================================================================
+       iOS FLOATING DOCK (Bottom Navigation)
+       ========================================================================== */
+    .dock-wrapper {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      padding: 12px 18px calc(12px + var(--safe-bottom));
+      z-index: 100;
+      pointer-events: none;
+    }
+
+    .dock-bar {
+      pointer-events: auto;
+      background: rgba(18, 20, 26, 0.88);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-full);
+      padding: 6px 8px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7);
+    }
+
+    .dock-tab {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
       font-size: 12px;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .btn-select-svc:hover, .btn-select-svc:active {
-      background: var(--tg-button);
-      color: var(--tg-button-text);
-      border-color: var(--tg-button);
-    }
-
-    /* Advantage / Features Section */
-    .features-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-    .feature-item {
-      background: var(--glass-card-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-md);
-      padding: 14px;
-    }
-    .feature-icon {
-      font-size: 22px;
-      margin-bottom: 8px;
-    }
-    .feature-title {
-      font-size: 13.5px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-    .feature-desc {
-      font-size: 11.5px;
-      color: var(--tg-hint);
-      line-height: 1.35;
-    }
-
-    /* Portfolio Gallery & Grid */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-
-    .portfolio-card {
-      background: var(--glass-card-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      cursor: pointer;
-      position: relative;
-      transition: transform 0.25s ease, border-color 0.2s ease;
-      box-shadow: var(--shadow-soft);
-    }
-    .portfolio-card:active {
-      transform: scale(0.97);
-    }
-
-    .portfolio-thumb {
-      width: 100%;
-      height: 120px;
-      background: linear-gradient(135deg, #1e293b, #0f172a);
-      position: relative;
-      overflow: hidden;
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .portfolio-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s ease;
+
+    .dock-tab svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
-    .portfolio-card:hover .portfolio-thumb img {
-      transform: scale(1.05);
+
+    .dock-tab.active {
+      background: #ffffff;
+      color: #0b0c0e;
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(255, 255, 255, 0.2);
     }
-    .portfolio-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(11, 15, 25, 0.9) 0%, transparent 70%);
+
+    .dock-tab:active {
+      transform: scale(0.95);
+    }
+
+    /* ==========================================================================
+       VIEW ROUTING (Single Page App Sections)
+       ========================================================================== */
+    .view-page {
+      display: none;
+      animation: fadeIn 0.25s ease forwards;
+    }
+
+    .view-page.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ==========================================================================
+       NATIVE iOS BOTTOM SHEET MODAL (Order Sheet)
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
       display: flex;
       align-items: flex-end;
-      padding: 10px;
-    }
-
-    .portfolio-info {
-      padding: 12px;
-    }
-    .portfolio-tag {
-      font-size: 10px;
-      font-weight: 700;
-      color: #818cf8;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 4px;
-    }
-    .portfolio-title {
-      font-size: 13.5px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 4px;
-      line-height: 1.3;
-      display: -webkit-box;
-      -webkit-line-clamp: 1;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .portfolio-desc-short {
-      font-size: 11.5px;
-      color: var(--tg-hint);
-      line-height: 1.3;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    /* Lightbox Modal */
-    .lightbox-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      display: none;
-      align-items: center;
       justify-content: center;
-      padding: 20px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
     }
-    .lightbox-modal.active {
-      display: flex;
+
+    .modal-overlay.active {
       opacity: 1;
+      pointer-events: auto;
     }
-    .lightbox-content {
-      background: var(--tg-sec-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-lg);
+
+    .sheet-card {
+      background: #14171e;
+      border: 1px solid var(--border-medium);
+      border-bottom: none;
+      border-radius: 28px 28px 0 0;
       width: 100%;
-      max-width: 480px;
-      overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-      animation: modalZoom 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 16px 22px calc(30px + var(--safe-bottom));
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.8);
     }
-    @keyframes modalZoom {
-      from { transform: scale(0.92); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
+
+    .modal-overlay.active .sheet-card {
+      transform: translateY(0);
     }
-    .lightbox-img-wrap {
-      width: 100%;
-      height: 220px;
-      background: #0f172a;
+
+    .sheet-handle {
+      width: 38px;
+      height: 4px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.2);
+      margin: 0 auto 18px;
+    }
+
+    .sheet-head {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      position: relative;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
     }
-    .lightbox-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .lightbox-close {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: rgba(0, 0, 0, 0.65);
+
+    .sheet-title {
+      font-size: 19px;
+      font-weight: 800;
       color: #fff;
-      border: none;
-      font-size: 18px;
+      letter-spacing: -0.4px;
+    }
+
+    .sheet-close {
+      background: #20242e;
+      border: 1px solid var(--border-subtle);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      color: var(--text-secondary);
+      font-size: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      backdrop-filter: blur(4px);
-    }
-    .lightbox-body {
-      padding: 20px;
-    }
-    .lightbox-title {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-    .lightbox-desc {
-      font-size: 13.5px;
-      color: var(--tg-hint);
-      line-height: 1.5;
-      margin-bottom: 20px;
     }
 
-    /* Order Form */
-    .form-container {
-      background: var(--glass-card-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-lg);
-      padding: 22px;
-      box-shadow: var(--shadow-soft);
-      backdrop-filter: blur(14px);
-    }
-    .form-header {
+    .sheet-selected-summary {
+      background: #191c25;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px;
       margin-bottom: 20px;
-      text-align: center;
-    }
-    .form-title {
-      font-size: 20px;
-      font-weight: 800;
-      margin-bottom: 6px;
-      background: var(--primary-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .form-subtitle {
-      font-size: 13px;
-      color: var(--tg-hint);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .form-group {
       margin-bottom: 16px;
     }
+
     .form-label {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--tg-text);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: var(--text-muted);
       margin-bottom: 6px;
-    }
-    .form-label span {
-      color: #ef4444;
+      display: block;
     }
 
-    .input-wrap {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-    .input-icon {
-      position: absolute;
-      left: 14px;
-      font-size: 16px;
-      color: var(--tg-hint);
-      pointer-events: none;
-    }
-
-    .form-input, .form-select, .form-textarea {
+    .form-input, .form-select {
       width: 100%;
-      background: rgba(15, 23, 42, 0.7);
-      border: 1px solid var(--glass-border);
+      background: #1a1e27;
+      border: 1px solid var(--border-medium);
       border-radius: var(--radius-md);
-      padding: 13px 14px 13px 42px;
-      font-size: 14px;
+      padding: 13px 14px;
       color: #fff;
+      font-size: 14px;
       font-family: inherit;
       outline: none;
-      transition: all 0.2s ease;
-      -webkit-appearance: none;
-    }
-    .form-select {
-      cursor: pointer;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2394a3b8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11.5l-5-5h10l-5 5z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 14px center;
-    }
-    .form-textarea {
-      padding: 12px 14px;
-      min-height: 80px;
-      resize: vertical;
-    }
-    .form-input:focus, .form-select:focus, .form-textarea:focus {
-      border-color: #6366f1;
-      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
-      background: rgba(15, 23, 42, 0.9);
+      transition: all 0.2s;
     }
 
-    .order-summary-box {
-      background: rgba(99, 102, 241, 0.08);
-      border: 1px dashed rgba(99, 102, 241, 0.35);
-      border-radius: var(--radius-md);
-      padding: 14px;
-      margin-bottom: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .summary-label {
-      font-size: 12px;
-      color: var(--tg-hint);
-    }
-    .summary-val {
-      font-size: 15px;
-      font-weight: 700;
-      color: #38bdf8;
+    .form-input:focus, .form-select:focus {
+      border-color: #ffffff;
+      background: #202430;
     }
 
-    /* Contacts Page */
-    .contact-cards-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-    .contact-card {
-      background: var(--glass-card-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-md);
-      padding: 16px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      text-decoration: none;
-      color: var(--tg-text);
-      backdrop-filter: blur(12px);
-      box-shadow: var(--shadow-soft);
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-    .contact-card:active {
-      transform: scale(0.985);
-    }
-    .contact-card:hover {
-      border-color: rgba(99, 102, 241, 0.4);
-    }
-    .contact-icon-box {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-    }
-    .contact-meta {
-      flex: 1;
-    }
-    .contact-type {
-      font-size: 11px;
-      color: var(--tg-hint);
-      text-transform: uppercase;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-    .contact-val {
-      font-size: 14px;
-      font-weight: 700;
-      color: #fff;
-    }
-    .contact-arrow {
-      font-size: 16px;
-      color: var(--tg-hint);
-    }
-
-    /* FAQ Accordion */
-    .faq-item {
-      background: var(--glass-card-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-md);
-      margin-bottom: 10px;
-      overflow: hidden;
-    }
-    .faq-quest {
-      padding: 14px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 13.5px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    .faq-ans {
-      padding: 0 16px 14px;
-      font-size: 12.5px;
-      color: var(--tg-hint);
-      line-height: 1.45;
-      display: none;
-    }
-    .faq-item.open .faq-ans {
-      display: block;
-    }
-    .faq-item.open .faq-arrow {
-      transform: rotate(180deg);
-    }
-    .faq-arrow {
-      transition: transform 0.2s ease;
-    }
-
-    /* Bottom Navigation Bar */
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: calc(var(--nav-height) + var(--safe-bottom));
-      padding-bottom: var(--safe-bottom);
-      background: rgba(11, 15, 25, 0.88);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-top: 1px solid var(--glass-border);
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      z-index: 50;
-      box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.4);
-    }
-
-    .nav-btn {
-      flex: 1;
-      height: 100%;
-      background: transparent;
+    .btn-submit-order {
+      width: 100%;
+      background: #ffffff;
+      color: #0b0c0e;
       border: none;
+      padding: 15px;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: -0.2px;
+      cursor: pointer;
+      margin-top: 10px;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 4px;
-      cursor: pointer;
-      position: relative;
-      transition: transform 0.15s ease;
-    }
-    .nav-btn:active {
-      transform: scale(0.9);
+      gap: 8px;
+      transition: all 0.2s;
     }
 
-    .nav-icon {
-      font-size: 20px;
-      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .nav-label {
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--tg-hint);
-      transition: color 0.2s ease, font-weight 0.2s ease;
+    .btn-submit-order:active {
+      transform: scale(0.98);
+      background: #e2e4e8;
     }
 
-    .nav-btn.active .nav-icon {
-      transform: scale(1.15) translateY(-2px);
-    }
-    .nav-btn.active .nav-label {
-      color: #38bdf8;
-      font-weight: 700;
-    }
-    .nav-indicator {
-      position: absolute;
-      top: 6px;
-      width: 16px;
-      height: 3px;
-      border-radius: 2px;
-      background: var(--primary-gradient);
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
-    .nav-btn.active .nav-indicator {
-      opacity: 1;
-    }
-
-    /* Skeletons */
-    .skeleton {
-      background: linear-gradient(90deg, rgba(255, 255, 255, 0.04) 25%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.04) 75%);
-      background-size: 200% 100%;
-      animation: shimmer 1.5s infinite;
-      border-radius: 8px;
-    }
-    @keyframes shimmer {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-    }
-
-    /* Toast Notification */
+    /* Notification Toast */
     .toast {
       position: fixed;
       top: 20px;
       left: 50%;
-      transform: translateX(-50%) translateY(-60px);
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(12px);
-      border-radius: 30px;
+      transform: translateX(-50%) translateY(-30px);
+      background: #ffffff;
+      color: #0b0c0e;
       padding: 10px 20px;
-      color: #fff;
-      font-size: 13.5px;
-      font-weight: 600;
-      z-index: 200;
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 300;
       display: flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-      opacity: 0;
-      pointer-events: none;
     }
+
     .toast.show {
       transform: translateX(-50%) translateY(0);
       opacity: 1;
@@ -946,893 +842,598 @@
 </head>
 <body>
 
-  <!-- Ambient Glows -->
-  <div class="ambient-glow ambient-glow-1"></div>
-  <div class="ambient-glow ambient-glow-2"></div>
+  <!-- Top Ambient Highlight -->
+  <div class="top-vignette"></div>
 
-  <!-- Header Bar -->
-  <header class="app-header">
-    <div class="brand">
-      <div class="brand-logo">⚡</div>
-      <div>
-        <div class="brand-title">Xizmatlar Markazi</div>
-        <div class="brand-subtitle">Rasmiy Mini App</div>
+  <!-- Main App Shell -->
+  <div class="container">
+    
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand-group">
+        <div class="brand-mark">M</div>
+        <div class="brand-meta">
+          <h1>MARDONOV SERVICES</h1>
+          <p><span class="status-dot"></span> 24/7 Premium Qabul</p>
+        </div>
       </div>
-    </div>
-    <div class="user-pill" id="userPill">
-      <div class="status-dot"></div>
-      <span id="userNameDisplay">Mijoz</span>
-    </div>
-  </header>
+      <button class="header-action" onclick="switchTab('contacts')">
+        <span>Bog'lanish</span>
+      </button>
+    </header>
 
-  <!-- Main Pages Container -->
-  <main class="pages-container">
-
-    <!-- 1. BOSH SAHIFA (HOME) -->
-    <section id="page-home" class="page active">
+    <!-- ====================================================================
+         VIEW: 1. ASOSIY (Home / Overview)
+         ==================================================================== -->
+    <main id="view-home" class="view-page active">
       
-      <!-- Hero Card -->
-      <div class="hero-card">
-        <div class="badge-pill">✨ Tezkor & Ishonchli</div>
-        <h1 class="hero-title">Sizning biznesingiz uchun <span>zamonaviy yechimlar</span></h1>
-        <p class="hero-desc">Biz bilan g'oyalaringizni professional darajadagi haqiqatga aylantiring. Yuqori sifat va kafolatlangan natija!</p>
-        <div class="hero-actions">
-          <button class="btn-main" onclick="navigateTo('services')">
-            <span>🛠 Xizmatlarni ko'rish</span>
-          </button>
-          <button class="btn-secondary" onclick="navigateTo('order')">
-            <span>📝 Buyurtma</span>
-          </button>
+      <!-- Hero Box -->
+      <section class="hero-box">
+        <div class="hero-badge">✦ Eksklyuziv sifat</div>
+        <h2 class="hero-title">Yuqori darajadagi professional xizmatlar.</h2>
+        <p class="hero-subtitle">Biznesingiz va shaxsiy talablaringiz uchun kafolatlangan, tezkor va nufuzli yechimlar katalogi.</p>
+        
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-val">100%</div>
+            <div class="stat-lbl">Kafolat</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-val">15 min</div>
+            <div class="stat-lbl">Bog'lanish</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-val">500+</div>
+            <div class="stat-lbl">Mijozlar</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quick Action Buttons -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px;">
+        <div onclick="switchTab('services')" style="background: var(--bg-surface-card); border: 1px solid var(--border-subtle); padding: 14px; border-radius: var(--radius-md); cursor: pointer;">
+          <div style="font-size: 18px; margin-bottom: 6px;">📂</div>
+          <div style="font-size: 13px; font-weight: 700; color: #fff;">Barcha Xizmatlar</div>
+          <div style="font-size: 11px; color: var(--text-muted);">Katalogdan tanlash</div>
+        </div>
+        <div onclick="openOrderModal()" style="background: var(--bg-surface-card); border: 1px solid var(--border-subtle); padding: 14px; border-radius: var(--radius-md); cursor: pointer;">
+          <div style="font-size: 18px; margin-bottom: 6px;">⚡</div>
+          <div style="font-size: 13px; font-weight: 700; color: #fff;">Tezkor Buyurtma</div>
+          <div style="font-size: 11px; color: var(--text-muted);">1 daqiqada yuborish</div>
         </div>
       </div>
 
-      <!-- Stats Grid -->
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-num">500+</div>
-          <div class="stat-label">Loyihalar</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">99.8%</div>
-          <div class="stat-label">Mamnunlik</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">24/7</div>
-          <div class="stat-label">Qo'llab-quvvatlash</div>
-        </div>
+      <!-- Top Services Highlight -->
+      <div class="section-header">
+        <h2>Tavsiya etilgan xizmatlar</h2>
+        <span class="see-all" onclick="switchTab('services')">Barchasi →</span>
       </div>
 
-      <!-- Featured Services -->
-      <div class="section-head">
-        <div class="section-title">⭐ Ommabop xizmatlar</div>
-        <a class="section-link" onclick="navigateTo('services')">Barchasi ➔</a>
-      </div>
-      <div class="services-grid" id="homeFeaturedServices">
-        <!-- Dynamic or Demo items -->
+      <div id="home-featured-services" class="services-grid">
+        <!-- Rendered dynamically or via fallback -->
       </div>
 
-      <!-- Afzalliklarimiz -->
-      <div class="section-head" style="margin-top: 10px;">
-        <div class="section-title">💎 Nega aynan biz?</div>
-      </div>
-      <div class="features-list">
-        <div class="feature-item">
-          <div class="feature-icon">🚀</div>
-          <div class="feature-title">Tezkor ijro</div>
-          <div class="feature-desc">Har bir loyiha o'z vaqtida va belgilangan muddatda topshiriladi.</div>
-        </div>
-        <div class="feature-item">
-          <div class="feature-icon">🎯</div>
-          <div class="feature-title">Kafolatlangan sifat</div>
-          <div class="feature-desc">Barcha xizmatlarimiz uchun rasmiy kafolat taqdim etiladi.</div>
-        </div>
-        <div class="feature-item">
-          <div class="feature-icon">💰</div>
-          <div class="feature-title">Shaffof narxlar</div>
-          <div class="feature-desc">Yashirin to'lovlarsiz qulay va kelishilgan narxlar siyosati.</div>
-        </div>
-        <div class="feature-item">
-          <div class="feature-icon">👨‍💻</div>
-          <div class="feature-title">Mutaxassislar</div>
-          <div class="feature-desc">Har bir sohada kamida 4 yillik tajribaga ega jamoa a'zolari.</div>
-        </div>
+      <!-- Recent Works Preview -->
+      <div class="section-header">
+        <h2>Oxirgi ishlarimiz</h2>
+        <span class="see-all" onclick="switchTab('portfolio')">Portfolio →</span>
       </div>
 
-      <!-- About Banner Snippet -->
-      <div class="hero-card" style="background: var(--glass-card-bg); margin-top: 10px;">
-        <div class="section-title" style="margin-bottom: 8px;">ℹ️ Biz haqimizda</div>
-        <p class="hero-desc" style="margin-bottom: 14px;">
-          Biz ko'p yillik tajribaga ega bo'lgan innovatsion xizmat ko'rsatish markazimiz. 
-          Biznesingizni yangi bosqichga olib chiqish uchun eng ilg'or texnologiyalardan foydalanamiz.
+      <div id="home-featured-portfolio" class="portfolio-grid">
+        <!-- Rendered dynamically -->
+      </div>
+    </main>
+
+    <!-- ====================================================================
+         VIEW: 2. XIZMATLAR (Services Catalog)
+         ==================================================================== -->
+    <main id="view-services" class="view-page">
+      <div class="section-header" style="margin-top: 14px;">
+        <h2>Xizmatlar katalogi</h2>
+        <span id="services-counter" style="font-size: 12px; color: var(--text-muted); font-weight: 600;">Faol</span>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="pills-scroll" id="category-pills">
+        <button class="pill-btn active" onclick="filterServices('all', this)">Barchasi</button>
+        <button class="pill-btn" onclick="filterServices('popular', this)">Ommabop</button>
+        <button class="pill-btn" onclick="filterServices('premium', this)">Premium</button>
+      </div>
+
+      <!-- All Services List -->
+      <div id="all-services-list" class="services-grid">
+        <!-- Dynamically populated -->
+      </div>
+    </main>
+
+    <!-- ====================================================================
+         VIEW: 3. PORTFOLIO (Gallery)
+         ==================================================================== -->
+    <main id="view-portfolio" class="view-page">
+      <div class="section-header" style="margin-top: 14px;">
+        <h2>Bajarilgan ishlar</h2>
+        <span style="font-size: 12px; color: var(--text-muted); font-weight: 600;">Galereya</span>
+      </div>
+
+      <div id="all-portfolio-list" class="portfolio-grid">
+        <!-- Dynamically populated -->
+      </div>
+    </main>
+
+    <!-- ====================================================================
+         VIEW: 4. ALOQA (Concierge / Contacts)
+         ==================================================================== -->
+    <main id="view-contacts" class="view-page">
+      <div class="section-header" style="margin-top: 14px;">
+        <h2>Biz bilan aloqa</h2>
+        <span style="font-size: 12px; color: var(--text-muted); font-weight: 600;">24/7 Bog'lanish</span>
+      </div>
+
+      <div class="contact-list" id="contacts-list-container">
+        <!-- Dynamically populated or fallback -->
+      </div>
+
+      <div style="margin-top: 24px; padding: 18px; background: var(--bg-surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);">
+        <div style="font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 6px;">💼 Shaxsiy konsultatsiya kerakmi?</div>
+        <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 14px;">
+          Xizmatlar bo'yicha aniq narx yoki maxsus loyihani muhokama qilish uchun bevosita menejerimiz bilan bog'laning.
         </p>
-        <button class="btn-secondary" style="width: 100%;" onclick="navigateTo('contacts')">
-          <span>📞 Bog'lanish va maslahat olish</span>
+        <button class="btn-submit-order" onclick="openOrderModal()" style="margin: 0;">
+          Ariza qoldirish
         </button>
       </div>
+    </main>
 
-    </section>
+  </div>
 
-    <!-- 2. XIZMATLAR (SERVICES) -->
-    <section id="page-services" class="page">
-      <div class="section-head">
+  <!-- ====================================================================
+       iOS BOTTOM DOCK (Navigation)
+       ==================================================================== -->
+  <div class="dock-wrapper">
+    <nav class="dock-bar">
+      <button class="dock-tab active" data-tab="home" onclick="switchTab('home')">
+        <svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Asosiy</span>
+      </button>
+
+      <button class="dock-tab" data-tab="services" onclick="switchTab('services')">
+        <svg viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+        <span>Xizmatlar</span>
+      </button>
+
+      <button class="dock-tab" data-tab="portfolio" onclick="switchTab('portfolio')">
+        <svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        <span>Portfolio</span>
+      </button>
+
+      <button class="dock-tab" data-tab="contacts" onclick="switchTab('contacts')">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>Aloqa</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- ====================================================================
+       NATIVE BOTTOM SHEET (Order Form)
+       ==================================================================== -->
+  <div id="order-modal" class="modal-overlay" onclick="closeOrderModal(event)">
+    <div class="sheet-card" onclick="event.stopPropagation()">
+      <div class="sheet-handle"></div>
+      
+      <div class="sheet-head">
         <div>
-          <div class="section-title">🛠 Barcha xizmatlar</div>
-          <p style="font-size: 12px; color: var(--tg-hint); margin-top: 2px;">O'zingizga mos yo'nalishni tanlang</p>
+          <h3 class="sheet-title">Buyurtma rasmiylashtirish</h3>
+          <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Ma'lumotlaringizni tasdiqlang</p>
         </div>
+        <button class="sheet-close" onclick="closeOrderModal()">&times;</button>
       </div>
 
-      <div class="services-grid" id="servicesListContainer">
-        <!-- Rendered services -->
-      </div>
-    </section>
-
-    <!-- 3. PORTFOLIO -->
-    <section id="page-portfolio" class="page">
-      <div class="section-head">
+      <div class="sheet-selected-summary" id="modal-service-summary">
         <div>
-          <div class="section-title">🖼 Bizning ishlarimiz</div>
-          <p style="font-size: 12px; color: var(--tg-hint); margin-top: 2px;">Muvaffaqiyatli yakunlangan loyihalar</p>
+          <div style="font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--text-muted);">Tanlangan xizmat</div>
+          <div id="modal-service-name" style="font-size: 14px; font-weight: 700; color: #fff; margin-top: 2px;">Tanlanmagan</div>
         </div>
+        <div id="modal-service-price" style="font-family: var(--font-mono); font-size: 14px; font-weight: 700; color: #fff;">-</div>
       </div>
 
-      <div class="portfolio-grid" id="portfolioContainer">
-        <!-- Rendered portfolio items -->
-      </div>
-    </section>
-
-    <!-- 4. BUYURTMA (ORDER) -->
-    <section id="page-order" class="page">
-      <div class="form-container">
-        <div class="form-header">
-          <div class="form-title">📝 Buyurtma berish</div>
-          <div class="form-subtitle">Formani to'ldiring, menejerimiz tez orada bog'lanadi</div>
+      <form id="order-form" onsubmit="handleOrderSubmit(event)">
+        <div class="form-group">
+          <label class="form-label">Xizmat turini o'zgartirish</label>
+          <select id="input-service-select" class="form-select" onchange="onSelectServiceChange(this)">
+            <!-- Populated via JS -->
+          </select>
         </div>
 
-        <form id="orderForm" onsubmit="handleOrderSubmit(event)">
-          <div class="form-group">
-            <label class="form-label">Xizmat turi <span>*</span></label>
-            <div class="input-wrap">
-              <span class="input-icon">🛠</span>
-              <select class="form-select" id="orderServiceSelect" required onchange="handleServiceSelectChange()">
-                <option value="" disabled selected>Xizmatni tanlang...</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Ismingiz <span>*</span></label>
-            <div class="input-wrap">
-              <span class="input-icon">👤</span>
-              <input type="text" class="form-input" id="orderNameInput" placeholder="Masalan: Sardor Aliyev" required>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Telefon raqamingiz <span>*</span></label>
-            <div class="input-wrap">
-              <span class="input-icon">📞</span>
-              <input type="tel" class="form-input" id="orderPhoneInput" placeholder="+998 90 123 45 67" required>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Qo'shimcha izoh yoki talablar</label>
-            <textarea class="form-textarea" id="orderNotesInput" placeholder="Loyiha haqida qisqacha ma'lumot (ixtiyoriy)..."></textarea>
-          </div>
-
-          <div class="order-summary-box">
-            <div>
-              <div class="summary-label">Tanlangan xizmat narxi:</div>
-              <div class="summary-val" id="orderSelectedPrice">—</div>
-            </div>
-            <div style="font-size: 24px;">🏷️</div>
-          </div>
-
-          <button type="submit" class="btn-main" id="formSubmitBtn" style="width: 100%;">
-            <span>🚀 Buyurtmani yuborish</span>
-          </button>
-        </form>
-      </div>
-    </section>
-
-    <!-- 5. ALOQA (CONTACTS) -->
-    <section id="page-contacts" class="page">
-      <div class="section-head">
-        <div>
-          <div class="section-title">📞 Biz bilan aloqa</div>
-          <p style="font-size: 12px; color: var(--tg-hint); margin-top: 2px;">Savollaringiz bormi? Har doim aloqadamiz</p>
+        <div class="form-group">
+          <label class="form-label">Ism va Familiyangiz</label>
+          <input type="text" id="input-user-name" class="form-input" placeholder="Ismingizni kiriting" required autocomplete="name">
         </div>
-      </div>
 
-      <div class="contact-cards-list" id="contactsContainer">
-        <!-- Rendered contacts -->
-      </div>
-
-      <!-- FAQ Section -->
-      <div class="section-head" style="margin-top: 20px;">
-        <div class="section-title">❓ Ko'p beriladigan savollar</div>
-      </div>
-      <div class="faq-list">
-        <div class="faq-item" onclick="toggleFaq(this)">
-          <div class="faq-quest">
-            <span>Buyurtma qancha vaqtda tayyor bo'ladi?</span>
-            <span class="faq-arrow">▼</span>
-          </div>
-          <div class="faq-ans">
-            Loyiha murakkabligiga qarab 1 kundan 10 kungacha. Aniq muddat xizmat tanlangandan so'ng kelishiladi.
-          </div>
+        <div class="form-group">
+          <label class="form-label">Telefon raqamingiz</label>
+          <input type="tel" id="input-user-phone" class="form-input" placeholder="+998 90 123 45 67" required autocomplete="tel">
         </div>
-        <div class="faq-item" onclick="toggleFaq(this)">
-          <div class="faq-quest">
-            <span>To'lov qanday tartibda amalga oshiriladi?</span>
-            <span class="faq-arrow">▼</span>
-          </div>
-          <div class="faq-ans">
-            Payme, Click yoki bank hisob raqami orqali. Odatda dastlabki to'lov qabul qilinib, ish boshlanadi.
-          </div>
-        </div>
-        <div class="faq-item" onclick="toggleFaq(this)">
-          <div class="faq-quest">
-            <span>Kafolat va qo'llab-quvvatlash bormi?</span>
-            <span class="faq-arrow">▼</span>
-          </div>
-          <div class="faq-ans">
-            Albatta! Har bir yakunlangan loyihadan keyin texnik yordam va kafolat muddati beriladi.
-          </div>
-        </div>
-      </div>
 
-      <!-- Office card -->
-      <div class="hero-card" style="margin-top: 16px; background: var(--glass-card-bg);">
-        <div style="font-size: 14px; font-weight: 700; margin-bottom: 6px;">📍 Asosiy ofis</div>
-        <div style="font-size: 13px; color: var(--tg-hint); line-height: 1.4;">
-          Toshkent shahri, Amir Temur shoh ko'chasi, 107B<br>
-          Ish vaqti: Dushanba — Shanba, 09:00 - 19:00
-        </div>
-      </div>
-
-    </section>
-
-  </main>
-
-  <!-- Lightbox Modal for Portfolio -->
-  <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox(event)">
-    <div class="lightbox-content" onclick="event.stopPropagation()">
-      <div class="lightbox-img-wrap">
-        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-        <img id="lightboxImg" src="" alt="Portfolio preview">
-      </div>
-      <div class="lightbox-body">
-        <div class="lightbox-title" id="lightboxTitle">Loyiha nomi</div>
-        <div class="lightbox-desc" id="lightboxDesc">Loyiha tavsifi</div>
-        <button class="btn-main" style="width: 100%;" onclick="orderFromLightbox()">
-          <span>📝 Ushbu xizmatga buyurtma berish</span>
+        <button type="submit" class="btn-submit-order" id="btn-submit-order-elem">
+          <span>Tasdiqlash va Yuborish</span>
+          <span>→</span>
         </button>
-      </div>
+      </form>
     </div>
   </div>
 
-  <!-- Toast Message -->
-  <div class="toast" id="toastBox">
-    <span id="toastIcon">✅</span>
-    <span id="toastText">Xabar matni</span>
+  <!-- Toast Notification -->
+  <div id="app-toast" class="toast">
+    <span id="toast-icon">✓</span>
+    <span id="toast-text">Buyurtmangiz qabul qilindi</span>
   </div>
 
-  <!-- Bottom Navigation Bar -->
-  <nav class="bottom-nav">
-    <button class="nav-btn active" onclick="navigateTo('home')">
-      <div class="nav-indicator"></div>
-      <span class="nav-icon">🏠</span>
-      <span class="nav-label">Bosh sahifa</span>
-    </button>
-    <button class="nav-btn" onclick="navigateTo('services')">
-      <div class="nav-indicator"></div>
-      <span class="nav-icon">🛠</span>
-      <span class="nav-label">Xizmatlar</span>
-    </button>
-    <button class="nav-btn" onclick="navigateTo('portfolio')">
-      <div class="nav-indicator"></div>
-      <span class="nav-icon">🖼</span>
-      <span class="nav-label">Portfolio</span>
-    </button>
-    <button class="nav-btn" onclick="navigateTo('order')">
-      <div class="nav-indicator"></div>
-      <span class="nav-icon">📝</span>
-      <span class="nav-label">Buyurtma</span>
-    </button>
-    <button class="nav-btn" onclick="navigateTo('contacts')">
-      <div class="nav-indicator"></div>
-      <span class="nav-icon">📞</span>
-      <span class="nav-label">Aloqa</span>
-    </button>
-  </nav>
-
+  <!-- ====================================================================
+       APPLICATION SCRIPT LOGIC
+       ==================================================================== -->
   <script>
-    // ==========================================
-    // DEMO DATA (Fallback agar API mavjud bo'lmasa)
-    // ==========================================
-    const DEMO_SERVICES = [
-      {
-        id: 1,
-        name: "Veb-sayt va Web App ishlab chiqish",
-        description: "Zamonaviy, mobil qurilmalarga moslashuvchan, tez ishlaydigan korporativ saytlar va landing pagelar.",
-        price: "1,500,000 so'm dan",
-        icon: "💻",
-        gradient: "linear-gradient(135deg, #6366f1, #3b82f6)"
-      },
-      {
-        id: 2,
-        name: "Telegram Bot & Mini App yaratish",
-        description: "Avtomatlashtirilgan to'lov, buyurtma tizimi va CRM bilan integratsiya qilingan kuchli Telegram botlar.",
-        price: "900,000 so'm dan",
-        icon: "🤖",
-        gradient: "linear-gradient(135deg, #3b82f6, #06b6d4)"
-      },
-      {
-        id: 3,
-        name: "UI/UX & Grafik Dizayn",
-        description: "Figma orqali yaratilgan jozibador interfeyslar, brending, logotiplar va bannerlar dizayni.",
-        price: "600,000 so'm dan",
-        icon: "🎨",
-        gradient: "linear-gradient(135deg, #ec4899, #8b5cf6)"
-      },
-      {
-        id: 4,
-        name: "SMM & Raqamli Marketing",
-        description: "Instagram, Telegram tarmoqlarida biznesni rivojlantirish, target reklama va kontent strategiyasi.",
-        price: "1,200,000 so'm dan",
-        icon: "📱",
-        gradient: "linear-gradient(135deg, #f59e0b, #ef4444)"
-      },
-      {
-        id: 5,
-        name: "IT & Biznes Konsalting",
-        description: "Biznes jarayonlarini raqamlashtirish, tizim arxitekturasi va optimal IT yechimlar tahlili.",
-        price: "500,000 so'm dan",
-        icon: "📊",
-        gradient: "linear-gradient(135deg, #10b981, #059669)"
-      }
-    ];
-
-    const DEMO_PORTFOLIO = [
-      {
-        id: 1,
-        title: "E-Commerce Onlayn Do'kon",
-        description: "Keng qamrovli kiyim-kechak do'koni uchun to'lov tizimiga ulangan veb-platforma va Telegram Mini App.",
-        tag: "WEB & MINI APP",
-        img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=80"
-      },
-      {
-        id: 2,
-        title: "Restoran Buyurtma Boti",
-        description: "Mijozlar menyuni ko'rib, yetkazib berish yoki olib ketish uchun qulay buyurtma beradigan aqlli bot.",
-        tag: "TELEGRAM BOT",
-        img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&auto=format&fit=crop&q=80"
-      },
-      {
-        id: 3,
-        title: "Fintech Mobil Ilova Dizayni",
-        description: "Foydalanuvchilar uchun intuitiv va xavfsiz moliyaviy boshqaruv interfeysi dizayni.",
-        tag: "UI/UX DESIGN",
-        img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=80"
-      },
-      {
-        id: 4,
-        title: "Klinika CRM va Bemorlar Paneli",
-        description: "Bemorlar qabuliga yozilish, shifokorlar jadvali va avtomatlashtirilgan SMS xabarnomalar tizimi.",
-        tag: "CRM TIZIMI",
-        img: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&auto=format&fit=crop&q=80"
-      }
-    ];
-
-    const DEMO_CONTACTS = [
-      {
-        type: "telegram",
-        title: "Telegram Aloqa",
-        value: "@admin_xizmatlar",
-        url: "https://t.me/admin_xizmatlar",
-        icon: "✈️",
-        bg: "linear-gradient(135deg, #2AABEE, #229ED9)"
-      },
-      {
-        type: "phone",
-        title: "Telefon Raqam",
-        value: "+998 (90) 123-45-67",
-        url: "tel:+998901234567",
-        icon: "📞",
-        bg: "linear-gradient(135deg, #10B981, #059669)"
-      },
-      {
-        type: "instagram",
-        title: "Instagram Sahifa",
-        value: "@xizmatlar_uz",
-        url: "https://instagram.com",
-        icon: "📸",
-        bg: "linear-gradient(135deg, #833AB4, #FD1D1D, #FCB045)"
-      },
-      {
-        type: "support",
-        title: "Mijozlarni Qo'llab-quvvatlash",
-        value: "24/7 Operator bilan bog'lanish",
-        url: "https://t.me/admin_xizmatlar",
-        icon: "💬",
-        bg: "linear-gradient(135deg, #6366F1, #4F46E5)"
-      }
-    ];
-
-    // ==========================================
-    // APP STATE & TELEGRAM INIT
-    // ==========================================
+    // 1. Telegram WebApp Initialization
     const tg = window.Telegram?.WebApp;
-    let servicesData = [];
-    let portfolioData = [];
-    let contactsData = [];
-    let currentSelectedServiceId = null;
-
-    // Telegram Init
-    function initTelegram() {
-      if (tg) {
-        tg.ready();
-        tg.expand();
-
-        // Theme sync
-        if (tg.themeParams) {
-          if (tg.themeParams.bg_color) document.documentElement.style.setProperty('--tg-bg', tg.themeParams.bg_color);
-          if (tg.themeParams.text_color) document.documentElement.style.setProperty('--tg-text', tg.themeParams.text_color);
-          if (tg.themeParams.secondary_bg_color) document.documentElement.style.setProperty('--tg-sec-bg', tg.themeParams.secondary_bg_color);
-          if (tg.themeParams.button_color) document.documentElement.style.setProperty('--tg-button', tg.themeParams.button_color);
-          if (tg.themeParams.button_text_color) document.documentElement.style.setProperty('--tg-button-text', tg.themeParams.button_text_color);
-        }
-
-        // User info
-        const user = tg.initDataUnsafe?.user;
-        if (user) {
-          const displayName = user.first_name || user.username || "Mijoz";
-          document.getElementById('userNameDisplay').textContent = displayName;
-          const nameInput = document.getElementById('orderNameInput');
-          if (nameInput) nameInput.value = `${user.first_name || ''} ${user.last_name || ''}`.trim();
-        }
-
-        // Configure MainButton
-        if (tg.MainButton) {
-          tg.MainButton.setText("BUYURTMANI TASDIQLASH");
-          tg.MainButton.color = "#4f46e5";
-          tg.MainButton.textColor = "#ffffff";
-          tg.MainButton.onClick(handleMainButtonClick);
-        }
-      }
+    if (tg) {
+      tg.ready();
+      tg.expand();
+      try {
+        tg.setHeaderColor('#08090b');
+        tg.setBackgroundColor('#08090b');
+      } catch (e) {}
     }
 
-    function triggerHaptic(type = 'medium') {
+    function hapticFeedback(style = 'light') {
       try {
         if (tg?.HapticFeedback) {
-          tg.HapticFeedback.impactOccurred(type);
+          tg.HapticFeedback.impactOccurred(style);
+        }
+      } catch (e) {}
+    }
+
+    // 2. High-End Fallback Data (Precision Curated)
+    const fallbackServices = [
+      {
+        id: 1,
+        name: "Telegram Bot & Mini App Ishlab Chiqish",
+        description: "Biznesingiz uchun to'liq avtomatlashtirilgan, CRM integratsiyali va to'lov tizimlariga ulangan yuqori tezlikdagi Telegram tizimlari.",
+        price: "1,500,000 UZS dan",
+        tag: "Ommabop",
+        icon: "🤖"
+      },
+      {
+        id: 2,
+        name: "Premium Web Sayt & Landing Page",
+        description: "Zamonaviy minimalist dizaynda, yuqori konversiyali va mobil qurilmalarga mukammal moslashgan brend web-sahifasi.",
+        price: "2,800,000 UZS dan",
+        tag: "Premium",
+        icon: "💻"
+      },
+      {
+        id: 3,
+        name: "Grafik Dizayn & Brending Identika",
+        description: "Logotip, korporativ ranglar, bannerlar va professional ijtimoiy tarmoqlar vizual qiyofasi yaratish.",
+        price: "900,000 UZS dan",
+        tag: "Kreativ",
+        icon: "🎨"
+      },
+      {
+        id: 4,
+        name: "Shaxsiy Biznes Konsultatsiya",
+        description: "Loyihangizni tahlil qilish, arxitekturasini loyihalash va optimal IT yechimlarni tanlash bo'yicha ekspert maslahati.",
+        price: "Bepul (Dastlabki)",
+        tag: "Eksklyuziv",
+        icon: "⚡"
+      }
+    ];
+
+    const fallbackPortfolio = [
+      {
+        id: 1,
+        title: "E-Commerce Mini App",
+        description: "20,000 dan ortiq mahsulotlar katalogiga ega zamonaviy internet-do'kon boti.",
+        icon: "🛍"
+      },
+      {
+        id: 2,
+        title: "Klinika Bron Qilish Tizimi",
+        description: "Shifokorlar qabuliga onlayn navbat olish va SMS xabarnomalar tizimi.",
+        icon: "🏥"
+      },
+      {
+        id: 3,
+        title: "Logistika & Yetkazib Berish",
+        description: "Kuryerlar harakatini real vaqtda kuzatish va buyurtma boshqaruvi platformasi.",
+        icon: "🚚"
+      },
+      {
+        id: 4,
+        title: "Restoran & Kafe Menyu",
+        description: "QR-kod orqali ochiladigan interaktiv raqamli taomnoma va to'lov tizimi.",
+        icon: "🍽"
+      }
+    ];
+
+    const fallbackContacts = [
+      { type: "telegram", label: "Telegram Menejer", value: "https://t.me/mardonov_sale_bot", icon: "✈️" },
+      { type: "phone", label: "Aloqa Markazi", value: "+998 90 000 00 00", icon: "📞" },
+      { type: "instagram", label: "Rasmiy Instagram", value: "https://instagram.com", icon: "📷" }
+    ];
+
+    let currentServices = [];
+    let currentSelectedService = null;
+
+    // 3. Tab Switching Logic
+    function switchTab(tabId) {
+      hapticFeedback('medium');
+      
+      // Update Tab UI
+      document.querySelectorAll('.dock-tab').forEach(tab => {
+        if (tab.dataset.tab === tabId) {
+          tab.classList.add('active');
+        } else {
+          tab.classList.remove('active');
+        }
+      });
+
+      // Update Pages
+      document.querySelectorAll('.view-page').forEach(page => {
+        page.classList.remove('active');
+      });
+
+      const activePage = document.getElementById(`view-${tabId}`);
+      if (activePage) {
+        activePage.classList.add('active');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // 4. Data Loading
+    async function loadAppData() {
+      // Load Services
+      try {
+        const res = await fetch('/api/services');
+        const json = await res.json();
+        if (json.status === 'success' && json.data && json.data.length > 0) {
+          currentServices = json.data;
+        } else {
+          currentServices = fallbackServices;
         }
       } catch (e) {
-        // Ignored
+        currentServices = fallbackServices;
+      }
+      renderServices(currentServices);
+
+      // Load Portfolio
+      try {
+        const res = await fetch('/api/portfolio');
+        const json = await res.json();
+        const portfolioData = (json.status === 'success' && json.data && json.data.length > 0) ? json.data : fallbackPortfolio;
+        renderPortfolio(portfolioData);
+      } catch (e) {
+        renderPortfolio(fallbackPortfolio);
+      }
+
+      // Load Contacts
+      try {
+        const res = await fetch('/api/contacts');
+        const json = await res.json();
+        const contactsData = (json.status === 'success' && json.data && json.data.length > 0) ? json.data : fallbackContacts;
+        renderContacts(contactsData);
+      } catch (e) {
+        renderContacts(fallbackContacts);
+      }
+
+      // Pre-fill user data from Telegram if available
+      if (tg?.initDataUnsafe?.user) {
+        const u = tg.initDataUnsafe.user;
+        const nameInput = document.getElementById('input-user-name');
+        if (nameInput) {
+          nameInput.value = `${u.first_name || ''} ${u.last_name || ''}`.trim();
+        }
       }
     }
 
-    function showToast(message, isSuccess = true) {
-      const toast = document.getElementById('toastBox');
-      const text = document.getElementById('toastText');
-      const icon = document.getElementById('toastIcon');
-      text.textContent = message;
-      icon.textContent = isSuccess ? "✅" : "⚠️";
+    // 5. Render Services
+    function renderServices(services) {
+      const homeList = document.getElementById('home-featured-services');
+      const allList = document.getElementById('all-services-list');
+      const selectElem = document.getElementById('input-service-select');
+
+      const html = services.map(s => `
+        <div class="service-card">
+          <div class="service-header">
+            <div class="service-info">
+              <span class="service-tag">${s.tag || 'Xizmat'}</span>
+              <h3 class="service-title">${s.name}</h3>
+              <p class="service-desc">${s.description || ''}</p>
+            </div>
+            <div class="service-icon-box">${s.icon || '✦'}</div>
+          </div>
+          <div class="service-bottom">
+            <div class="price-group">
+              <span class="price-label">Narxi</span>
+              <span class="price-value">${s.price || 'Kelishilgan'}</span>
+            </div>
+            <button class="btn-order-pill" onclick="openOrderModal(${s.id})">
+              Buyurtma berish
+            </button>
+          </div>
+        </div>
+      `).join('');
+
+      if (homeList) homeList.innerHTML = html;
+      if (allList) allList.innerHTML = html;
+
+      // Populate Select in Order Sheet
+      if (selectElem) {
+        selectElem.innerHTML = services.map(s => `
+          <option value="${s.id}">${s.name} (${s.price})</option>
+        `).join('');
+      }
+    }
+
+    // 6. Render Portfolio
+    function renderPortfolio(portfolio) {
+      const homePort = document.getElementById('home-featured-portfolio');
+      const allPort = document.getElementById('all-portfolio-list');
+
+      const html = portfolio.map(p => `
+        <div class="portfolio-card" onclick="openOrderModal()">
+          <div class="portfolio-media">
+            <span>${p.icon || '💼'}</span>
+          </div>
+          <div class="portfolio-body">
+            <h4 class="portfolio-title">${p.title}</h4>
+            <p class="portfolio-desc">${p.description || ''}</p>
+          </div>
+        </div>
+      `).join('');
+
+      if (homePort) homePort.innerHTML = html;
+      if (allPort) allPort.innerHTML = html;
+    }
+
+    // 7. Render Contacts
+    function renderContacts(contacts) {
+      const container = document.getElementById('contacts-list-container');
+      if (!container) return;
+
+      container.innerHTML = contacts.map(c => `
+        <a href="${c.value.startsWith('http') ? c.value : 'tel:' + c.value.replace(/[^0-9+]/g, '')}" target="_blank" class="contact-row" onclick="hapticFeedback()">
+          <div class="contact-meta">
+            <div class="contact-icon">${c.icon || '📱'}</div>
+            <div class="contact-text">
+              <h3>${c.label || c.type.toUpperCase()}</h3>
+              <p>${c.value}</p>
+            </div>
+          </div>
+          <span class="contact-arrow">→</span>
+        </a>
+      `).join('');
+    }
+
+    // 8. Order Modal Handlers
+    function openOrderModal(serviceId = null) {
+      hapticFeedback('medium');
+      const modal = document.getElementById('order-modal');
+      const select = document.getElementById('input-service-select');
+      
+      let s = null;
+      if (serviceId) {
+        s = currentServices.find(x => x.id === serviceId);
+      }
+      if (!s && currentServices.length > 0) {
+        s = currentServices[0];
+      }
+
+      if (s) {
+        currentSelectedService = s;
+        if (select) select.value = s.id;
+        document.getElementById('modal-service-name').innerText = s.name;
+        document.getElementById('modal-service-price').innerText = s.price || '-';
+      }
+
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeOrderModal(event = null) {
+      hapticFeedback('light');
+      const modal = document.getElementById('order-modal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function onSelectServiceChange(select) {
+      const s = currentServices.find(x => x.id == select.value);
+      if (s) {
+        currentSelectedService = s;
+        document.getElementById('modal-service-name').innerText = s.name;
+        document.getElementById('modal-service-price').innerText = s.price || '-';
+      }
+    }
+
+    function filterServices(filterType, btn) {
+      hapticFeedback('light');
+      document.querySelectorAll('#category-pills .pill-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      if (filterType === 'all') {
+        renderServices(currentServices);
+      } else if (filterType === 'popular') {
+        renderServices(currentServices.filter(s => (s.tag && s.tag.toLowerCase().includes('ommabop')) || s.id % 2 === 1));
+      } else {
+        renderServices(currentServices.filter(s => (s.tag && s.tag.toLowerCase().includes('premium')) || s.id % 2 === 0));
+      }
+    }
+
+    // 9. Order Submission (API + Telegram WebApp sendData)
+    async function handleOrderSubmit(e) {
+      e.preventDefault();
+      hapticFeedback('heavy');
+
+      const name = document.getElementById('input-user-name').value.trim();
+      const phone = document.getElementById('input-user-phone').value.trim();
+      const serviceId = currentSelectedService ? currentSelectedService.id : 1;
+      const serviceName = currentSelectedService ? currentSelectedService.name : 'Xizmat';
+      const userId = tg?.initDataUnsafe?.user?.id || 0;
+
+      const submitBtn = document.getElementById('btn-submit-order-elem');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<span>Yuborilmoqda...</span>`;
+
+      const payload = {
+        user_id: userId,
+        user_name: name,
+        user_phone: phone,
+        service_id: serviceId,
+        service_name: serviceName
+      };
+
+      try {
+        // A. Send to Backend REST API
+        await fetch('/api/orders', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {
+        console.warn("API error, continuing with Telegram fallback", err);
+      }
+
+      // B. Send through Telegram sendData if available
+      if (tg && typeof tg.sendData === 'function') {
+        try {
+          tg.sendData(JSON.stringify({
+            action: "new_order",
+            ...payload
+          }));
+        } catch (e) {
+          console.warn("sendData error:", e);
+        }
+      }
+
+      // Show toast and close sheet
+      closeOrderModal();
+      showToast("Buyurtmangiz muvaffaqiyatli qabul qilindi!");
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = `<span>Tasdiqlash va Yuborish</span> <span>→</span>`;
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('app-toast');
+      const text = document.getElementById('toast-text');
+      text.innerText = msg;
       toast.classList.add('show');
       setTimeout(() => {
         toast.classList.remove('show');
       }, 3500);
     }
 
-    // ==========================================
-    // ROUTING & NAVIGATION
-    // ==========================================
-    const pages = ['home', 'services', 'portfolio', 'order', 'contacts'];
-
-    function navigateTo(targetPage) {
-      triggerHaptic('light');
-
-      pages.forEach(p => {
-        const pageEl = document.getElementById(`page-${p}`);
-        if (pageEl) {
-          if (p === targetPage) {
-            pageEl.classList.add('active');
-          } else {
-            pageEl.classList.remove('active');
-          }
-        }
-      });
-
-      // Update Nav buttons
-      const navButtons = document.querySelectorAll('.nav-btn');
-      navButtons.forEach(btn => {
-        const btnAction = btn.getAttribute('onclick');
-        if (btnAction && btnAction.includes(`'${targetPage}'`)) {
-          btn.classList.add('active');
-        } else {
-          btn.classList.remove('active');
-        }
-      });
-
-      // Window scroll to top smoothly
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-
-      // Handle Telegram MainButton visibility
-      if (tg?.MainButton) {
-        if (targetPage === 'order') {
-          tg.MainButton.show();
-        } else {
-          tg.MainButton.hide();
-        }
-      }
-    }
-
-    // ==========================================
-    // DATA FETCHING & RENDERING
-    // ==========================================
-    async function loadData() {
-      // 1. Services
-      try {
-        const res = await fetch('/api/services');
-        if (res.ok) {
-          const json = await res.json();
-          servicesData = (json.data && json.data.length > 0) ? json.data : DEMO_SERVICES;
-        } else {
-          servicesData = DEMO_SERVICES;
-        }
-      } catch (err) {
-        servicesData = DEMO_SERVICES;
-      }
-      renderServices(servicesData);
-      populateServiceSelect(servicesData);
-
-      // 2. Portfolio
-      try {
-        const res = await fetch('/api/portfolio');
-        if (res.ok) {
-          const json = await res.json();
-          portfolioData = (json.data && json.data.length > 0) ? json.data : DEMO_PORTFOLIO;
-        } else {
-          portfolioData = DEMO_PORTFOLIO;
-        }
-      } catch (err) {
-        portfolioData = DEMO_PORTFOLIO;
-      }
-      renderPortfolio(portfolioData);
-
-      // 3. Contacts
-      try {
-        const res = await fetch('/api/contacts');
-        if (res.ok) {
-          const json = await res.json();
-          contactsData = (json.data && json.data.length > 0) ? json.data : DEMO_CONTACTS;
-        } else {
-          contactsData = DEMO_CONTACTS;
-        }
-      } catch (err) {
-        contactsData = DEMO_CONTACTS;
-      }
-      renderContacts(contactsData);
-    }
-
-    function renderServices(services) {
-      const homeFeatured = document.getElementById('homeFeaturedServices');
-      const servicesList = document.getElementById('servicesListContainer');
-
-      if (!services || services.length === 0) return;
-
-      const htmlAll = services.map(s => createServiceCardHtml(s)).join('');
-      const htmlFeatured = services.slice(0, 3).map(s => createServiceCardHtml(s)).join('');
-
-      if (servicesList) servicesList.innerHTML = htmlAll;
-      if (homeFeatured) homeFeatured.innerHTML = htmlFeatured;
-    }
-
-    function createServiceCardHtml(s) {
-      const icon = s.icon || '⚡';
-      const priceText = s.price ? (s.price.includes("so'm") ? s.price : `${s.price} so'm`) : "Kelishilgan narxda";
-      const bg = s.gradient || 'linear-gradient(135deg, #6366f1, #3b82f6)';
-      const imgHtml = s.image_url 
-        ? `<img src="${s.image_url}" alt="${s.name}" class="service-img">`
-        : `<span style="font-size: 26px;">${icon}</span>`;
-
-      return `
-        <div class="service-card" onclick="selectServiceForOrder(${s.id})">
-          <div class="service-icon-box" style="background: ${bg};">
-            ${imgHtml}
-          </div>
-          <div class="service-content">
-            <div class="service-name">${escapeHtml(s.name)}</div>
-            <div class="service-desc">${escapeHtml(s.description || 'Professional xizmat ko\'rsatish')}</div>
-            <div class="service-footer">
-              <span class="price-badge">💰 ${escapeHtml(priceText)}</span>
-              <button class="btn-select-svc" onclick="event.stopPropagation(); selectServiceForOrder(${s.id})">
-                Tanlash ➔
-              </button>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    function populateServiceSelect(services) {
-      const select = document.getElementById('orderServiceSelect');
-      if (!select) return;
-
-      select.innerHTML = '<option value="" disabled selected>Xizmatni tanlang...</option>' + 
-        services.map(s => {
-          const price = s.price ? ` (${s.price})` : '';
-          return `<option value="${s.id}">${escapeHtml(s.name)}${price}</option>`;
-        }).join('');
-    }
-
-    function selectServiceForOrder(serviceId) {
-      triggerHaptic('medium');
-      currentSelectedServiceId = serviceId;
-      const select = document.getElementById('orderServiceSelect');
-      if (select) {
-        select.value = serviceId;
-        handleServiceSelectChange();
-      }
-      navigateTo('order');
-    }
-
-    function handleServiceSelectChange() {
-      const select = document.getElementById('orderServiceSelect');
-      const priceEl = document.getElementById('orderSelectedPrice');
-      const val = parseInt(select.value, 10);
-      const svc = servicesData.find(s => s.id === val);
-      if (svc) {
-        priceEl.textContent = svc.price ? (svc.price.includes("so'm") ? svc.price : `${svc.price} so'm`) : "Kelishilgan";
-      } else {
-        priceEl.textContent = "—";
-      }
-    }
-
-    function renderPortfolio(items) {
-      const container = document.getElementById('portfolioContainer');
-      if (!container || !items) return;
-
-      container.innerHTML = items.map((item, index) => {
-        const imgUrl = item.img || (item.image_file_id ? `https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=80` : `https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=80`);
-        const tag = item.tag || "LOYIHA";
-        return `
-          <div class="portfolio-card" onclick="openLightbox(${index})">
-            <div class="portfolio-thumb">
-              <img src="${imgUrl}" alt="${escapeHtml(item.title)}">
-              <div class="portfolio-overlay">
-                <span class="portfolio-tag" style="background: rgba(0,0,0,0.5); padding: 2px 6px; border-radius: 4px;">${tag}</span>
-              </div>
-            </div>
-            <div class="portfolio-info">
-              <div class="portfolio-title">${escapeHtml(item.title)}</div>
-              <div class="portfolio-desc-short">${escapeHtml(item.description || 'Amalga oshirilgan ish')}</div>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function renderContacts(contacts) {
-      const container = document.getElementById('contactsContainer');
-      if (!container || !contacts) return;
-
-      container.innerHTML = contacts.map(c => {
-        let icon = c.icon || "📞";
-        let title = c.title || (c.type ? c.type.toUpperCase() : "Aloqa");
-        let val = c.value;
-        let url = c.url || c.value;
-        let bg = c.bg || "linear-gradient(135deg, #3b82f6, #06b6d4)";
-
-        if (c.type === 'telegram') {
-          icon = "✈️";
-          bg = "linear-gradient(135deg, #2AABEE, #229ED9)";
-          if (!url.startsWith('http')) url = `https://t.me/${val.replace('@', '')}`;
-        } else if (c.type === 'phone') {
-          icon = "📞";
-          bg = "linear-gradient(135deg, #10B981, #059669)";
-          url = `tel:${val.replace(/\s+/g, '')}`;
-        } else if (c.type === 'instagram') {
-          icon = "📸";
-          bg = "linear-gradient(135deg, #833AB4, #FD1D1D, #FCB045)";
-          if (!url.startsWith('http')) url = `https://instagram.com/${val.replace('@', '')}`;
-        }
-
-        return `
-          <a href="${url}" target="_blank" class="contact-card" onclick="handleContactClick(event, '${url}')">
-            <div class="contact-icon-box" style="background: ${bg};">
-              <span>${icon}</span>
-            </div>
-            <div class="contact-meta">
-              <div class="contact-type">${escapeHtml(title)}</div>
-              <div class="contact-val">${escapeHtml(val)}</div>
-            </div>
-            <div class="contact-arrow">➔</div>
-          </a>
-        `;
-      }).join('');
-    }
-
-    function handleContactClick(e, url) {
-      triggerHaptic('medium');
-      if (tg) {
-        if (url.startsWith('https://t.me/') || url.startsWith('tg://')) {
-          e.preventDefault();
-          tg.openTelegramLink(url);
-        }
-      }
-    }
-
-    function toggleFaq(el) {
-      triggerHaptic('light');
-      el.classList.toggle('open');
-    }
-
-    // ==========================================
-    // LIGHTBOX MODAL
-    // ==========================================
-    let activeLightboxItem = null;
-
-    function openLightbox(index) {
-      triggerHaptic('medium');
-      const item = portfolioData[index];
-      if (!item) return;
-
-      activeLightboxItem = item;
-      const modal = document.getElementById('lightboxModal');
-      const img = document.getElementById('lightboxImg');
-      const title = document.getElementById('lightboxTitle');
-      const desc = document.getElementById('lightboxDesc');
-
-      img.src = item.img || "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=80";
-      title.textContent = item.title;
-      desc.textContent = item.description || "Loyiha bo'yicha batafsil ma'lumot.";
-
-      modal.classList.add('active');
-    }
-
-    function closeLightbox() {
-      triggerHaptic('light');
-      const modal = document.getElementById('lightboxModal');
-      modal.classList.remove('active');
-    }
-
-    function orderFromLightbox() {
-      closeLightbox();
-      navigateTo('order');
-    }
-
-    // ==========================================
-    // ORDER SUBMISSION
-    // ==========================================
-    function handleMainButtonClick() {
-      const form = document.getElementById('orderForm');
-      if (form) {
-        if (form.checkValidity()) {
-          form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
-        } else {
-          form.reportValidity();
-          triggerHaptic('heavy');
-        }
-      }
-    }
-
-    async function handleOrderSubmit(e) {
-      e.preventDefault();
-      triggerHaptic('medium');
-
-      const select = document.getElementById('orderServiceSelect');
-      const nameInput = document.getElementById('orderNameInput');
-      const phoneInput = document.getElementById('orderPhoneInput');
-      const notesInput = document.getElementById('orderNotesInput');
-      const submitBtn = document.getElementById('formSubmitBtn');
-
-      const serviceId = parseInt(select.value, 10);
-      const userName = nameInput.value.trim();
-      const userPhone = phoneInput.value.trim();
-      const notes = notesInput.value.trim();
-
-      if (!serviceId || !userName || !userPhone) {
-        showToast("Iltimos, barcha majburiy maydonlarni to'ldiring", false);
-        return;
-      }
-
-      const serviceObj = servicesData.find(s => s.id === serviceId);
-      const serviceName = serviceObj ? serviceObj.name : `Xizmat #${serviceId}`;
-
-      const tgUser = tg?.initDataUnsafe?.user;
-      const orderPayload = {
-        service_id: serviceId,
-        service_name: serviceName,
-        user_name: userName,
-        user_phone: userPhone,
-        notes: notes,
-        user_id: tgUser ? tgUser.id : 0
-      };
-
-      // Button state
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span>⏳ Yuborilmoqda...</span>';
-      }
-      if (tg?.MainButton) {
-        tg.MainButton.showProgress();
-      }
-
-      let success = false;
-
-      // 1. Send via API
-      try {
-        const response = await fetch('/api/orders', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(orderPayload)
-        });
-        if (response.ok) {
-          success = true;
-        }
-      } catch (err) {
-        console.warn("API orqali yuborishda xatolik, telegram fallback:", err);
-      }
-
-      // 2. Telegram WebApp sendData fallback/complement
-      if (tg && typeof tg.sendData === 'function') {
-        try {
-          tg.sendData(JSON.stringify({
-            action: "new_order",
-            ...orderPayload
-          }));
-          success = true;
-        } catch (e) {
-          console.warn("sendData xatosi:", e);
-        }
-      }
-
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<span>🚀 Buyurtmani yuborish</span>';
-      }
-      if (tg?.MainButton) {
-        tg.MainButton.hideProgress();
-      }
-
-      // Result
-      triggerHaptic('heavy');
-      showToast("Buyurtmangiz muvaffaqiyatli qabul qilindi!", true);
-      
-      // Reset form
-      notesInput.value = '';
-      navigateTo('home');
-    }
-
-    // Phone input mask / helper
-    const phoneInput = document.getElementById('orderPhoneInput');
-    if (phoneInput) {
-      phoneInput.addEventListener('focus', function() {
-        if (!this.value) this.value = '+998 ';
-      });
-      phoneInput.addEventListener('blur', function() {
-        if (this.value === '+998 ') this.value = '';
-      });
-    }
-
-    // Helper: HTML escape
-    function escapeHtml(str) {
-      if (!str) return '';
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
-    }
-
-    // DOM Ready
-    window.addEventListener('DOMContentLoaded', () => {
-      initTelegram();
-      loadData();
-    });
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', loadAppData);
   </script>
 </body>
 </html>
